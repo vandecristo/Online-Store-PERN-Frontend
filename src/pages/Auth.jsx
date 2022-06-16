@@ -12,7 +12,7 @@ const Auth = () => {
         <form className={styles.auth}>
             <div className={styles.auth__body}>
                 <h1 className={styles.auth__title}>{islogin? 'Authorization' : 'Registration' }</h1>
-                <div className={styles.auth__item_wrapper}>
+                <div className={styles.auth__itemWrapper}>
                     <div className={styles.auth__item}>
                         <input className={styles.auth__input} type="text" placeholder="Email" name="email"
                             // required
@@ -25,7 +25,7 @@ const Auth = () => {
                         ></input>
                     </div>
 
-                    <div className={styles.auth__button_wrapper}>
+                    <div className={styles.auth__buttonWrapper}>
                         <div className={styles.auth__signIn}>
                             {islogin ?
                                 <>

@@ -37,7 +37,7 @@ $theme-black: #181818;
   justify-content: center;
 }
 
-.auth__item_wrapper{
+.auth__itemWrapper{
   padding: 10px 10px 0 10px;
   max-width: 324px;
 
@@ -72,7 +72,7 @@ input, textarea:active, :hover, :focus {
   transition: 0.5s;
 }
 
-.auth__button_wrapper{
+.auth__buttonWrapper{
   display: flex;
   justify-content: space-between;
   align-items: center;
