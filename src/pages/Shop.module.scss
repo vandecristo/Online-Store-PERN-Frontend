@@ -1,0 +1,35 @@
+*{
+  height: 100%;
+  width: 100%;
+}
+
+.shop{
+  height: 100%;
+}
+
+.shop__body{
+  height: 92%;
+  display: flex;
+  justify-content: center;
+}
+.shop__typeBarWrapper{
+  background: rgba(250, 11, 11, 0.45);
+}
+
+.shop__typeBar{
+
+}
+
+.shop__goodsWrapper{
+  background: rgba(49, 75, 215, 0.69);
+
+}
+
+.shop__filterWrapper{
+  background: rgba(74, 171, 93, 0.64);
+
+}
+
+.shop__goodsList{
+
+}
