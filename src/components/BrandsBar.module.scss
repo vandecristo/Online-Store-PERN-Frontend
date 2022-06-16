@@ -1,0 +1,27 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+
+.brandBar__Item{
+  width: 160px;
+  height: 32px;
+  background: $theme-black;
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0 0 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.brandBar__Item>span{
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.brandBar__Item:hover>span{
+  color: $text-color-hover;
+  transition: 0.2s;
+}
