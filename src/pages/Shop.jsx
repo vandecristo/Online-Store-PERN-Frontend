@@ -14,7 +14,10 @@ const Shop = () => {
                        filter
                    </div>
                    <div className={styles.shop__goodsList}>
-                        goodsList
+                        GoodsList
+                   </div>
+                   <div>
+                       Some changes
                    </div>
                </div>
           </div>
