@@ -3,8 +3,13 @@ import { makeAutoObservable } from 'mobx';
 export default class DeviceStore {
     constructor () {
         this._types = [
-            {id: 1, name: 'Холодильники'},
-            {id: 2, name: 'Смартфоны'},
+            {id: 1, name: 'SmartPhonesdfgfd'},
+            {id: 2, name: 'Notebooks'},
+            {id: 3, name: 'Computers'},
+            {id: 4, name: 'Tablets'},
+            {id: 5, name: 'ColdBox'},
+            {id: 6, name: 'typebar'},
+            {id: 7, name: 'typebar'}
         ]
         this._brands = [
             {id: 1, name: 'Samsung'},
@@ -19,6 +24,7 @@ export default class DeviceStore {
             {id: 6, name: 'Razor', price: 64000, rating: 5, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
             {id: 7, name: 'XiaOmi', price: 85000, rating: 4, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
         ]
+        this._selectedType = {}
         makeAutoObservable(this)
     }
 
@@ -32,7 +38,10 @@ export default class DeviceStore {
 
     setDevices(devices) {
         this._devices = devices
-    } 
+    }
+    setSelectedType(type) {
+        this._selectedType = type
+    }
     
     
 
@@ -45,5 +54,9 @@ export default class DeviceStore {
     
     get devices() {
         return this._devices
+    }
+
+    get selectedType() {
+       return  this._selectedType
     }
 }

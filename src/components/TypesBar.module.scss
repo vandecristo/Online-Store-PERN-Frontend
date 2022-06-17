@@ -1,0 +1,35 @@
+.typeBar{
+  background: #F7F7FA;
+  margin-top: 82px;
+  min-width: 130px;
+  border-radius: 4px;
+  padding: 12px 8px;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+
+.typeBar__Item{
+
+}
+
+.active {
+  background: #754abe;
+
+}
+
+.typeBar__Item>span{
+  cursor: pointer;
+}
+
+
+.typeBar__Item>li{
+
+}
