@@ -16,13 +16,13 @@ export default class DeviceStore {
             {id: 2, name: 'Apple'},
         ]
         this._devices = [
-            {id: 1, name: 'Samsung', price: 25000, rating: 5, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
-            {id: 2, name: 'Aplle', price: 52000, rating: 5, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
-            {id: 3, name: 'Lenovo', price: 75000, rating: 1, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
-            {id: 4, name: 'Nokia', price: 34000, rating: 5, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
-            {id: 5, name: 'Hp', price: 54000, rating: 3, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
-            {id: 6, name: 'Razor', price: 64000, rating: 5, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
-            {id: 7, name: 'XiaOmi', price: 85000, rating: 4, img: 'D:/React js/0205/server/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
+            {id: 1, name: 'Samsung Galaxy S8 128gb', price: 999, rating: 4.98, img: 'https://raw.githubusercontent.com/vandecristo/Online-Store-PERN-backend/95c23a52281e5577cb907a435fac43254fd144fa/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
+            {id: 2, name: 'Aplle iPhone 12 Pro 256gb', price: 1199, rating: 4.89, img: 'https://raw.githubusercontent.com/vandecristo/Online-Store-PERN-backend/95c23a52281e5577cb907a435fac43254fd144fa/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
+            {id: 3, name: 'Lenovo Yoga yoba HD 1gb', price: 750, rating: 1.09, img: 'https://raw.githubusercontent.com/vandecristo/Online-Store-PERN-backend/95c23a52281e5577cb907a435fac43254fd144fa/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
+            {id: 4, name: 'Nokia 3310 super max', price: 890, rating: 5, img: 'https://raw.githubusercontent.com/vandecristo/Online-Store-PERN-backend/95c23a52281e5577cb907a435fac43254fd144fa/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
+            {id: 5, name: 'Hp legion phone 1Tb', price: 1540, rating: 3.09, img: 'https://raw.githubusercontent.com/vandecristo/Online-Store-PERN-backend/95c23a52281e5577cb907a435fac43254fd144fa/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
+            {id: 6, name: 'Razor xueyzer phone gaming pro carbon', price: 1640, rating: 5, img: 'https://raw.githubusercontent.com/vandecristo/Online-Store-PERN-backend/95c23a52281e5577cb907a435fac43254fd144fa/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
+            {id: 7, name: 'XiaOmi realmi Lux pro super 1TB quad cam', price: 185, rating: 4, img: 'https://raw.githubusercontent.com/vandecristo/Online-Store-PERN-backend/95c23a52281e5577cb907a435fac43254fd144fa/static/543d7b8b-8f4e-47d1-9d4a-a7dd7c667962.jpg'},
         ]
         this._selectedType = {}
         makeAutoObservable(this)
