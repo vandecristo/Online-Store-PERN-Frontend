@@ -1,9 +1,19 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+
 .typeBar{
   background: #F7F7FA;
   margin-top: 82px;
   min-width: 130px;
   border-radius: 4px;
   padding: 12px 8px;
+}
+
+.typeBar__title{
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
 }
 
 ul {
@@ -17,12 +27,24 @@ li {
 
 
 .typeBar__Item{
-
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-top: 5px;
+  background: none;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: 0.3s;
 }
 
-.active {
-  background: #754abe;
-
+.typeBar__Item_active {
+  cursor: pointer;
+  background: $theme-black;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  color: $text-color;
+  transition: 0.3s;
 }
 
 .typeBar__Item>span{
