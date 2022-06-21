@@ -1,10 +1,18 @@
 import React from 'react';
 import styles from "./GoodsItem.module.scss";
 import vector from '../assets/Vector.png'
+import { useNavigate } from 'react-router-dom';
+import { DEVICE_ROUTE } from "../utils/consts";
 
 const GoodsItem = ({device}) => {
+    const navigate = useNavigate();
+
+    const addToFavorites = e => {
+        e.stopPropagation();
+        return console.log('%%%%%%%%  111111111111111 ===   ', 111111111111111)
+    }
     return (
-        <div className={styles.goods}>
+        <div className={styles.goods} onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}>
             <div className={styles.goods__body}>
                 <div className={styles.goods__imageWrapper}>
                     <img
@@ -34,7 +42,7 @@ const GoodsItem = ({device}) => {
                         />
                         {device.rating}
                     </div>
-                    <button className={styles.goods__fav}>
+                    <button className={styles.goods__fav} onClick={e => addToFavorites(e)}>
                        <span>To&nbsp;favorites</span>
                     </button>
                 </div>
