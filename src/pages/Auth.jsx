@@ -1,33 +1,70 @@
-import React from 'react';
-import { REGISTRATION_ROUTE, LOGIN_ROUTE } from "../utils/consts";
-import { NavLink, useLocation } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Context } from '../index';
+import { observer } from "mobx-react-lite";
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
+import { login, registration } from "../http/userAPI";
 import styles from './Auth.module.scss';
 
-const Auth = () => {
+const Auth = observer( ()=> {
+    const {user} = useContext(Context);
     const location = useLocation();
-    console.log('%%%%%%%%  location ===   ', location);
-    const islogin = location.pathname === LOGIN_ROUTE;
+    const navigate = useNavigate();
+    const isLogin = location.pathname === LOGIN_ROUTE;
+    const [email, setEmail] = useState('');
+    const [password, setPassword ] = useState('');
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        try {
+            let data;
+            if (isLogin) {
+                data = await login(email, password);
+            } else {
+                data = await registration(email, password);
+            }
+            user.setUser(data);
+            user.setIsAuth(true);
+            console.log('%%%%%%%%   ===   ', user)
+            navigate(SHOP_ROUTE)
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+
+    }
 
     return (
         <form className={styles.auth}>
             <div className={styles.auth__body}>
-                <h1 className={styles.auth__title}>{islogin? 'Authorization' : 'Registration' }</h1>
+                <h1 className={styles.auth__title}>{isLogin ? 'Authorization' : 'Registration'}</h1>
                 <div className={styles.auth__itemWrapper}>
                     <div className={styles.auth__item}>
-                        <input className={styles.auth__input} type="text" placeholder="Email" name="email"
+                        <input
+                            className={styles.auth__input}
+                            type="text"
+                            placeholder="Email"
+                            name="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             // required
                         ></input>
                     </div>
 
                     <div className={styles.auth__item}>
-                        <input className={styles.auth__input} type="password" placeholder="Password" name="psw"
+                        <input
+                            className={styles.auth__input}
+                            type="password"
+                            placeholder="Password"
+                            name="psw"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                             // required
                         ></input>
                     </div>
 
                     <div className={styles.auth__buttonWrapper}>
                         <div className={styles.auth__signIn}>
-                            {islogin ?
+                            {isLogin ?
                                 <>
                                     <span className={styles.auth__text}>No account? </span>
                                     <NavLink className={styles.auth__text_link} to={REGISTRATION_ROUTE}>
@@ -43,17 +80,17 @@ const Auth = () => {
                                 </>
                             }
                         </div>
-                        {islogin ?
-                            <button className={styles.auth__button} type="submit">Login</button>
+                        {isLogin ?
+                            <button className={styles.auth__button} type="submit" onClick={e => handleSubmit(e)}>Login</button>
                             :
-                            <button className={styles.auth__button} type="submit">Sign&#160;up</button>
+                            <button className={styles.auth__button} type="submit" onClick={e => handleSubmit(e)}>Sign&#160;up</button>
                         }
                     </div>
 
                 </div>
             </div>
         </form>
-  );
-};
+    );
+});
 
 export default Auth;
