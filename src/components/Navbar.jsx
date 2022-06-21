@@ -7,6 +7,11 @@ import styles from './Navbar.module.scss';
 
 const Navbar = observer(() => {
     const { user } = useContext(Context);
+
+    const logoutHandler = () => {
+        user.setIsAuth(false)
+        user.setUser({});
+    }
     return (
         <div className={styles.navbar}>
             <NavLink className={styles.navbar__logo} to={SHOP_ROUTE}>
@@ -16,20 +21,22 @@ const Navbar = observer(() => {
                 {user.isAuth ?
                 <div className={styles.navbar__row}>
                     <NavLink className={styles.navbar__button} to={ADMIN_ROUTE}>
-                        <span className={styles.navbar__text}>Admin page</span>
+                        <span className={styles.navbar__text}>
+                            Admin page
+                        </span>
                     </NavLink>
                     <NavLink className={styles.navbar__button} to={SHOP_ROUTE}
-                             onClick={() => user.setIsAuth(false)}
+                             onClick={() => logoutHandler()}
                     >
-                        <span className={styles.navbar__text}>Log out</span>
+                        <span className={styles.navbar__text}>
+                            Log out
+                        </span>
                     </NavLink>
                 </div>
                 
                 :
                 <div className={styles.navbar__row}>
-                    <NavLink className={styles.navbar__button}  to={LOGIN_ROUTE}
-                              onClick={() => user.setIsAuth(true)}
-                    >
+                    <NavLink className={styles.navbar__button}  to={LOGIN_ROUTE}>
                         <span className={styles.navbar__text}>Log in</span>
                     </NavLink>
                 </div>

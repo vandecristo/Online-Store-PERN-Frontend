@@ -1,10 +1,11 @@
 import React from 'react';
 
 const CreateBrand = () => {
+
     return (
-        <div>
-            CreateBrand
-        </div>
+        <form>
+            <input type="text" placeholder='name'/>
+        </form>
     );
 };
 

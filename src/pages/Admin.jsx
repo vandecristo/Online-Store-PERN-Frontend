@@ -1,58 +1,38 @@
-import React from 'react';
-import CreateBrand from "../components/modals/CreateBrand";
-import CreateType from "../components/modals/CreateType";
-import CreateDevice from "../components/modals/CreateDevice";
+import React, { useState } from 'react';
+import AdminPopup from "../components/modals/AdminPopup";
 
 const Admin = () => {
 
-  let showType = false
-  let showBrand = false
-  let showDevice = false
+    const [currentPopup, setCurrentPopup] = useState(null);
+    const [popupStatus, togglePopup] = useState(false);
 
-  const openPopup = (e) => {
-    const { className } = e.target;
-
-    switch(className) {
-      case 'createManager__type':
-        console.log('%%%%%%%%   ===   ', )
-        showType = true
-        showBrand = false
-        showDevice = false
-      break;
-
-      case 'createManager__brand':
-        console.log('%%%%%%%%   ===   ', )
-
-        showType = false
-        showBrand = true
-        showDevice = false
-      break;
-
-      case 'createManager__device':
-        console.log('%%%%%%%%   ===   ', )
-
-        showType = false
-        showBrand = false
-        showDevice = true
-      break;
-
-      default:
-      return null
+    const openPopup = (e) => {
+        const { className } = e.target;
+        setCurrentPopup(className);
+        togglePopup(true);
     }
 
-  }
-  return (
-      <div className="createManager">
-        Admin panel:
-        <div className="createManager__type" onClick={e => openPopup(e)}>Add Type</div>
-        <div className="createManager__brand" onClick={e => openPopup(e)}>Add Brand</div>
-        <div className="createManager__device" onClick={e => openPopup(e)}>Add Device</div>
+    return (
+        <div>
+            <div className="createManager" onClick={e => openPopup(e)}>
+                Admin panel:
+                <button className="type">
+                    Add Type
+                </button>
+                <button className="brand">
+                    Add Brand
+                </button>
+                <button className="device">
+                    Add Device
+                </button>
 
-        <CreateBrand style={{display: showType ? 'none' : ''}}/>
-        <CreateType style={{display: showBrand ? 'none' : ''}}/>
-        <CreateDevice style={{display: showDevice ? 'none' : ''}}/>
-      </div>
-  );
+            </div>
+
+            { popupStatus ? <AdminPopup currentPopup={currentPopup} togglePopup={togglePopup}/> : null }
+
+        </div>
+
+    );
 };
 
 export default Admin;

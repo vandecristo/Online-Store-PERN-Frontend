@@ -2,9 +2,10 @@ import React from 'react';
 
 const CreateType = () => {
     return (
-        <div>
-            CreateType
-        </div>
+        <form>
+            <title>Create Type:</title>
+            <input type="text" placeholder='name'/>
+        </form>
     );
 };
 
