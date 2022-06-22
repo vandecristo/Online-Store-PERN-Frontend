@@ -3,18 +3,16 @@ import styles from './Loading.module.scss';
 
 const Loading = () => {
     return (
-        <div className={styles.loader}>
-            <div className={styles.wrapper}>
-                <div className={styles.ldsEllipsis}>
+        <div className={styles.loaderBackground}>
+            <div className={styles.loader}>
+                <div className={styles.loaderEllipsis}>
                     <div></div>
                     <div></div>
                     <div></div>
                     <div></div>
                 </div>
             </div>
-
         </div>
-
     );
 };
 

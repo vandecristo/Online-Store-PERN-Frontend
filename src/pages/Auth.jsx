@@ -12,7 +12,7 @@ const Auth = observer( ()=> {
     const navigate = useNavigate();
     const isLogin = location.pathname === LOGIN_ROUTE;
     const [email, setEmail] = useState('');
-    const [password, setPassword ] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSubmit = async e => {
         e.preventDefault();
