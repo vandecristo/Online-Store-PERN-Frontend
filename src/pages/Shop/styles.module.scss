@@ -1,0 +1,39 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+
+* {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+}
+
+.shop {
+  height: calc(100vh - 90px);
+}
+
+.shop__body {
+  display: flex;
+  height: 100%;
+}
+
+.shop__typeBarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 2;
+  width: 20%;
+}
+
+.shop__goodsWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  background: rgba(49, 75, 215, 0);
+}
+
+.shop__brandBarWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  background: rgba(74, 171, 93, 0);
+}
