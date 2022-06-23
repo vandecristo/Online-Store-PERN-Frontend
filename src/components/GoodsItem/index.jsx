@@ -27,7 +27,7 @@ const GoodsItem = ({device}) => {
                         <span>{device.name}</span>
                     </div>
                     <div className={styles.goods__price}>
-                        <div>${device.price}</div>
+                        <div>{device.price} P</div>
                     </div>
                     <div className={styles.goods__info}>
                         <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>

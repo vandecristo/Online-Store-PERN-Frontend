@@ -30,6 +30,11 @@ $font-large: 35px;
   align-items: center;
 }
 
+.device__picture > img {
+  max-width: 356px;
+  max-height: 483px;
+}
+
 .device__image {
   margin: 10px;
 }
@@ -127,3 +132,4 @@ $font-large: 35px;
   opacity: 0.33;
   transition: 0.4s;
 }
+

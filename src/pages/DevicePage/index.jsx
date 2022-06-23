@@ -29,6 +29,8 @@ const DevicePage = observer(() => {
                 <div className={styles.device__main}>
                     <div className={styles.device__picture}>
                         <img
+                            width={356}
+                            height={483}
                             className={styles.device__image}
                             src={createImageLink()}
                             alt="no-pic"
