@@ -1,8 +1,8 @@
-import Admin from "./pages/Admin";
-import Basket from "./pages/Basket";
-import Auth from "./pages/Auth";
-import Shop from "./pages/Shop";
-import DevicePage from "./pages/DevicePage";
+import Admin from "./pages/Admin/index";
+import Auth from "./pages/Auth/index";
+import Basket from "./pages/Basket/index";
+import DevicePage from "./pages/DevicePage/index";
+import Shop from "./pages/Shop/index";
 import { 
     ADMIN_ROUTE,
     BASKET_ROUTE,
@@ -21,7 +21,7 @@ export const authRoutes = [
         path: BASKET_ROUTE,
         Component: Basket
     },
-]
+];
 
 export const publicRoutes = [
     {
@@ -40,4 +40,4 @@ export const publicRoutes = [
         path: DEVICE_ROUTE + '/:id',
         Component: DevicePage
     },
-]
+];

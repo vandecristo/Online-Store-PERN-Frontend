@@ -1,0 +1,126 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+
+* {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+}
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 91vh;
+  background: $text-color;
+}
+
+.auth__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 35%;
+  max-width: 600px;
+  min-width: 330px;
+  max-height: 260px;
+  background: $theme-black;
+  color: white;
+
+}
+
+.auth__title {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.auth__itemWrapper {
+  padding: 10px 10px 0 10px;
+  max-width: 324px;
+
+}
+
+.auth__item {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+input, textarea:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+.auth__input {
+  outline: none;
+  background: $theme-black;
+  color: $text-color;
+  border: 2px solid $theme-black;
+  border-bottom: 0.1em solid $text-color;
+}
+
+.auth__input:focus {
+  border-bottom: 0.1em solid $text-color-hover;
+  transition: 0.5s;
+}
+
+.auth__input:not(:focus) {
+  border-bottom: 0.1em solid $text-color;
+  transition: 0.5s;
+}
+
+.auth__buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0 5px 0;
+}
+
+.auth__button {
+  border: 2px solid $theme-black;
+  width: 70px;
+  background: $theme-black;
+  color: $text-color;
+  font-weight: 400;
+  text-decoration: underline $text-color;
+  text-underline-offset: 0.4em;
+}
+
+.auth__button:hover {
+  text-decoration: underline $text-color-hover;
+  color: $text-color-hover;
+  transition: 0.4s;
+}
+
+.auth__button:not(:hover) {
+  text-decoration: underline $text-color;
+  color: $text-color;
+  transition: 0.4s;
+}
+
+.auth__signIn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth__text {
+  margin: auto;
+}
+
+.auth__text_link {
+  padding-left: 5px;
+  color: $text-color;
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+  transition: 0.4s;
+}
+
+.auth__text_link:hover {
+  color: $text-color-hover;
+  text-decoration: underline $text-color-hover;
+  text-underline-offset: 0.4em;
+  transition: 0.4s;
+}

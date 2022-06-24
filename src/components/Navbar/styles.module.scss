@@ -1,0 +1,70 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $theme-black;
+  height: 90px;
+  padding: 0 3vh;
+}
+
+.navbar__logo {
+  text-decoration: none;
+}
+
+.navbar__row {
+  padding: 5px;
+}
+
+.navbar__text {
+  color: $text-color;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: underline $text-color;
+  text-underline-offset: 0.4em;
+}
+
+.navbar__text:not(:hover) {
+  text-decoration: underline white;
+  color: white;
+  transition: 0.2s;
+}
+
+.navbar__icon {
+  color: #ffffff;
+  margin-left: 5px;
+  height: 20px;
+}
+
+.navbar__icon:not(:hover) {
+  text-decoration: underline white;
+  color: white;
+  transition: 0.2s;
+}
+
+.navbar__button {
+  text-decoration: none;
+  background: $theme-black;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+.navbar__button:hover > .navbar__icon {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.navbar__button:hover > .navbar__text {
+  text-decoration: underline $text-color-hover;
+  color: $text-color-hover;
+  transition: 0.2s;
+}
