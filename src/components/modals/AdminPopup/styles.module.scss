@@ -15,15 +15,11 @@ $font-large: 35px;
   transition: 1s;
 }
 
-.popupWrapper {
+.popup__wrapper {
+  display: flex;
+  justify-content: center;
   background: #F7F7FA;
   margin: auto;
-  width: 40%;
-  max-height: 500px;
-}
-
-.popup__BtnWrapper {
-  display: flex;
 }
 
 .popup__Btn {

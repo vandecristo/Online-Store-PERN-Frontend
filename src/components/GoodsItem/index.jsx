@@ -45,8 +45,8 @@ const GoodsItem = ({device}) => {
                         />
                         {device.rating}
                     </div>
-                    <button className={isPressed ? styles.goods__fav : styles.goods__fav_pressed} onClick={e => addToFavorites(e)}>
-                        <span>{isPressed ? 'To favorites' : 'Added'}</span>
+                    <button className={isPressed ? styles.goods__fav_pressed : styles.goods__fav } onClick={e => addToFavorites(e)}>
+                        <span>{isPressed ? 'Added' : 'To favorites' }</span>
                     </button>
                 </div>
             </div>

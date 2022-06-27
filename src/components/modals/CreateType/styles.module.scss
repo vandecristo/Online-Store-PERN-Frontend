@@ -1,0 +1,83 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$gray-text: #787885;
+$font-small: 14px;
+$font-medium: 25px;
+$font-large: 35px;
+
+.createType {
+  width: 60%;
+  min-width: 400px;
+}
+
+.createType__title {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.createType__form {
+  display: block;
+}
+
+.createType__item {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.createType__item > input {
+  margin: 5px;
+}
+
+.createType__btnWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.createType__btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 32px;
+  background: $theme-black;
+  color: $text-color;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.createType__btn > span {
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.createType__btn:hover {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.createType__btn:hover > span {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.createType__input {
+  outline: none;
+  background: #F7F7FA;
+  color: $theme-black;
+  border: 2px solid #F7F7FA;
+  border-bottom: 0.1em solid $theme-black;
+}
+
+.createType__input:focus {
+  border-bottom: 0.1em solid #F7F7FA;
+  box-shadow: 0 2px 1px $text-color-hover;
+  transition: 0.3s;
+}

@@ -9,6 +9,7 @@ import Auth from "./pages/Auth";
 import Basket from "./pages/Basket";
 import DevicePage from "./pages/DevicePage";
 import Navbar from './components/Navbar/index';
+import Profile from './pages/Profile/index';
 import Shop from "./pages/Shop";
 import Favorites from "./pages/Favorites";
 
@@ -23,6 +24,7 @@ const App = observer( () => {
                 <Route path={user.isAuth ? '/admin' : '/'} element={<Admin/>}/>
                 <Route path={user.isAuth ? '/basket' : '/'} element={<Basket/>}/>
                 <Route path={user.isAuth ? '/favorites' : '/'} element={<Favorites/>}/>
+                <Route path={user.isAuth ? '/profile' : '/'} element={<Profile/>}/>
                 <Route path={user.isAuth ? '/' : '/registration'} element={<Auth/>}/>
                 <Route path={user.isAuth ? '/' :'/login'} element={<Auth/>}/>
                 <Route path={'/device'+ '/:id'} element={<DevicePage/>}/>
