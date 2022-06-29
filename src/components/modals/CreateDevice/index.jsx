@@ -5,8 +5,8 @@ import { createDevice } from "../../../http/deviceAPI";
 
 import styles from "./styles.module.scss";
 
-const CreateDevice = ({closePopupHandler}) => {
-    const {device} = useContext(Context);
+const CreateDevice = ({ closePopupHandler }) => {
+    const { device } = useContext(Context);
     const [data, setData] = useState({name: '', price: 0, typeId: 0, brandId: 0, img: {}});
 
     const handleSubmit = e => {
@@ -17,13 +17,7 @@ const CreateDevice = ({closePopupHandler}) => {
         formData.append('img', data.img);
         formData.append('typeId', data.typeId);
         formData.append('brandId', data.brandId);
-        //formData.append('info', JSON.stringify(data.info));
-        createDevice(formData)
-            .then(data => {
-                    console.log('Create new device was successful:', data);
-                    closePopupHandler();
-                }
-            );
+        createDevice(formData).then(() => {closePopupHandler()});
     };
 
     return (

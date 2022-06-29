@@ -11,7 +11,7 @@ class CreateType extends Component {
             data: {name: ''},
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
+    };
 
     handleSubmit = e => {
         e.preventDefault();

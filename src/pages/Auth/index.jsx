@@ -9,8 +9,8 @@ import { login, registration } from "../../http/userAPI";
 
 import styles from './styles.module.scss';
 
-const Auth = observer( ()=> {
-    const {user} = useContext(Context);
+const Auth = observer(() => {
+    const { user } = useContext(Context);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const location = useLocation();
@@ -81,7 +81,7 @@ const Auth = observer( ()=> {
                         {isLogin ? (
                             <button className={styles.auth__button} type="submit"
                                     onClick={e => handleSubmit(e)}>Login</button>
-                            ) : (
+                        ) : (
                             <button className={styles.auth__button} type="submit"
                                     onClick={e => handleSubmit(e)}>Sign&#160;up
                             </button>

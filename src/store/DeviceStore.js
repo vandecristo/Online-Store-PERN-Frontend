@@ -26,18 +26,18 @@ export default class DeviceStore {
     };
 
     get types() {
-        return this._types
+        return this._types;
     };
 
     get brands() {
-        return this._brands
+        return this._brands;
     };
     
     get devices() {
-        return this._devices
+        return this._devices;
     };
 
     get selectedType() {
-       return  this._selectedType
+       return  this._selectedType;
     };
 };

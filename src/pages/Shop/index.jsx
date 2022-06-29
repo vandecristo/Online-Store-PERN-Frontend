@@ -11,7 +11,7 @@ import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
 import styles from './styles.module.scss';
 
 const Shop = observer(() => {
-    const {device} = useContext(Context);
+    const { device } = useContext(Context);
 
     useEffect( () => {
         fetchTypes().then(types => device.setTypes(types));

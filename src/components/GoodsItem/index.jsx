@@ -6,15 +6,15 @@ import { DEVICE_ROUTE } from "../../utils/consts";
 import styles from "./styles.module.scss";
 import { useState } from "react";
 
-const GoodsItem = ({device}) => {
+const GoodsItem = ({ device }) => {
     const navigate = useNavigate();
 
     const [ isPressed, setIsPressed ] = useState(false);
     const addToFavorites = e => {
         e.stopPropagation();
-        setIsPressed(prev => !prev)
-        console.log('%%%%%%%%  addToFavorites ===');
-    }
+        setIsPressed(prev => !prev);
+    };
+
     return (
         <div className={styles.goods} onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}>
             <div className={styles.goods__body}>

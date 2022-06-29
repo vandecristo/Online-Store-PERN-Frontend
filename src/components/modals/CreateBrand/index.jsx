@@ -4,7 +4,7 @@ import { createBrand } from '../../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
-const CreateBrand = ({closePopupHandler}) => {
+const CreateBrand = ({ closePopupHandler }) => {
     const [data, setData] = useState({name: ''});
 
     const handleSubmit = e => {

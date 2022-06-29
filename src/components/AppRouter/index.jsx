@@ -7,7 +7,7 @@ import { SHOP_ROUTE } from '../../utils/consts';
 import { authRoutes, publicRoutes } from '../../routes';
 
 const AppRouter = () => {
-    const {user} = useContext(Context);
+    const { user } = useContext(Context);
 
     return (
         <Routes>

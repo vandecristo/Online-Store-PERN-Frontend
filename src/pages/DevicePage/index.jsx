@@ -1,21 +1,18 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { observer } from "mobx-react-lite";
 
-import { Context } from "../../index";
 import { fetchDeviceById } from "../../http/deviceAPI";
 
 import styles from './styles.module.scss';
 
-const DevicePage = observer(() => {
-    const { device } = useContext(Context);
+const DevicePage = () => {
     const [currDevice, setCurrDevice] = useState({});
     const { id } = useParams();
 
     const fetchCurrentDevice = async() => {
         const data = await fetchDeviceById(id).then( data => data);
         setCurrDevice(data);
-    }
+    };
 
     const createImageLink = () => currDevice.img ? process.env.REACT_APP_API_URL + currDevice.img : process.env.REACT_APP_API_URL + 'default.jpg';
     
@@ -67,6 +64,6 @@ const DevicePage = observer(() => {
             </div>
         </div>
     );
-});
+};
 
 export default DevicePage;

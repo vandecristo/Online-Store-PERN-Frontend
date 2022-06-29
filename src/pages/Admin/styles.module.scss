@@ -3,11 +3,10 @@ $text-color-hover: #754abe;
 $theme-black: #181818;
 
 .admin__item {
-
+  display: block;
 }
 
 .admin {
   height: calc(100vh - 90px);
   display: flex;
 }
-

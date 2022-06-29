@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import AdminBody from "../../components/AdminBody";
 import AdminBar from "../../components/AdminBar";
+import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
 
 import styles from './styles.module.scss';
-import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
 
 const Admin = () => {
     const [items, setItems] = useState([]);
@@ -15,7 +15,6 @@ const Admin = () => {
     };
 
     const showAllItems = async name => {
-
         switch (name) {
             case 'showDevices':
                 return fetchAndSpreadDevices();

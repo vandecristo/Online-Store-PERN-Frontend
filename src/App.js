@@ -14,7 +14,7 @@ import Shop from "./pages/Shop";
 import Favorites from "./pages/Favorites";
 
 const App = observer( () => {
-    const {user} = useContext(Context);
+    const { user } = useContext(Context);
 
     return (
         <BrowserRouter>

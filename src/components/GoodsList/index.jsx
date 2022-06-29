@@ -8,7 +8,7 @@ import GoodsItem from "../GoodsItem/index";
 import styles from "./styles.module.scss";
 
 const GoodsList = observer(() => {
-    const {device} = useContext(Context);
+    const { device } = useContext(Context);
 
     return (
         <div className={styles.goodsList}>

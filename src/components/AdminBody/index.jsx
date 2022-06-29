@@ -1,20 +1,17 @@
-
 import styles from "./styles.module.scss";
 
-const AdminBody = ({items}) =>{
+const AdminBody = ({ items }) =>{
 
     const openEditPopup = item => {
         console.log('########### edit:', item);
-
     };
     const deleteConfirmation = id => {
       console.log('########### ?:', id);
-
     };
 
     return (
         <div className={styles.adminBody}>
-            { items.length
+            {items.length
             ?
                 items.map(item =>
                 (

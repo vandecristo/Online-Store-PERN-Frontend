@@ -1,6 +1,5 @@
 import { Component } from 'react';
 
-
 import CreateType from "../modals/CreateType";
 import CreateBrand from "../modals/CreateBrand";
 import CreateDevice from "../modals/CreateDevice";
@@ -23,9 +22,8 @@ class AdminBar extends Component {
     };
 
     openPopup = e => {
-        const {value} = e.target;
+        const { value } = e.target;
         this.setState({isPopupOpen: true, currentPopup: value});
-
     };
 
     showItems(name){
@@ -35,7 +33,6 @@ class AdminBar extends Component {
 
     createPopup() {
         if (this.state.isPopupOpen) {
-
             switch (this.state.currentPopup) {
                 case 'type':
                     return  <CreateType closePopupHandler={this.closePopupHandler}/>;
@@ -62,7 +59,6 @@ class AdminBar extends Component {
     };
 
     render() {
-
         return (
             <div className={styles.adminBar}>
                 {this.createPopup()}
@@ -129,8 +125,8 @@ class AdminBar extends Component {
                     </div>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 }
 
-export default AdminBar
+export default AdminBar;
