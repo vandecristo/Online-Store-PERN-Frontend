@@ -1,47 +1,39 @@
-import { useEffect, useState, useContext } from 'react';
+import { useState } from 'react';
 
-import AdminPopup from '../../components/modals/AdminPopup/index';
+import AdminBody from "../../components/AdminBody";
+import AdminBar from "../../components/AdminBar";
 
 import styles from './styles.module.scss';
-import {Context} from "../../index";
-import {observer} from "mobx-react-lite";
+import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
 
-const Admin = observer(() => {
-    const {device} = useContext(Context);
-    const [currentPopup, setCurrentPopup] = useState(null);
-    const [popupStatus, togglePopup] = useState(false);
+const Admin = () => {
+    const [items, setItems] = useState([]);
 
-    const openPopup = (e) => {
-        const { value } = e.target;
-        setCurrentPopup(value);
-        togglePopup(true);
+    const fetchAndSpreadDevices = async () => {
+        const res = await fetchDevices();
+        setItems(res.rows);
     };
 
-    useEffect(() => {
-        console.log(device);
-    },[]);
+    const showAllItems = async name => {
+
+        switch (name) {
+            case 'showDevices':
+                return fetchAndSpreadDevices();
+            case 'showBrands':
+                return setItems(await fetchBrands());
+            case 'showTypes':
+                return setItems(await fetchTypes());
+            default:
+                break;
+        }
+    };
 
     return (
         <div className={styles.admin}>
-            Admin panel:
-            <div className={styles.admin__item} onClick={e => openPopup(e)}>
-                <button className={styles.admin__type} value="type">
-                    Add Type
-                </button>
-                <button className={styles.admin__brand} value="brand">
-                    Add Brand
-                </button>
-                <button className={styles.admin__device} value="device">
-                    Add Device
-                </button>
-            </div>
-            <div className={styles.admin__item}>Devices: {device.devices.length}</div>
-            <div className={styles.admin__item}>Brands: {device.brands.length}</div>
-            <div className={styles.admin__item}>Types: {device.types.length}</div>
-            <div className={styles.admin__item}>Users: 0</div>
-            {popupStatus ? (<AdminPopup currentPopup={currentPopup} togglePopup={togglePopup}/>) : null}
+            <AdminBar showAllItems={showAllItems}/>
+            <AdminBody items={items}/>
         </div>
     );
-});
+};
 
 export default Admin;

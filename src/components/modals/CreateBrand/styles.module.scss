@@ -6,6 +6,23 @@ $font-small: 14px;
 $font-medium: 25px;
 $font-large: 35px;
 
+.popup {
+  display: flex;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.62);
+  height: 100vh;
+  width: 100vw;
+  margin-top: -90px;
+  transition: 1s;
+}
+
+.popup__wrapper {
+  display: flex;
+  justify-content: center;
+  background: #F7F7FA;
+  margin: auto;
+}
+
 .createBrand {
   width: 60%;
   min-width: 400px;

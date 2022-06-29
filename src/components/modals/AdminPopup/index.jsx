@@ -1,30 +1,27 @@
+import { Component } from "react";
 import CreateType from "../CreateType";
 import CreateBrand from "../CreateBrand";
 import CreateDevice from "../CreateDevice";
 
 import styles from "./styles.module.scss";
 
-const AdminPopup = ({currentPopup, togglePopup}) => {
-    const selectCreationForm = () => {
-        switch (currentPopup) {
-            case 'type':
-                return  <CreateType togglePopup={togglePopup}/>;
-            case 'brand':
-                return   <CreateBrand togglePopup={togglePopup}/>;
-            case 'device':
-                return  <CreateDevice togglePopup={togglePopup}/>;
-            default:
-                return alert(`Some problem occurred with  currentProp: ${currentPopup}`);
-        }
+class AdminPopup extends Component {
+    constructor(props) {
+        super(props);
     };
 
-    return (
-        <div className={styles.popup}>
-            <div className={styles.popup__wrapper}>
-                {selectCreationForm()}
+
+    render() {
+        console.log('########### 1111111:', 1111111);
+
+        return (
+            <div className={styles.popup}>
+                <div className={styles.popup__wrapper}>
+                    1111
+                </div>
             </div>
-        </div>
-    );
-};
+        )
+    };
+}
 
 export default AdminPopup;
