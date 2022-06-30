@@ -99,6 +99,16 @@ $theme-black: #181818;
   font-size: 14px;
 }
 
+.goods__fav_pressed {
+  background: none;
+  width: 41%;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0 auto;
+  transition: 0.3s;
+  box-shadow: 0 0 5px#754abe;
+}
+
 .goods__star {
   height: 25px;
   padding: 0 10px 3px 0;

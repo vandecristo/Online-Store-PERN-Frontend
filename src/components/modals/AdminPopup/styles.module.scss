@@ -8,11 +8,10 @@ $font-large: 35px;
 
 .popup {
   display: flex;
-  position: absolute;
   background: rgba(0, 0, 0, 0.62);
-  height: 100vh;
+  height: calc(100vh - 90px);
   width: 100vw;
-  margin-top: -120px;
+  margin-top: -165px;
   transition: 1s;
 }
 
@@ -21,6 +20,10 @@ $font-large: 35px;
   margin: auto;
   width: 40%;
   max-height: 500px;
+}
+
+.popup__BtnWrapper {
+  display: flex;
 }
 
 .popup__Btn {

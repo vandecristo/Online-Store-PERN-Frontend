@@ -3,14 +3,13 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import { Context } from '../../index';
-
 import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/consts";
 import { login, registration } from "../../http/userAPI";
 
 import styles from './styles.module.scss';
 
-const Auth = observer( ()=> {
-    const {user} = useContext(Context);
+const Auth = observer(()=> {
+    const { user } = useContext(Context);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const location = useLocation();
@@ -18,7 +17,7 @@ const Auth = observer( ()=> {
 
     const isLogin = location.pathname === LOGIN_ROUTE;
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             let data;
@@ -55,7 +54,7 @@ const Auth = observer( ()=> {
                             className={styles.auth__input}
                             type="password"
                             placeholder="Password"
-                            name="psw"
+                            name="password"
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                         ></input>

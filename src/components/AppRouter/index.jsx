@@ -2,12 +2,11 @@ import { useContext } from 'react';
 import { Routes, Route, Navigate  } from 'react-router-dom';
 
 import { Context } from '../../index';
-
 import { SHOP_ROUTE } from '../../utils/consts';
 import { authRoutes, publicRoutes } from '../../routes';
 
 const AppRouter = () => {
-    const {user} = useContext(Context);
+    const { user } = useContext(Context);
 
     return (
         <Routes>

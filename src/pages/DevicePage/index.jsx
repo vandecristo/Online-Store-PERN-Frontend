@@ -1,27 +1,25 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { observer } from "mobx-react-lite";
 
-import { Context } from "../../index";
 import { fetchDeviceById } from "../../http/deviceAPI";
 
 import styles from './styles.module.scss';
 
-const DevicePage = observer(() => {
-    const { device } = useContext(Context);
+const DevicePage = () => {
     const [currDevice, setCurrDevice] = useState({});
     const { id } = useParams();
+    const { API_URL } = process.env;
 
     const fetchCurrentDevice = async() => {
-        const data = await fetchDeviceById(id).then( data => data);
+        const data = await fetchDeviceById(id);
         setCurrDevice(data);
-    }
+    };
 
-    const createImageLink = () => currDevice.img ? process.env.REACT_APP_API_URL + currDevice.img : process.env.REACT_APP_API_URL + 'default.jpg';
+    const createImageLink = () => currDevice.img ? API_URL + currDevice.img : API_URL + 'default.jpg';
     
-    useEffect( () => {
+    useEffect(() => {
         fetchCurrentDevice(id).then(r => r);
-    },[]);
+    }, []);
     
     return (
         <div className={styles.device}>
@@ -29,6 +27,8 @@ const DevicePage = observer(() => {
                 <div className={styles.device__main}>
                     <div className={styles.device__picture}>
                         <img
+                            width={356}
+                            height={483}
                             className={styles.device__image}
                             src={createImageLink()}
                             alt="no-pic"
@@ -65,6 +65,6 @@ const DevicePage = observer(() => {
             </div>
         </div>
     );
-});
+};
 
 export default DevicePage;

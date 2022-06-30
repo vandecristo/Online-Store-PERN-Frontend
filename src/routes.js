@@ -1,8 +1,8 @@
-import Admin from "./pages/Admin/index";
-import Basket from "./pages/Basket/index";
-import Auth from "./pages/Auth/index";
-import Shop from "./pages/Shop/index";
-import DevicePage from "./pages/DevicePage/index";
+import Admin from './pages/Admin/index';
+import Auth from './pages/Auth/index';
+import Basket from './pages/Basket/index';
+import DevicePage from './pages/DevicePage/index';
+import Shop from './pages/Shop/index';
 import { 
     ADMIN_ROUTE,
     BASKET_ROUTE,
@@ -10,7 +10,7 @@ import {
     LOGIN_ROUTE,
     REGISTRATION_ROUTE,
     DEVICE_ROUTE
- } from "./utils/consts";
+ } from './utils/consts';
 
 export const authRoutes = [
     {

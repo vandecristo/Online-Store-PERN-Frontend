@@ -31,13 +31,19 @@ $theme-black: #181818;
   text-underline-offset: 0.4em;
 }
 
-.navbar__text:hover {
-  text-decoration: underline $text-color-hover;
-  color: $text-color-hover;
+.navbar__text:not(:hover) {
+  text-decoration: underline white;
+  color: white;
   transition: 0.2s;
 }
 
-.navbar__text:not(:hover) {
+.navbar__icon {
+  color: #ffffff;
+  margin-left: 5px;
+  height: 20px;
+}
+
+.navbar__icon:not(:hover) {
   text-decoration: underline white;
   color: white;
   transition: 0.2s;
@@ -50,4 +56,15 @@ $theme-black: #181818;
   outline: none;
   border-radius: 10px;
   padding: 5px 10px;
+}
+
+.navbar__button:hover > .navbar__icon {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.navbar__button:hover > .navbar__text {
+  text-decoration: underline $text-color-hover;
+  color: $text-color-hover;
+  transition: 0.2s;
 }
