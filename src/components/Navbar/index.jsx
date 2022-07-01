@@ -14,7 +14,7 @@ const Navbar = observer(() => {
 
     useEffect( () => {
         const isToken = localStorage.getItem('token');
-        if (isToken){
+        if (isToken) {
             check().then(data => {
                 user.setUser(data);
                 user.setIsAuth(true);

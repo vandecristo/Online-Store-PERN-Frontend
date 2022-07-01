@@ -11,7 +11,7 @@ const GoodsList = observer(() => {
 
     return (
         <div className={styles.goodsList}>
-            {device.devices.map(item =>
+            {device.devices?.map(item =>
                 <GoodsItem key={item.id} device={item}/>
             )}
         </div>

@@ -5,7 +5,7 @@ import { Context } from "../../index";
 import AdminPopup from '../../components/modals/AdminPopup/index';
 
 const Admin = observer(() => {
-    const { device } = useContext(Context);
+    const { device:{ devices, brands, types }} = useContext(Context);
     const [currentPopup, setCurrentPopup] = useState(null);
     const [popupStatus, togglePopup] = useState(false);
 
@@ -29,9 +29,9 @@ const Admin = observer(() => {
                     Add Device
                 </button>
             </div>
-            <div>Devices: {device.devices.length}</div>
-            <div>Brands: {device.brands.length}</div>
-            <div>Types: {device.types.length}</div>
+            <div>Devices: {devices.length || 0}</div>
+            <div>Brands: {brands.length || 0}</div>
+            <div>Types: {types.length || 0}</div>
             <div>Users: 0</div>
             {popupStatus && (<AdminPopup currentPopup={currentPopup} togglePopup={togglePopup}/>)}
         </div>

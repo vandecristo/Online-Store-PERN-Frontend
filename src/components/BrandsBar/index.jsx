@@ -9,7 +9,7 @@ const BrandsBar = observer(() => {
     const { device } = useContext(Context);
     return (
         <>
-            {device.brands && device.brands.map(item =>
+            {device?.brands?.map(item =>
                 <div key={item.id} className={styles.brandBar__Item}>
                     <span>{item.name}</span>
                 </div>
