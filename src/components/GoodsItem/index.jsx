@@ -22,7 +22,7 @@ const GoodsItem = ({ device }) => {
                 <div className={styles.goods__imageWrapper}>
                     <img
                         className={styles.goods__image}
-                        src={process.env.API_URL + device.img}
+                        src={process.env.REACT_APP_API_URL + device.img}
                         alt="no-pic"
                     />
                 </div>
