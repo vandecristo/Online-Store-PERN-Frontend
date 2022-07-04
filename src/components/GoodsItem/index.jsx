@@ -1,16 +1,16 @@
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import vector from '../../assets/Vector.png'
 import { DEVICE_ROUTE } from "../../utils/consts";
 
 import styles from "./styles.module.scss";
-import { useState } from "react";
 
 const GoodsItem = ({ device }) => {
     const navigate = useNavigate();
+    const [isPressed, setIsPressed] = useState(false);
 
-    const [ isPressed, setIsPressed ] = useState(false);
-    const addToFavorites = e => {
+    const addToFavorites = (e) => {
         e.stopPropagation();
         setIsPressed(prev => !prev);
     };

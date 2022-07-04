@@ -10,11 +10,11 @@ import { login, registration } from "../../http/userAPI";
 import styles from './styles.module.scss';
 
 const Auth = observer(() => {
-    const { user } = useContext(Context);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
+    const { userStore } = useContext(Context);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const isLogin = location.pathname === LOGIN_ROUTE;
 
@@ -27,8 +27,8 @@ const Auth = observer(() => {
             } else {
                 data = await registration(email, password);
             }
-            user.setUser(data);
-            user.setIsAuth(true);
+            userStore.setUser(data);
+            userStore.setIsAuth(true);
             navigate(SHOP_ROUTE);
         } catch (e) {
             alert(e.response.data.message);

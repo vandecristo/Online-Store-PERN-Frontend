@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 
 export default class UserStore {
     constructor () {
-        this._isAuth = false;
+        this._isAuth = Boolean(localStorage.getItem('token'));
         this._user = {};
         makeAutoObservable(this);
     };

@@ -6,19 +6,20 @@ import { fetchDeviceById } from "../../http/deviceAPI";
 import styles from './styles.module.scss';
 
 const DevicePage = () => {
-    const [currDevice, setCurrDevice] = useState({});
     const { id } = useParams();
+    const [currDevice, setCurrDevice] = useState({});
+    const { REACT_APP_API_URL } = process.env;
 
     const fetchCurrentDevice = async() => {
-        const data = await fetchDeviceById(id).then( data => data);
+        const data = await fetchDeviceById(id);
         setCurrDevice(data);
     };
 
-    const createImageLink = () => currDevice.img ? process.env.REACT_APP_API_URL + currDevice.img : process.env.REACT_APP_API_URL + 'default.jpg';
+    const createImageLink = () => currDevice.img ? REACT_APP_API_URL + currDevice.img : REACT_APP_API_URL + 'default.jpg';
     
-    useEffect( () => {
-        fetchCurrentDevice(id).then(r => r);
-    },[]);
+    useEffect(() => {
+        fetchCurrentDevice(id);
+    }, []);
     
     return (
         <div className={styles.device}>

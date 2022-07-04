@@ -3,42 +3,47 @@ import { NavLink } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 import { Context } from '../../index';
-import { ADMIN_ROUTE, BASKET_ROUTE, FAVORITES_ROUTE, LOGIN_ROUTE, PROFILE_ROUTE, SHOP_ROUTE } from '../../utils/consts';
+import {
+    ADMIN_ROUTE,
+    BASKET_ROUTE,
+    FAVORITES_ROUTE,
+    LOGIN_ROUTE,
+    PROFILE_ROUTE,
+    SHOP_ROUTE
+} from '../../utils/consts';
 import { check } from "../../http/userAPI";
 import Loading from "../Loading";
 
 import styles from './styles.module.scss';
 
 const Navbar = observer(() => {
-    const { user } = useContext(Context);
-     const [loading, setLoading] = useState(true);
-
-    useEffect( () => {
-        const isToken = localStorage.getItem('token');
-        if (isToken) {
-            check().then(data => {
-                user.setUser(data);
-                user.setIsAuth(true);
-            }).finally(() => setLoading(false));
-        } else {
-            setLoading(false);
-        }
-    },[]);
+    const { userStore, userStore: { isAuth }} = useContext(Context);
+    const [loading, setLoading] = useState(true);
 
     const logoutHandler = () => {
-        user.setIsAuth(false);
-        user.setUser({});
+        userStore.setIsAuth(false);
+        userStore.setUser({});
         localStorage.removeItem('token');
     };
 
+    useEffect(() => {
+        if (isAuth) {
+            check().then(data => {
+                userStore.setUser(data);
+                userStore.setIsAuth(true);
+            });
+        }
+        setLoading(false);
+    }, []);
+
     return (
         <div className={styles.navbar}>
-            {loading ? (<Loading/>) : null}
+            {loading && (<Loading/>)}
             <NavLink className={styles.navbar__logo} to={SHOP_ROUTE}>
                 <span className={styles.navbar__text}>TÜ shop</span>
             </NavLink>
             <nav>
-                {user.isAuth ? (
+                {userStore.isAuth ? (
                     <div className={styles.navbar__row}>
                         <NavLink className={styles.navbar__button} to={ADMIN_ROUTE}>
                             <span className={styles.navbar__text}>

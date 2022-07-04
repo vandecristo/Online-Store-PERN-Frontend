@@ -11,13 +11,13 @@ import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
 import styles from './styles.module.scss';
 
 const Shop = observer(() => {
-    const { device } = useContext(Context);
+    const { deviceStore } = useContext(Context);
 
-    useEffect( () => {
-        fetchTypes().then(types => device.setTypes(types));
-        fetchBrands().then(brands => device.setBrands(brands));
-        fetchDevices().then(devices => device.setDevices(devices.rows));
-    });
+    useEffect(() => {
+        fetchTypes().then(types => deviceStore.setTypes(types));
+        fetchBrands().then(brands => deviceStore.setBrands(brands));
+        fetchDevices().then(devices => deviceStore.setDevices(devices.rows));
+    }, []);
 
   return (
       <div className={styles.shop}>

@@ -6,17 +6,17 @@ import { Context } from "../../index";
 import styles from './styles.module.scss';
 
 const TypesBar = observer(() => {
-    const { device } = useContext(Context);
+    const { deviceStore } = useContext(Context);
 
     return (
         <div className={styles.typeBar}>
             <span className={styles.typeBar__title}>Filter by:</span>
             <ul>
-                {device.types.map(type =>
+                {deviceStore?.types?.map(type =>
                     <li
-                        className={type.id === device.selectedType.id ? styles.typeBar__Item_active : styles.typeBar__Item}
+                        className={type.id === deviceStore.selectedType.id ? styles.typeBar__Item_active : styles.typeBar__Item}
                         key={type.id}
-                        onClick={() => device.setSelectedType(type)}
+                        onClick={() => deviceStore.setSelectedType(type)}
                     >
                         <span>{type.name}</span>
                     </li>

@@ -3,10 +3,8 @@ import styles from "./styles.module.scss";
 const AdminBody = ({ items }) =>{
 
     const openEditPopup = item => {
-        console.log('########### edit:', item);
     };
     const deleteConfirmation = id => {
-      console.log('########### ?:', id);
     };
 
     return (

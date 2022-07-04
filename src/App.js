@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { BrowserRouter, Route, Navigate, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Navigate, Routes, Outlet } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
 import { Context } from "./index";
@@ -13,20 +13,31 @@ import Profile from './pages/Profile/index';
 import Shop from "./pages/Shop";
 import Favorites from "./pages/Favorites";
 
-const App = observer( () => {
-    const { user } = useContext(Context);
+const App = observer(() => {
+    const { userStore: { isAuth }} = useContext(Context);
+
+    const ProtectedRoute = ({ auth, redirectPath = '/' }) => {
+        if (auth) {
+            return <Outlet />;
+        }
+        return <Navigate to={redirectPath} replace />;
+    };
 
     return (
         <BrowserRouter>
             <Navbar/>
             <Routes>
+                <Route element={<ProtectedRoute auth={isAuth} />}>
+                    <Route path={'/favorites'} element={<Favorites />} />
+                    <Route path={'/admin'} element={<Admin />} />
+                    <Route path={'/basket'} element={<Basket/>}/>
+                    <Route path={'/profile'} element={<Profile/>}/>
+                </Route>
+                <Route element={<ProtectedRoute auth={!isAuth} />}>
+                    <Route path={'/registration'} element={<Auth/>}/>
+                    <Route path={'/login'} element={<Auth/>}/>
+                </Route>
                 <Route path={'/'} element={<Shop/>}/>
-                <Route path={user.isAuth ? '/admin' : '/'} element={<Admin/>}/>
-                <Route path={user.isAuth ? '/basket' : '/'} element={<Basket/>}/>
-                <Route path={user.isAuth ? '/favorites' : '/'} element={<Favorites/>}/>
-                <Route path={user.isAuth ? '/profile' : '/'} element={<Profile/>}/>
-                <Route path={user.isAuth ? '/' : '/registration'} element={<Auth/>}/>
-                <Route path={user.isAuth ? '/' :'/login'} element={<Auth/>}/>
                 <Route path={'/device'+ '/:id'} element={<DevicePage/>}/>
                 <Route path="*" element={<Navigate to={'/'}/>}/>
             </Routes>

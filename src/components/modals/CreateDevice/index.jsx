@@ -1,13 +1,12 @@
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Context } from "../../../index";
-import { createDevice } from "../../../http/deviceAPI";
+import { createDevice, fetchBrands, fetchTypes } from "../../../http/deviceAPI";
 
 import styles from "./styles.module.scss";
 
 const CreateDevice = ({ closePopupHandler }) => {
-    const { device } = useContext(Context);
     const [data, setData] = useState({name: '', price: 0, typeId: 0, brandId: 0, img: {}});
+    const [options, setOptions] = useState({types: [], brands: []});
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -19,6 +18,14 @@ const CreateDevice = ({ closePopupHandler }) => {
         formData.append('brandId', data.brandId);
         createDevice(formData).then(() => {closePopupHandler()});
     };
+
+    const fetchOptions = async () => {
+        setOptions({types: await fetchTypes(), brands: await fetchBrands()})
+    };
+
+    useEffect(() => {
+        fetchOptions();
+    }, []);
 
     return (
         <div className={styles.popup}>
@@ -48,17 +55,20 @@ const CreateDevice = ({ closePopupHandler }) => {
                                 form="newDeviceData"
                                 onChange={e => setData({...data, typeId: Number(e.target.value)})}
                             >
-                                <option disabled selected>Choose type</option>
-                                {device.types.map(type => <option value={type.id} key={type.id}> {type.name}</option>)}
+                                <option hidden>choose type</option>
+                                {options.types.map(type =>
+                                    <option value={type.id} key={type.id}> {type.name}</option>
+                                )}
                             </select>
                             <select
                                 className={styles.createDevice__input}
                                 form="newDeviceData"
                                 onChange={e => setData({...data, brandId: Number(e.target.value)})}
                             >
-                                <option disabled selected>Choose Brand</option>
-                                {device.brands.map(brand => <option value={brand.id}
-                                                                    key={brand.id}>{brand.name}</option>)}
+                                <option hidden>choose Brand</option>
+                                {options.brands.map(brand =>
+                                    <option value={brand.id} key={brand.id}>{brand.name}</option>
+                                )}
                             </select>
                             {/*<input type="text" placeholder='Write info about device '/>*/}
                             <input

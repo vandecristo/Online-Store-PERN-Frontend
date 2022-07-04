@@ -9,12 +9,11 @@ $font-medium: 25px;
 $font-large: 35px;
 
 .adminBody {
-  width: 80%;
-  margin-top: 10px;
   display: flex;
   justify-content: start;
   align-items: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: wrap;width: 80%;
+  margin-top: 10px;
 }
 
 .adminBody__item {

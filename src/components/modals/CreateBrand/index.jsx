@@ -35,8 +35,12 @@ const CreateBrand = ({ closePopupHandler }) => {
                         <button className={styles.createBrand__btn} onClick={() => closePopupHandler()}>
                             <span>Close</span>
                         </button>
-                        <input form="newBrandData" className={styles.createBrand__btn} type="submit"
-                               value={'Add brand'}/>
+                        <input
+                            form="newBrandData"
+                            className={styles.createBrand__btn}
+                            type="submit"
+                            value={'Add brand'}
+                        />
                     </div>
                 </div>
             </div>
