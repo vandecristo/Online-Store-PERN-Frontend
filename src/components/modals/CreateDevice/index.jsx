@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Context } from "../../../index";
 
 const CreateDevice = () => {
-    const { device } = useContext(Context);
+    const { deviceStore } = useContext(Context);
 
     return (
         <form id="newDeviceData">
@@ -12,12 +12,12 @@ const CreateDevice = () => {
             <input type="text" placeholder='price'/>
             <div>
                 <select form="newDeviceData">
-                    {device.types && device.types.map(type => <option key={type.id}> {type.name}</option>)}
+                    {deviceStore?.types?.map(type => <option key={type.id}> {type.name}</option>)}
                 </select>
             </div>
             <div>
                 <select form="newDeviceData">
-                    {device.brands && device.brands.map(type => <option key={type.id}> {type.name}</option>)}
+                    {deviceStore?.brands?.map(type => <option key={type.id}> {type.name}</option>)}
                 </select>
             </div>
             <input type="text" placeholder='Write info about device '/>

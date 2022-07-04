@@ -5,13 +5,12 @@ import { Context } from "../../index";
 import AdminPopup from '../../components/modals/AdminPopup/index';
 
 const Admin = observer(() => {
-    const { device:{ devices, brands, types }} = useContext(Context);
+    const { deviceStore: { devices, brands, types }} = useContext(Context);
     const [currentPopup, setCurrentPopup] = useState(null);
     const [popupStatus, togglePopup] = useState(false);
 
     const openPopup = (e) => {
-        const { value } = e.target;
-        setCurrentPopup(value);
+        setCurrentPopup(e.target.value);
         togglePopup(true);
     };
 

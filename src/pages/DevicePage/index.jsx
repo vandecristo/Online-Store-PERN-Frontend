@@ -18,7 +18,7 @@ const DevicePage = () => {
     const createImageLink = () => currDevice.img ? REACT_APP_API_URL + currDevice.img : REACT_APP_API_URL + 'default.jpg';
     
     useEffect(() => {
-        fetchCurrentDevice(id).then(r => r);
+        fetchCurrentDevice(id);
     }, []);
     
     return (

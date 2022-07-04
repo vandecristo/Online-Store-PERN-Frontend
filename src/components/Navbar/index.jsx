@@ -9,22 +9,22 @@ import { check } from "../../http/userAPI";
 import styles from './styles.module.scss';
 
 const Navbar = observer(() => {
-    const { user } = useContext(Context);
+    const { userStore } = useContext(Context);
     const [loading, setLoading] = useState(true);
 
-    useEffect( () => {
+    useEffect(() => {
         const isToken = localStorage.getItem('token');
         if (isToken) {
             check().then(data => {
-                user.setUser(data);
-                user.setIsAuth(true);
+                userStore.setUser(data);
+                userStore.setIsAuth(true);
             }).finally(() => setLoading(false));
         }
-    },[]);
+    }, []);
 
     const logoutHandler = () => {
-        user.setIsAuth(false);
-        user.setUser({});
+        userStore.setIsAuth(false);
+        userStore.setUser({});
         localStorage.removeItem('token');
     };
 
@@ -34,7 +34,7 @@ const Navbar = observer(() => {
                 <span className={styles.navbar__text}>TÜ shop</span>
             </NavLink>
             <nav>
-                {user.isAuth ? (
+                {userStore.isAuth ? (
                     <div className={styles.navbar__row}>
                         <NavLink className={styles.navbar__button} to={ADMIN_ROUTE}>
                             <span className={styles.navbar__text}>

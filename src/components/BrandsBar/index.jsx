@@ -6,10 +6,10 @@ import { Context } from "../../index";
 import styles from './styles.module.scss';
 
 const BrandsBar = observer(() => {
-    const { device } = useContext(Context);
+    const { deviceStore } = useContext(Context);
     return (
         <>
-            {device?.brands?.map(item =>
+            {deviceStore?.brands?.map(item =>
                 <div key={item.id} className={styles.brandBar__Item}>
                     <span>{item.name}</span>
                 </div>
