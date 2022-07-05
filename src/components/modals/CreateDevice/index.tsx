@@ -24,7 +24,7 @@ type DataType = {
     price: string,
     typeId: string,
     brandId: string,
-    img: File | null
+    img?: File | string
 };
 
 type OptionType = {
@@ -38,7 +38,7 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
         price: '',
         typeId: '',
         brandId: '',
-        img: null
+        img: ''
     });
     const [options, setOptions] = useState<OptionType>({types: [], brands: []});
 
@@ -50,8 +50,7 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
         formData.append('typeId', data.typeId);
         formData.append('brandId', data.brandId);
         formData.append('img', data.img);
-        console.log('########### data:', data);
-        //createDevice(formData).then(() => {closePopupHandler()});
+        createDevice(formData).then(() => {closePopupHandler()});
     };
 
     const fetchOptions = async () => {
@@ -110,7 +109,7 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
                                 className={styles.createDevice__input_file}
                                 type="file"
                                 placeholder='file'
-                                onChange={e => setData({...data, img: e.target.files[0]})}
+                                onChange={e => setData({...data, img: e.target.files?.[0]})}
                             />
                         </div>
                     </form>
