@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 
 import CreateType from "../modals/CreateType";
 import CreateBrand from "../modals/CreateBrand";
@@ -6,8 +6,32 @@ import CreateDevice from "../modals/CreateDevice";
 
 import styles from './styles.module.scss';
 
-class AdminBar extends Component {
-    constructor(props) {
+type DeviceType = {
+    brandId: number,
+    createdAt: string
+    deletedAt: string | null,
+    id: number,
+    img: string,
+    name: string,
+    price: number,
+    rating: number,
+    typeId: number,
+    updatedAt: string,
+};
+
+type AdminProps = {
+    device: DeviceType,
+    showAllItems: (name: string) => void,
+};
+
+type AdminState = {
+    device: DeviceType,
+    currentPopup: null | string,
+    isPopupOpen: boolean
+};
+
+class AdminBar extends React.Component<AdminProps, AdminState> {
+    constructor(props: AdminProps) {
         super(props);
         this.state = {
             device: this.props.device,
@@ -21,12 +45,12 @@ class AdminBar extends Component {
         this.setState({isPopupOpen: false});
     };
 
-    openPopup = e => {
-        const { value } = e.target;
+    openPopup = (e:  React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const { value } = (e.target as HTMLInputElement);
         this.setState({isPopupOpen: true, currentPopup: value});
     };
 
-    showItems(name){
+    showItems(name: string){
         this.props.showAllItems(name);
         this.setState({isPopupOpen : false});
     };
@@ -61,12 +85,14 @@ class AdminBar extends Component {
     render() {
         return (
             <div className={styles.adminBar}>
-                {this.createPopup()}
+                <>{this.createPopup()}</>
                 <div className={styles.adminBar__wrapper}>
                     <span className={styles.adminBar__title}>Admin bar:</span>
                     <div className={styles.adminBar__btnGroup}>
                         <span>Create new items </span>
-                        <div className={styles.admin__item} onClick={e => this.openPopup(e)}>
+                        <div
+                            className={styles.admin__item}
+                            onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => this.openPopup(e)}>
                             <button className={styles.admin__button} value="type">
                                 Add Type
                             </button>
@@ -80,7 +106,8 @@ class AdminBar extends Component {
                     </div>
                     <div className={styles.adminBar__btnGroup}>
                         <span>Manage items </span>
-                        <div className={styles.admin__item} onClick={e => this.openPopup(e)}>
+                        <div className={styles.admin__item}
+                             onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => this.openPopup(e)}>
                             <button className={styles.admin__button} value="showDevices">
                                 Devices
                             </button>

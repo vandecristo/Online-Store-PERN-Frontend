@@ -1,12 +1,13 @@
-import { useContext } from 'react';
-import { observer } from "mobx-react-lite";
+import React, { useContext } from 'react';
+import { observer } from 'mobx-react-lite';
 
-import { Context } from "../../index";
+import { Context } from '../../index';
+import { IMobx } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
-const BrandsBar = observer(() => {
-    const { deviceStore } = useContext(Context);
+const BrandsBar: React.FC = observer(() => {
+    const { deviceStore } = useContext<IMobx>(Context);
 
     return (
         <>

@@ -3,9 +3,9 @@ import { observer } from "mobx-react-lite";
 
 import { Context } from "../../index";
 
-import BrandsBar from '../../components/BrandsBar/index';
+import BrandsBar from '../../components/BrandsBar';
 import TypesBar from '../../components/TypesBar/index';
-import GoodsList from "../../components/GoodsList/index";
+import GoodsList from "../../components/GoodsList";
 import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
 
 import styles from './styles.module.scss';

@@ -1,22 +1,57 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { createDevice, fetchBrands, fetchTypes } from "../../../http/deviceAPI";
 
 import styles from "./styles.module.scss";
 
-const CreateDevice = ({ closePopupHandler }) => {
-    const [data, setData] = useState({name: '', price: 0, typeId: 0, brandId: 0, img: {}});
-    const [options, setOptions] = useState({types: [], brands: []});
+interface CreateBrandProps {
+    closePopupHandler: () => void;
+}
 
-    const handleSubmit = e => {
+type BasicEntity = {
+    id: number,
+    name: string
+};
+
+interface Type extends BasicEntity {
+}
+
+interface Brand extends BasicEntity {
+}
+
+type DataType = {
+    name: string,
+    price: string,
+    typeId: string,
+    brandId: string,
+    img: File | null
+};
+
+type OptionType = {
+    types: Array<Type>,
+    brands: Array<Brand>
+};
+
+const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
+    const [data, setData] = useState<DataType>({
+        name: '',
+        price: '',
+        typeId: '',
+        brandId: '',
+        img: null
+    });
+    const [options, setOptions] = useState<OptionType>({types: [], brands: []});
+
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('price', data.price);
-        formData.append('img', data.img);
         formData.append('typeId', data.typeId);
         formData.append('brandId', data.brandId);
-        createDevice(formData).then(() => {closePopupHandler()});
+        formData.append('img', data.img);
+        console.log('########### data:', data);
+        //createDevice(formData).then(() => {closePopupHandler()});
     };
 
     const fetchOptions = async () => {
@@ -31,7 +66,7 @@ const CreateDevice = ({ closePopupHandler }) => {
         <div className={styles.popup}>
             <div className={styles.popup__wrapper}>
                 <div className={styles.createDevice}>
-                    <form className={styles.createDevice__form} id="newDeviceData" onSubmit={e => handleSubmit(e)}>
+                    <form className={styles.createDevice__form} id="newDeviceData" onSubmit={(e: React.FormEvent) => handleSubmit(e)}>
                         <div className={styles.createDevice__title}>
                             <span>Create Device:</span>
                         </div>
@@ -46,27 +81,27 @@ const CreateDevice = ({ closePopupHandler }) => {
                                 className={styles.createDevice__input}
                                 type="text"
                                 placeholder='price'
-                                onChange={e => setData({...data, price: Number(e.target.value)})}
+                                onChange={e => setData({...data, price: e.target.value})}
                             />
                         </div>
                         <div className={styles.createDevice__item}>
                             <select
                                 className={styles.createDevice__input}
                                 form="newDeviceData"
-                                onChange={e => setData({...data, typeId: Number(e.target.value)})}
+                                onChange={e => setData({...data, typeId: e.target.value})}
                             >
                                 <option hidden>choose type</option>
-                                {options.types.map(type =>
+                                {options.types?.map(type =>
                                     <option value={type.id} key={type.id}> {type.name}</option>
                                 )}
                             </select>
                             <select
                                 className={styles.createDevice__input}
                                 form="newDeviceData"
-                                onChange={e => setData({...data, brandId: Number(e.target.value)})}
+                                onChange={e => setData({...data, brandId: e.target.value})}
                             >
                                 <option hidden>choose Brand</option>
-                                {options.brands.map(brand =>
+                                {options.brands?.map(brand =>
                                     <option value={brand.id} key={brand.id}>{brand.name}</option>
                                 )}
                             </select>

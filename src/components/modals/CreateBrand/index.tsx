@@ -1,13 +1,21 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { createBrand } from '../../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
-const CreateBrand = ({ closePopupHandler }) => {
-    const [data, setData] = useState({name: ''});
+interface CreateBrandProps {
+    closePopupHandler: () => void;
+}
 
-    const handleSubmit = e => {
+type DataType = {
+    name: string
+}
+
+const CreateBrand: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
+    const [data, setData] = useState<DataType>({name: ''});
+
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         createBrand(data).then(() => closePopupHandler());
     };
@@ -16,7 +24,7 @@ const CreateBrand = ({ closePopupHandler }) => {
         <div className={styles.popup}>
             <div className={styles.popup__wrapper}>
                 <div className={styles.createBrand}>
-                    <form id="newBrandData" className={styles.createBrand__form} onSubmit={e => handleSubmit(e)}>
+                    <form id="newBrandData" className={styles.createBrand__form} onSubmit={(e:React.FormEvent) => handleSubmit(e)}>
                         <div className={styles.createBrand__title}>
                             <span>Create Brand:</span>
                         </div>
