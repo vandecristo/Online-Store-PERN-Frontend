@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { Context } from "../../../index";
+import { Context } from '../../../index';
 
 const CreateDevice = () => {
     const { deviceStore } = useContext(Context);

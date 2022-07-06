@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import vector from '../../assets/Vector.png'
 import { DEVICE_ROUTE } from '../../utils/consts';
 
-import styles from './styles.module.scss';
+import vector from '../../assets/Vector.png'
 
+import styles from './styles.module.scss';
 
 const GoodsItem = ({ device }) => {
     const navigate = useNavigate();
 
     const [isPressed, setIsPressed] = useState(false);
-    const addToFavorites = e => {
+    const addToFavorites = (e) => {
         e.stopPropagation();
-        setIsPressed(prev => !prev)
+        setIsPressed(prev => !prev);
     };
 
     return (
@@ -46,7 +46,7 @@ const GoodsItem = ({ device }) => {
                         />
                         {device.rating}
                     </div>
-                    <button className={isPressed ? styles.goods__fav : styles.goods__fav_pressed} onClick={e => addToFavorites(e)}>
+                    <button className={isPressed ? styles.goods__fav : styles.goods__fav_pressed} onClick={(e) => addToFavorites(e)}>
                         <span>{isPressed ? 'To favorites' : 'Added'}</span>
                     </button>
                 </div>

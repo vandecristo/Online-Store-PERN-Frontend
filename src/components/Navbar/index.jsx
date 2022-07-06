@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 
 import { Context } from '../../index';
 import { ADMIN_ROUTE, FAVORITES_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../../utils/consts';
-import { check } from "../../http/userAPI";
+import { check } from '../../http/userAPI';
 
 import styles from './styles.module.scss';
 

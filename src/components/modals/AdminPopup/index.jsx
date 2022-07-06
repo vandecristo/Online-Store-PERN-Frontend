@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { createBrand, createDevice, createType } from "../../../http/deviceAPI";
+import { useState } from 'react';
+import { createBrand, createDevice, createType } from '../../../http/deviceAPI';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const AdminPopup = ({ currentPopup, togglePopup }) => {
     const [data, setData] = useState({name: ''});
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         switch (currentPopup) {
             case 'type':
@@ -24,13 +24,13 @@ const AdminPopup = ({ currentPopup, togglePopup }) => {
         <div className={styles.popup}>
             <div className={styles.popupWrapper}>
                 Create {currentPopup}:
-                <form onSubmit={e => handleSubmit(e)}>
+                <form onSubmit={(e) => handleSubmit(e)}>
                     <label>
                         <input
                             type="text"
                             name="name"
                             value={data.name}
-                            onChange={e => setData({name: e.target.value})}
+                            onChange={(e) => setData({name: e.target.value})}
                         />
                     </label>
                     <input className={styles.popup__Btn} type="submit" value={'Add' + ' ' + currentPopup} />

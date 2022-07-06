@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { observer } from "mobx-react-lite";
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 
 import { Context } from '../../index';
-import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/consts";
-import { login, registration } from "../../http/userAPI";
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../../utils/consts';
+import { login, registration } from '../../http/userAPI';
 
 import styles from './styles.module.scss';
 
@@ -30,7 +30,7 @@ const Auth = observer(()=> {
             userStore.setIsAuth(true);
             navigate(SHOP_ROUTE);
         } catch (e) {
-            alert(e.response.data.message);
+            alert(e.response?.data?.message);
         }
     };
 
@@ -46,7 +46,7 @@ const Auth = observer(()=> {
                             placeholder="Email"
                             name="email"
                             value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
                         ></input>
                     </div>
                     <div className={styles.auth__item}>
@@ -56,7 +56,7 @@ const Auth = observer(()=> {
                             placeholder="Password"
                             name="password"
                             value={password}
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                         ></input>
                     </div>
                     <div className={styles.auth__buttonWrapper}>
@@ -79,10 +79,10 @@ const Auth = observer(()=> {
                         </div>
                         {isLogin ? (
                             <button className={styles.auth__button} type="submit"
-                                    onClick={e => handleSubmit(e)}>Login</button>
+                                    onClick={(e) => handleSubmit(e)}>Login</button>
                             ) : (
                             <button className={styles.auth__button} type="submit"
-                                    onClick={e => handleSubmit(e)}>Sign&#160;up
+                                    onClick={(e) => handleSubmit(e)}>Sign&#160;up
                             </button>
                         )}
                     </div>

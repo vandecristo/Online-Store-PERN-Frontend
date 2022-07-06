@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { observer } from "mobx-react-lite";
+import { observer } from 'mobx-react-lite';
 
-import { Context } from "../../index";
-import GoodsItem from "../GoodsItem/index";
+import { Context } from '../../index';
+import GoodsItem from '../GoodsItem/index';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 const GoodsList = observer(() => {
     const { deviceStore } = useContext(Context);

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import Admin from './pages/Admin';
 import Auth from './pages/Auth';
-import DevicePage from "./pages/DevicePage";
+import DevicePage from './pages/DevicePage';
 import Navbar from './components/Navbar/index';
 import Shop from './pages/Shop';
 import Favorites from './pages/Favorites';

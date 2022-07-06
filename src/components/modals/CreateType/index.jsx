@@ -1,17 +1,17 @@
 const CreateType = ({ data, setData }) => {
 
-    const handleChange = e => {
+    const handleChange = (e) => {
         setData(e.target.value);
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault();
     };
 
     return (
-        <form onSubmit={e =>  handleSubmit(e)}>
+        <form onSubmit={(e) =>  handleSubmit(e)}>
             <title>Create Type:</title>
-            <input type="text" placeholder='name' value={data} onChange={e =>  handleChange(e)}/>
+            <input type="text" placeholder='name' value={data} onChange={(e) =>  handleChange(e)}/>
         </form>
     );
 };

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchDeviceById } from "../../http/deviceAPI";
+import { fetchDeviceById } from '../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
@@ -15,7 +15,7 @@ const DevicePage = () => {
         setCurrDevice(data);
     };
 
-    const createImageLink = () => currDevice.img ? REACT_APP_API_URL + currDevice.img : REACT_APP_API_URL + 'default.jpg';
+    const createImageLink = () => REACT_APP_API_URL + (currDevice.img ? currDevice.img : 'default.jpg');
     
     useEffect(() => {
         fetchCurrentDevice(id);
