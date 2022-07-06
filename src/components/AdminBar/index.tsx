@@ -6,26 +6,11 @@ import CreateDevice from "../modals/CreateDevice";
 
 import styles from './styles.module.scss';
 
-type DeviceType = {
-    brandId: number,
-    createdAt: string
-    deletedAt: string | null,
-    id: number,
-    img: string,
-    name: string,
-    price: number,
-    rating: number,
-    typeId: number,
-    updatedAt: string,
-};
-
 type AdminProps = {
-    device: DeviceType,
     showAllItems: (name: string) => void,
 };
 
 type AdminState = {
-    device: DeviceType,
     currentPopup: null | string,
     isPopupOpen: boolean
 };
@@ -34,7 +19,6 @@ class AdminBar extends React.Component<AdminProps, AdminState> {
     constructor(props: AdminProps) {
         super(props);
         this.state = {
-            device: this.props.device,
             currentPopup: null,
             isPopupOpen: false
         };

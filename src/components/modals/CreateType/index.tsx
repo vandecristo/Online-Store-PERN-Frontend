@@ -1,11 +1,19 @@
-import { Component } from 'react';
+import React from 'react';
 
 import { createType } from '../../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
-class CreateType extends Component {
-    constructor(props) {
+type AdminProps = {
+    closePopupHandler: () => void,
+};
+
+type AdminState = {
+    data: {name: string}
+};
+
+class CreateType extends React.Component<AdminProps, AdminState> {
+    constructor(props: AdminProps) {
         super(props);
         this.state = {
             data: {name: ''},
@@ -13,7 +21,7 @@ class CreateType extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     };
 
-    handleSubmit = e => {
+    handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         createType(this.state.data).then(() => this.props.closePopupHandler());
     };
@@ -23,7 +31,7 @@ class CreateType extends Component {
             <div className={styles.popup}>
                 <div className={styles.popup__wrapper}>
                     <div className={styles.createType}>
-                        <form id="newTypeData" className={styles.createType__form} onSubmit={e => this.handleSubmit(e)}>
+                        <form id="newTypeData" className={styles.createType__form} onSubmit={(e: React.FormEvent) => this.handleSubmit(e)}>
                             <div className={styles.createType__title}>
                                 <span>Create Type:</span>
                             </div>

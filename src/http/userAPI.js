@@ -20,6 +20,6 @@ export const check = async () => {
         localStorage.setItem('token', data.token);
         return jwt_decode(data.token);
     } catch (e) {
-        alert(e);
+        alert('Internal server Error 500');
     }
 };

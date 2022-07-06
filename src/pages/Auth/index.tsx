@@ -1,37 +1,40 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import { Context } from '../../index';
-
 import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/consts";
 import { login, registration } from "../../http/userAPI";
+import { AxiosError } from "axios";
+import { IMobx } from "../../../interfaces";
 
 import styles from './styles.module.scss';
+interface PreparedUserData {
+    email: string,
+    password: string
+}
 
-const Auth = observer(() => {
+const Auth: React.FC = observer(() => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { userStore } = useContext(Context);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
+    const { userStore } = useContext<IMobx>(Context);
+    const [data, setData] = useState<PreparedUserData>({email: '', password: ''});
     const isLogin = location.pathname === LOGIN_ROUTE;
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         try {
-            let data;
             if (isLogin) {
-                data = await login(email, password);
+                await login(data.email, data.password);
             } else {
-                data = await registration(email, password);
+                await registration(data.email, data.password);
             }
-            userStore.setUser(data);
+            userStore.setUser({data});
             userStore.setIsAuth(true);
             navigate(SHOP_ROUTE);
         } catch (e) {
-            alert(e.response.data.message);
+            const err = e as AxiosError;
+            alert(err);
         }
     };
 
@@ -46,8 +49,8 @@ const Auth = observer(() => {
                             type="text"
                             placeholder="Email"
                             name="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            value={data.email}
+                            onChange={e => setData({...data, email: e.target.value})}
                         ></input>
                     </div>
                     <div className={styles.auth__item}>
@@ -56,8 +59,8 @@ const Auth = observer(() => {
                             type="password"
                             placeholder="Password"
                             name="psw"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
+                            value={data.password}
+                            onChange={e => setData({...data, password: e.target.value})}
                         ></input>
                     </div>
                     <div className={styles.auth__buttonWrapper}>
@@ -80,10 +83,10 @@ const Auth = observer(() => {
                         </div>
                         {isLogin ? (
                             <button className={styles.auth__button} type="submit"
-                                    onClick={e => handleSubmit(e)}>Login</button>
+                                    onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}>Login</button>
                         ) : (
                             <button className={styles.auth__button} type="submit"
-                                    onClick={e => handleSubmit(e)}>Sign&#160;up
+                                    onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}>Sign&#160;up
                             </button>
                         )}
                     </div>

@@ -3,34 +3,26 @@ import { useNavigate } from 'react-router-dom';
 
 import vector from '../../assets/Vector.png'
 import { DEVICE_ROUTE } from '../../utils/consts';
+import { BasicDevice, IProcessEnv } from "../../../interfaces";
 
 import styles from './styles.module.scss';
 
-type DeviceType = {
-    brandId: number,
-    createdAt: string
-    deletedAt: string | null,
-    id: number,
-    img: string,
-    name: string,
-    price: number,
-    rating: number,
-    typeId: number,
-    updatedAt: string,
-}
-
 interface GoodsProps {
-    device: DeviceType
+    device: BasicDevice
 }
 
 const GoodsItem: React.FC<GoodsProps> = ({ device }) => {
     const navigate = useNavigate();
     const [isPressed, setIsPressed] = useState<Boolean>(false);
+    const { REACT_APP_API_URL }: IProcessEnv = process.env;
 
     const addToFavorites = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         setIsPressed(prev => !prev);
     };
+
+    const createImageLink = () =>
+        String(REACT_APP_API_URL ? REACT_APP_API_URL + device.img : 'http://localhost:5000/' + device.img);
 
     return (
         <div className={styles.goods} onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)}>
@@ -38,7 +30,7 @@ const GoodsItem: React.FC<GoodsProps> = ({ device }) => {
                 <div className={styles.goods__imageWrapper}>
                     <img
                         className={styles.goods__image}
-                        src={process.env.REACT_APP_API_URL + device.img}
+                        src={String(process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : 'http://localhost:5000/')  + device.img}
                         alt="no-pic"
                     />
                 </div>

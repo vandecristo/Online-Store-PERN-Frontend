@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
@@ -13,23 +13,25 @@ import {
 } from '../../utils/consts';
 import { check } from "../../http/userAPI";
 import Loading from "../Loading";
+import { IMobx } from "../../../interfaces";
 
 import styles from './styles.module.scss';
 
-const Navbar = observer(() => {
-    const { userStore, userStore: { isAuth }} = useContext(Context);
-    const [loading, setLoading] = useState(true);
+
+const Navbar: React.FC = observer(() => {
+    const { userStore, userStore: { isAuth }} = useContext<IMobx>(Context);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const logoutHandler = () => {
         userStore.setIsAuth(false);
-        userStore.setUser({});
+        userStore.setUser(null);
         localStorage.removeItem('token');
     };
 
     useEffect(() => {
         if (isAuth) {
-            check().then(data => {
-                userStore.setUser(data);
+            check().then((data) => {
+                userStore.setUser({data});
                 userStore.setIsAuth(true);
             });
         }

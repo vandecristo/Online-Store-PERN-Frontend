@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { createDevice, fetchBrands, fetchTypes } from "../../../http/deviceAPI";
+import { BasicItem, PreparedDeviceData } from "../../../../interfaces";
 
 import styles from "./styles.module.scss";
 
@@ -8,32 +9,13 @@ interface CreateBrandProps {
     closePopupHandler: () => void;
 }
 
-type BasicEntity = {
-    id: number,
-    name: string
-};
-
-interface Type extends BasicEntity {
-}
-
-interface Brand extends BasicEntity {
-}
-
-type DataType = {
-    name: string,
-    price: string,
-    typeId: string,
-    brandId: string,
-    img?: File | string
-};
-
 type OptionType = {
-    types: Array<Type>,
-    brands: Array<Brand>
+    types: Array<BasicItem>,
+    brands: Array<BasicItem>
 };
 
 const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
-    const [data, setData] = useState<DataType>({
+    const [data, setData] = useState<PreparedDeviceData>({
         name: '',
         price: '',
         typeId: '',
@@ -109,7 +91,7 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
                                 className={styles.createDevice__input_file}
                                 type="file"
                                 placeholder='file'
-                                onChange={e => setData({...data, img: e.target.files?.[0]})}
+                                onChange={e => setData({...data, img: e.target?.files?.[0] ? e.target.files?.[0] : 'no picture' })}
                             />
                         </div>
                     </form>

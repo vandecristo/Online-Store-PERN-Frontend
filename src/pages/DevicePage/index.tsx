@@ -1,21 +1,36 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 
 import { fetchDeviceById } from "../../http/deviceAPI";
+import { BasicDevice, IProcessEnv } from "../../../interfaces";
 
 import styles from './styles.module.scss';
 
-const DevicePage = () => {
-    const { id } = useParams();
-    const [currDevice, setCurrDevice] = useState({});
-    const { REACT_APP_API_URL } = process.env;
+type IdFromUseParams = string | undefined;
 
-    const fetchCurrentDevice = async() => {
+const DevicePage: React.FC = () => {
+    const { id } = useParams<string>();
+    const [device, setDevice] = useState<BasicDevice>({
+        id: 0,
+        name: '',
+        price: 0,
+        rating: 0,
+        brandId: 0,
+        typeId: 0,
+        updatedAt: '',
+        createdAt: '',
+        deletedAt: '',
+        img: ''
+    });
+    const { REACT_APP_API_URL }: IProcessEnv = process.env;
+
+    const fetchCurrentDevice = async (id:IdFromUseParams) => {
         const data = await fetchDeviceById(id);
-        setCurrDevice(data);
+        setDevice(data);
     };
 
-    const createImageLink = () => currDevice.img ? REACT_APP_API_URL + currDevice.img : REACT_APP_API_URL + 'default.jpg';
+    const createImageLink = () =>
+        String(REACT_APP_API_URL ? REACT_APP_API_URL + device.img : 'http://localhost:5000/' + device.img);
     
     useEffect(() => {
         fetchCurrentDevice(id);
@@ -35,9 +50,9 @@ const DevicePage = () => {
                         />
                     </div>
                     <div className={styles.device__header}>
-                        <div className={styles.device__name}>{currDevice.name}</div>
-                        <div className={styles.device__rate}>⭐ {currDevice.rating}</div>
-                        <div className={styles.device__price}>{currDevice.price} Р</div>
+                        <div className={styles.device__name}>{device.name}</div>
+                        <div className={styles.device__rate}>⭐ {device.rating}</div>
+                        <div className={styles.device__price}>{device.price} Р</div>
                         <button className={styles.device__addBtn}>
                             <span>Add to cart</span>
                         </button>

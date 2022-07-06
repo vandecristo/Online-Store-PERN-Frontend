@@ -1,26 +1,13 @@
 import React from "react";
 
+import { IItem } from "../../../interfaces";
+
 import styles from "./styles.module.scss";
 
-type Devices = {
-    items: Array<DeviceType>
-};
+type ItemProps = {items: Array<IItem>}
 
-type DeviceType = {
-    brandId: number,
-    createdAt: string
-    deletedAt: string | null,
-    id: number,
-    img: string,
-    name: string,
-    price: number,
-    rating: number,
-    typeId: number,
-    updatedAt: string,
-};
-
-const AdminBody: React.FC<Devices> = ({ items }) =>{
-    const openEditPopup = (item: DeviceType) => {
+const AdminBody: React.FC<ItemProps> = ({ items }) =>{
+    const openEditPopup = (item: IItem) => {
     };
 
     const deleteConfirmation = (id: number) => {

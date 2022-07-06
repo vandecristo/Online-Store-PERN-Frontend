@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import AdminBody from "../../components/AdminBody";
 import AdminBar from "../../components/AdminBar";
 import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
+import { IItem } from "../../../interfaces";
 
 import styles from './styles.module.scss';
 
-const Admin = () => {
-    const [items, setItems] = useState([]);
+const Admin: React.FC = () => {
+    const [items, setItems] = useState<Array<IItem>>([]);
 
     const fetchAndSpreadDevices = async () => {
         const res = await fetchDevices();
         setItems(res.rows);
     };
-
-    const showAllItems = async name => {
+    const showAllItems = async (name: string) => {
         switch (name) {
             case 'showDevices':
                 return fetchAndSpreadDevices();
