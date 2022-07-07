@@ -15,7 +15,7 @@ const Shop = observer(() => {
     useEffect(() => {
         fetchTypes().then((types) => deviceStore.setTypes(types));
         fetchBrands().then((brands) => deviceStore.setBrands(brands));
-        fetchDevices().then(({rows}) => deviceStore.setDevices(rows));
+        fetchDevices().then(({ rows }) => deviceStore.setDevices(rows));
     }, []);
 
   return (

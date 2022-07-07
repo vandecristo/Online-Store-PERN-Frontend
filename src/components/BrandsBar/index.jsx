@@ -10,7 +10,7 @@ const BrandsBar = observer(() => {
     return (
         <>
             {deviceStore?.brands?.map(item =>
-                <div key={item.id} className={styles.brandBar__Item}>
+                <div key={item.id} className={styles.brandBar__item}>
                     <span>{item.name}</span>
                 </div>
             )}

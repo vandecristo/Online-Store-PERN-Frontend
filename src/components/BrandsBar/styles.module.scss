@@ -2,7 +2,7 @@ $text-color: white;
 $text-color-hover: #754abe;
 $theme-black: #181818;
 
-.brandBar__Item {
+.brandBar__item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,12 +16,12 @@ $theme-black: #181818;
   cursor: pointer;
 }
 
-.brandBar__Item > span {
+.brandBar__item > span {
   font-size: 14px;
   transition: 0.2s;
 }
 
-.brandBar__Item:hover > span {
+.brandBar__item:hover > span {
   color: $text-color-hover;
   transition: 0.2s;
 }

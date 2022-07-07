@@ -38,9 +38,7 @@ $theme-black: #181818;
 }
 
 .navbar__icon {
-  color: #ffffff;
   margin-left: 5px;
-  height: 20px;
 }
 
 .navbar__icon:not(:hover) {
@@ -49,7 +47,7 @@ $theme-black: #181818;
   transition: 0.2s;
 }
 
-.navbar__button {
+.navbar__link {
   text-decoration: none;
   background: $theme-black;
   border: none;
@@ -58,12 +56,12 @@ $theme-black: #181818;
   padding: 5px 10px;
 }
 
-.navbar__button:hover > .navbar__icon {
+.navbar__link:hover > .navbar__icon {
   color: $text-color-hover;
   transition: 0.2s;
 }
 
-.navbar__button:hover > .navbar__text {
+.navbar__link:hover > .navbar__text {
   text-decoration: underline $text-color-hover;
   color: $text-color-hover;
   transition: 0.2s;
