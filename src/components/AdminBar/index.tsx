@@ -34,7 +34,7 @@ class AdminBar extends React.Component<AdminProps, AdminState> {
         this.setState({isPopupOpen: true, currentPopup: value});
     };
 
-    showItems(name: string){
+    showItems(name: string) {
         this.props.showAllItems(name);
         this.setState({isPopupOpen : false});
     };

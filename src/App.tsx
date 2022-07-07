@@ -2,26 +2,21 @@ import React, { useContext } from 'react';
 import { BrowserRouter, Route, Navigate, Routes, Outlet } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
-import { Context } from "./index";
-import Admin from "./pages/Admin";
-import Auth from "./pages/Auth";
-import Basket from "./pages/Basket";
-import DevicePage from "./pages/DevicePage";
+import { Context } from './index';
+import Admin from './pages/Admin';
+import Auth from './pages/Auth';
+import Basket from './pages/Basket';
+import DevicePage from './pages/DevicePage';
 import Navbar from './components/Navbar';
 import Profile from './pages/Profile';
-import Shop from "./pages/Shop";
-import Favorites from "./pages/Favorites";
-import { IMobx, IRoute } from "../interfaces";
-
-
-interface ProtectedRouteProps {
-    ({auth, redirectPath}:{auth: boolean| undefined, redirectPath: string}): JSX.Element;
-}
+import Shop from './pages/Shop';
+import Favorites from './pages/Favorites';
+import { IMobx, ProtectedRouteProps } from '../interfaces';
 
 const App: React.FC = observer(() => {
     const { userStore: { isAuth }} = useContext<IMobx>(Context);
 
-    const ProtectedRoute: ProtectedRouteProps = ({auth, redirectPath = '/' }) => {
+    const ProtectedRoute: ProtectedRouteProps = ({ auth, redirectPath = '/' }) => {
         if (auth) {
             return <Outlet />;
         }

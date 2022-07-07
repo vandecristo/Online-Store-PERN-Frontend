@@ -30,7 +30,7 @@ const GoodsItem: React.FC<GoodsProps> = ({ device }) => {
                 <div className={styles.goods__imageWrapper}>
                     <img
                         className={styles.goods__image}
-                        src={String(process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : 'http://localhost:5000/')  + device.img}
+                        src={createImageLink()}
                         alt="no-pic"
                     />
                 </div>
@@ -54,8 +54,11 @@ const GoodsItem: React.FC<GoodsProps> = ({ device }) => {
                         />
                         {device.rating}
                     </div>
-                    <button className={isPressed ? styles.goods__fav_pressed : styles.goods__fav } onClick={(e: React.MouseEvent<HTMLButtonElement>) => addToFavorites(e)}>
-                        <span>{isPressed ? 'Added' : 'To favorites' }</span>
+                    <button
+                        className={isPressed ? styles.goods__fav_pressed : styles.goods__fav }
+                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => addToFavorites(e)}
+                    >
+                        <span>{isPressed ? 'Added' : 'To favorites'}</span>
                     </button>
                 </div>
             </div>

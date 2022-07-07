@@ -1,13 +1,13 @@
 import React from "react";
 
-import { IItem } from "../../../interfaces";
+import { BasicItem } from "../../../interfaces";
 
 import styles from "./styles.module.scss";
 
-type ItemProps = {items: Array<IItem>}
+type ItemProps = {items: Array<BasicItem>}
 
 const AdminBody: React.FC<ItemProps> = ({ items }) =>{
-    const openEditPopup = (item: IItem) => {
+    const openEditPopup = (item: BasicItem) => {
     };
 
     const deleteConfirmation = (id: number) => {

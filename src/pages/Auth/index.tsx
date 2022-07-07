@@ -1,14 +1,15 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { observer } from "mobx-react-lite";
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 
 import { Context } from '../../index';
-import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../../utils/consts";
-import { login, registration } from "../../http/userAPI";
-import { AxiosError } from "axios";
-import { IMobx } from "../../../interfaces";
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../../utils/consts';
+import { login, registration } from '../../http/userAPI';
+import { AxiosError } from 'axios';
+import { IMobx } from '../../../interfaces';
 
 import styles from './styles.module.scss';
+
 interface PreparedUserData {
     email: string,
     password: string

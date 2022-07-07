@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from 'react';
-import { observer } from "mobx-react-lite";
+import { observer } from 'mobx-react-lite';
 
-import { Context } from "../../index";
+import { Context } from '../../index';
 
 import BrandsBar from '../../components/BrandsBar';
 import TypesBar from '../../components/TypesBar';
-import GoodsList from "../../components/GoodsList";
-import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
-import { IMobx } from "../../../interfaces";
+import GoodsList from '../../components/GoodsList';
+import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
+import { IMobx } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 

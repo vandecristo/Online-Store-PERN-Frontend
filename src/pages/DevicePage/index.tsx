@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchDeviceById } from "../../http/deviceAPI";
-import { BasicDevice, IProcessEnv } from "../../../interfaces";
+import { fetchDeviceById } from '../../http/deviceAPI';
+import { BasicDevice, IdFromUseParams, IProcessEnv } from '../../../interfaces';
 
 import styles from './styles.module.scss';
-
-type IdFromUseParams = string | undefined;
 
 const DevicePage: React.FC = () => {
     const { id } = useParams<string>();
@@ -24,7 +22,7 @@ const DevicePage: React.FC = () => {
     });
     const { REACT_APP_API_URL }: IProcessEnv = process.env;
 
-    const fetchCurrentDevice = async (id:IdFromUseParams) => {
+    const fetchCurrentDevice = async (id: IdFromUseParams) => {
         const data = await fetchDeviceById(id);
         setDevice(data);
     };

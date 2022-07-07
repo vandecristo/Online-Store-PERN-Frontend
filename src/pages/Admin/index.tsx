@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 
-import AdminBody from "../../components/AdminBody";
-import AdminBar from "../../components/AdminBar";
-import { fetchBrands, fetchDevices, fetchTypes } from "../../http/deviceAPI";
-import { IItem } from "../../../interfaces";
+import AdminBody from '../../components/AdminBody';
+import AdminBar from '../../components/AdminBar';
+import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
+import { BasicItem } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
 const Admin: React.FC = () => {
-    const [items, setItems] = useState<Array<IItem>>([]);
+    const [items, setItems] = useState<Array<BasicItem>>([]);
 
     const fetchAndSpreadDevices = async () => {
         const res = await fetchDevices();
