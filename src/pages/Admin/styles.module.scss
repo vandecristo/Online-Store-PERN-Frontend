@@ -1,12 +1,135 @@
 $text-color: white;
+$black-text: black;
 $text-color-hover: #754abe;
 $theme-black: #181818;
+$theme-white: #e4e4e7;
+$gray-text: #787885;
+$font-small: 14px;
+$font-medium: 25px;
+$font-large: 35px;
 
 .admin__item {
   display: block;
 }
 
+
+
+
+
+
+
+
 .admin {
   height: calc(100vh - 90px);
   display: flex;
 }
+
+.adminBody {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-wrap: wrap;width: 80%;
+  margin-top: 10px;
+}
+
+.adminBody__item {
+  width: 200px;
+  height: fit-content;
+  background: $theme-white;
+  padding: 5px;
+  margin: 10px;
+  color: $black-text;
+  border-radius: 4px;
+}
+
+.adminBody__btnWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.adminBody__btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 25px;
+  background: $theme-black;
+  color: $text-color;
+  border-radius: 10px;
+  border: 2px solid $theme-black;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.adminBody__btn > span {
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.adminBody__btn:hover {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.adminBody__btn:hover > span {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.adminBody__block {
+  height: fit-content;
+}
+
+
+.adminBar {
+  width: 20%;
+  min-width: 180px;
+}
+
+.adminBar__title {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.adminBar__wrapper  {
+  background: #e4e4e7;
+  margin: 10px 10px ;
+  min-width: 130px;
+  border-radius: 4px;
+  padding: 10px 5px;
+}
+
+.admin__button {
+  cursor: pointer;
+  background: none;
+  width: 115px;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.admin__button:hover {
+  background: $theme-black;
+  color: $text-color;
+  transition: 0.3s;
+}
+
+.adminBar__btnGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin__item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import { createDevice, fetchBrands, fetchTypes } from "../../../http/deviceAPI";
 import { BasicItem, PreparedDeviceData } from "../../../../interfaces";
+import { useSnackbar } from 'notistack';
 
 import styles from "./styles.module.scss";
 
 interface CreateBrandProps {
-    closePopupHandler: () => void;
+    togglePopup: () => void;
 }
 
 type OptionType = {
@@ -14,7 +15,7 @@ type OptionType = {
     brands: Array<BasicItem>
 };
 
-const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
+const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
     const [data, setData] = useState<PreparedDeviceData>({
         name: '',
         price: '',
@@ -24,6 +25,8 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
     });
     const [options, setOptions] = useState<OptionType>({types: [], brands: []});
 
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const formData = new FormData();
@@ -32,7 +35,10 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
         formData.append('typeId', data.typeId);
         formData.append('brandId', data.brandId);
         formData.append('img', data.img);
-        createDevice(formData).then(() => {closePopupHandler()});
+        createDevice(formData)
+            .then(() => {enqueueSnackbar('Device was successfully created.')})
+            .catch(() => enqueueSnackbar(`Device wasn't been created, check inputs.`));
+        togglePopup();
     };
 
     const fetchOptions = async () => {
@@ -96,7 +102,7 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ closePopupHandler }) => {
                         </div>
                     </form>
                     <div className={styles.createDevice__btnWrapper}>
-                        <button className={styles.createDevice__btn} onClick={() => closePopupHandler()}>
+                        <button className={styles.createDevice__btn} onClick={() => togglePopup()}>
                             <span>Close</span>
                         </button>
                         <input className={styles.createDevice__btn} form="newDeviceData" type="submit" value='Add'/>

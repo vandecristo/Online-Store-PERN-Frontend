@@ -69,7 +69,7 @@ class AdminBar extends React.Component<AdminProps, AdminState> {
     render() {
         return (
             <div className={styles.adminBar}>
-                <>{this.createPopup()}</>
+                {this.state.isPopupOpen && <>{this.createPopup()}</>}
                 <div className={styles.adminBar__wrapper}>
                     <span className={styles.adminBar__title}>Admin bar:</span>
                     <div className={styles.adminBar__btnGroup}>

@@ -5,6 +5,7 @@ import App from './App';
 import UserStore from './store/UserStore';
 import DeviceStore from './store/DeviceStore';
 import { IMobx } from '../interfaces';
+import { SnackbarProvider } from 'notistack';
 
 
 export const Context = createContext<IMobx>({
@@ -35,7 +36,9 @@ const store: any = {
 };
 
 root.render(
-    <Context.Provider value={store}>
-        <App/>
-    </Context.Provider>
+    <SnackbarProvider maxSnack={2}>
+        <Context.Provider value={store}>
+            <App/>
+        </Context.Provider>
+    </SnackbarProvider>
 );

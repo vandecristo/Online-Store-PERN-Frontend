@@ -4,20 +4,28 @@ import { createBrand } from '../../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
+type PopupOption = {
+    type: string,
+    name: string,
+    id: number
+};
+
 interface CreateBrandProps {
     togglePopup: () => void;
+    popupOptions: PopupOption
 }
 
 type DataType = {
     name: string
 };
 
-const CreateBrand: React.FC<CreateBrandProps> = ({ togglePopup }) => {
+const EditItem: React.FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
     const [data, setData] = useState<DataType>({name: ''});
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        createBrand(data).then(() => togglePopup());
+        console.log('########### popupOptions.id:', popupOptions.id, popupOptions.type);
+        //createBrand(data).then(() => togglePopup());
     };
 
     return (
@@ -26,7 +34,7 @@ const CreateBrand: React.FC<CreateBrandProps> = ({ togglePopup }) => {
                 <div className={styles.createBrand}>
                     <form id="newBrandData" className={styles.createBrand__form} onSubmit={(e:React.FormEvent) => handleSubmit(e)}>
                         <div className={styles.createBrand__title}>
-                            <span>Create Brand:</span>
+                            <span>Edit {popupOptions.name}:</span>
                         </div>
                         <div className={styles.createBrand__item}>
                             <input
@@ -47,7 +55,7 @@ const CreateBrand: React.FC<CreateBrandProps> = ({ togglePopup }) => {
                             form="newBrandData"
                             className={styles.createBrand__btn}
                             type="submit"
-                            value={'Add brand'}
+                            value={'Submit changes'}
                         />
                     </div>
                 </div>
@@ -56,4 +64,4 @@ const CreateBrand: React.FC<CreateBrandProps> = ({ togglePopup }) => {
     );
 };
 
-export default CreateBrand;
+export default EditItem;
