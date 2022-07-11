@@ -66,10 +66,6 @@ const Admin: React.FC = () => {
         }
     };
 
-    useEffect(() => {
-        console.log(popupOptions)
-    },[popupOptions]);
-
     return (
         <div className={styles.admin}>
 

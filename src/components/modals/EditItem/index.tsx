@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { createBrand } from '../../../http/deviceAPI';
+import { useSnackbar } from 'notistack';
 
 import styles from './styles.module.scss';
 
@@ -22,10 +23,13 @@ type DataType = {
 const EditItem: React.FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
     const [data, setData] = useState<DataType>({name: ''});
 
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('########### popupOptions.id:', popupOptions.id, popupOptions.type);
         //createBrand(data).then(() => togglePopup());
+        enqueueSnackbar(`${popupOptions.type} was successfully changed.`);
+        togglePopup();
     };
 
     return (
