@@ -25,7 +25,7 @@ li {
   list-style-type: none;
 }
 
-.typeBar__Item {
+.typeBar__item {
   cursor: pointer;
   background: none;
   padding: 5px 10px;
@@ -35,7 +35,7 @@ li {
   transition: 0.3s;
 }
 
-.typeBar__Item_active {
+.typeBar__item_active {
   cursor: pointer;
   background: $theme-black;
   padding: 5px 10px;
@@ -46,6 +46,6 @@ li {
   transition: 0.3s;
 }
 
-.typeBar__Item > span {
+.typeBar__item > span {
   cursor: pointer;
 }

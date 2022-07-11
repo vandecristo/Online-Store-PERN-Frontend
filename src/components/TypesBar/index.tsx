@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { observer } from "mobx-react-lite";
+import classnames from 'classnames';
 
 import { Context } from "../../index";
 
@@ -12,14 +13,18 @@ const TypesBar: React.FC = observer(() => {
         <div className={styles.typeBar}>
             <span className={styles.typeBar__title}>Filter by:</span>
             <ul>
-                {deviceStore?.types?.map(type =>
-                    <li
-                        className={type.id === deviceStore.selectedType.id ? styles.typeBar__Item_active : styles.typeBar__Item}
-                        key={type.id}
-                        onClick={() => deviceStore.setSelectedType(type)}
-                    >
-                        <span>{type.name}</span>
-                    </li>
+                {deviceStore?.types?.map(type =>{
+                        const active = type.id === deviceStore.selectedType.id;
+                        return (
+                            <li
+                                className={classnames(styles.typeBar__item, { [styles.typeBar__item_active]: active })}
+                                key={type.id}
+                                onClick={() => deviceStore.setSelectedType(type)}
+                            >
+                                <span>{type.name}</span>
+                            </li>
+                        )
+                    }
                 )}
             </ul>
         </div>
