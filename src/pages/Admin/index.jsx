@@ -15,7 +15,7 @@ const Admin = observer(() => {
     };
 
     return (
-        <div >
+        <div>
             Admin panel:
             <div onClick={(e) => openPopup(e)}>
                 <button value="type">

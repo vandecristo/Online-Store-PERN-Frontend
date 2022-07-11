@@ -4,17 +4,17 @@ import { createBrand, createDevice, createType } from '../../../http/deviceAPI';
 import styles from './styles.module.scss';
 
 const AdminPopup = ({ currentPopup, togglePopup }) => {
-    const [data, setData] = useState({name: ''});
+    const [data, setData] = useState({ name: '' });
 
     const handleSubmit = (e) => {
         e.preventDefault();
         switch (currentPopup) {
             case 'type':
-               return  createType(data).then(() => togglePopup(false));
+               return createType(data).then(() => togglePopup(false));
             case 'brand':
-                return  createBrand(data).then(() => togglePopup(false));
-            case 'device1':
-                return  createDevice(data).then(() => togglePopup(false));
+                return createBrand(data).then(() => togglePopup(false));
+            case 'device':
+                return createDevice(data).then(() => togglePopup(false));
             default:
                 return alert(`Some problem occurred with  currentProp: ${currentPopup}`);
         }

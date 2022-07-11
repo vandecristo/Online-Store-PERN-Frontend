@@ -37,7 +37,9 @@ const Auth = observer(()=> {
     return (
         <form className={styles.auth}>
             <div className={styles.auth__body}>
-                <h1 className={styles.auth__title}>{isLogin ? 'Authorization' : 'Registration'}</h1>
+                <h1 className={styles.auth__title}>
+                    {isLogin ? 'Authorization' : 'Registration'}
+                </h1>
                 <div className={styles.auth__itemWrapper}>
                     <div className={styles.auth__item}>
                         <input
