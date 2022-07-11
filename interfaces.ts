@@ -5,7 +5,8 @@ export interface PreparedDeviceData {
     price: string,
     typeId: string,
     brandId: string,
-    img: File | string
+    img: File | string,
+    imageName: string | undefined
 }
 
 export interface BasicItem {

@@ -6,6 +6,10 @@ $font-small: 14px;
 $font-medium: 25px;
 $font-large: 35px;
 
+* {
+  font-size: 14px;
+}
+
 .popup {
   display: flex;
   position: fixed;
@@ -26,7 +30,6 @@ $font-large: 35px;
 .createDevice {
   width: 60%;
   min-width: 400px;
-  z-index: 5;
 }
 
 .createDevice__title {
@@ -45,11 +48,7 @@ $font-large: 35px;
   padding: 0 10px;
 }
 
-.createDevice__item > input {
-  margin: 5px;
-}
-
-.createDevice__item > select {
+.createDevice__item > input, select {
   margin: 5px;
 }
 
@@ -68,6 +67,7 @@ $font-large: 35px;
   width: 160px;
   height: 32px;
   background: $theme-black;
+  border: 2px solid $theme-black;
   color: $text-color;
   border-radius: 10px;
   cursor: pointer;
@@ -90,23 +90,6 @@ $font-large: 35px;
   transition: 0.2s;
 }
 
-input[type=file]::file-selector-button {
-  border: 2px solid $theme-black;
-  width: 160px;
-  height: 32px;
-  font-size: 14px;
-  background: $theme-black;
-  color: $text-color;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.4s;
-}
-
-input[type=file]::file-selector-button:hover {
-  color: $text-color-hover;
-  transition: 0.2s;
-}
-
 .createDevice__input {
   outline: none;
   background: #F7F7FA;
@@ -115,12 +98,61 @@ input[type=file]::file-selector-button:hover {
   border-bottom: 0.1em solid $theme-black;
 }
 
-.createDevice__input_file {
-  border-bottom: none;
+.createDevice__displayNone {
+  display: none;
 }
 
 .createDevice__input:focus {
   border-bottom: 0.1em solid #F7F7FA;
   box-shadow: 0 2px 1px $text-color-hover;
   transition: 0.3s;
+}
+
+.createDevice__inputWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.createDevice__btn_input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 5px 0 5px;
+  width: 100px;
+  height: 32px;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  color: $text-color;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.createDevice__btn_input > span {
+  font-size: 14px;
+}
+
+.createDevice__pictureName {
+  display: flex;
+  align-items: center;
+  margin: 10px 5px 0 5px;
+  max-width: 70%;
+  white-space:nowrap;
+}
+
+.createDevice__removeItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  color: $text-color;
+  border-radius: 5px;
+  cursor: pointer;
 }

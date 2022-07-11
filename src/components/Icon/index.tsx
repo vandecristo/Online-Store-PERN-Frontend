@@ -3,18 +3,22 @@ import React from "react";
 import Admin from './svg/admin';
 import Basket from './svg/basket';
 import Favorites from './svg/favorites';
+import Image from './svg/image';
 import Login from './svg/login';
 import Logout from './svg/logout';
 import Profile from './svg/profile';
+import TrashCan from './svg/trashCan';
 import { IconProps } from "../../../interfaces";
 
 const components = {
     Admin,
     Basket,
     Favorites,
+    Image,
     Login,
     Logout,
-    Profile
+    Profile,
+    TrashCan
 };
 
 const Icon: React.FC<IconProps> = (props: IconProps) => {

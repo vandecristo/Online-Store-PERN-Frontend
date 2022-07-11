@@ -36,7 +36,14 @@ const store: any = {
 };
 
 root.render(
-    <SnackbarProvider maxSnack={2}>
+    <SnackbarProvider
+        maxSnack={2}
+        autoHideDuration={1500}
+        anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+        }}
+    >
         <Context.Provider value={store}>
             <App/>
         </Context.Provider>
