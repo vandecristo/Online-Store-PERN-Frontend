@@ -1,0 +1,51 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+
+.typeBar {
+  background: #F7F7FA;
+  margin-top: 82px;
+  min-width: 130px;
+  border-radius: 4px;
+  padding: 12px 8px;
+}
+
+.typeBar__title {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.typeBar__item {
+  cursor: pointer;
+  background: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.typeBar__item_active {
+  cursor: pointer;
+  background: $theme-black;
+  padding: 5px 10px;
+  margin-top: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  color: $text-color;
+  transition: 0.3s;
+}
+
+.typeBar__item > span {
+  cursor: pointer;
+}

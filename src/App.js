@@ -1,35 +1,39 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import AppRouter from './components/AppRouter';
-import Navbar from './components/Navbar';
-import { observer } from "mobx-react-lite";
-import { Context } from "./index";
-import { check } from "./http/userAPI";
-import Loading from "./components/Loading";
+import { BrowserRouter, Route, Navigate, Routes, Outlet } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
 
-const App = observer( ()=> {
-    const {user} = useContext(Context);
-    const [loading, setLoading] = useState(true);
+import Admin from './pages/Admin';
+import Auth from './pages/Auth';
+import DevicePage from './pages/DevicePage';
+import Navbar from './components/Navbar/index';
+import Shop from './pages/Shop';
+import Favorites from './pages/Favorites';
 
-    useEffect( () => {
-        setTimeout(() => {
-            check().then( data => {
-                user.setUser(true);
-                user.setIsAuth(true);
-            }).finally(() => setLoading(false));
-        }, 2000)
-    },[]);
+const App = observer(() => {
+    const isUserAuth = Boolean(localStorage.getItem('token'));
 
-
-    if (loading) {
-        return <Loading/>
-    }
+    const ProtectedRoute = ({ user, redirectPath = '/' }) => {
+        if (!user) {
+            return <Navigate to={redirectPath} replace />;
+        }
+        return <Outlet />;
+    };
 
     return (
         <BrowserRouter>
             <Navbar/>
-            {loading ? <Loading/> : null}
-            <AppRouter/>
+            <Routes>
+                <Route element={<ProtectedRoute user={isUserAuth} />}>
+                    <Route path={'/favorites'} element={<Favorites />} />
+                    <Route path={'/admin'} element={<Admin />} />
+                </Route>
+                <Route element={<ProtectedRoute user={!isUserAuth} />}>
+                    <Route path={'/registration'} element={<Auth/>}/>
+                    <Route path={'/login'} element={<Auth/>}/>
+                </Route>
+                <Route path={'/'} element={<Shop/>}/>
+                <Route path={'/device'+ '/:id'} element={<DevicePage/>}/>
+                <Route path="*" element={<Navigate to={'/'}/>}/>
+            </Routes>
         </BrowserRouter>
     );
 })
