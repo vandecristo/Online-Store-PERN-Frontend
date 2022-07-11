@@ -17,7 +17,7 @@ const TypesBar = observer(() => {
                     const active = type.id === deviceStore.selectedType.id;
                         return (
                             <li
-                                className={classnames(styles.typeBar__item, {[styles.typeBar__item_active]: active})}
+                                className={classnames(styles.typeBar__item, { [styles.typeBar__item_active]: active })}
                                 key={type.id}
                                 onClick={() => deviceStore.setSelectedType(type)}
                             >
