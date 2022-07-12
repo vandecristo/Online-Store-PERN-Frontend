@@ -134,6 +134,12 @@ $font-large: 35px;
   font-size: 14px;
 }
 
+.test {
+  height: 40px;
+  outline: none;
+  border: 2px solid white;
+}
+
 .createDevice__pictureName {
   display: flex;
   align-items: center;

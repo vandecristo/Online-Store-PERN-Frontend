@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { BasicItem, PreparedDeviceData } from '../../../../interfaces';
-import { createDevice, fetchBrands, fetchTypes } from '../../../http/deviceAPI';
+import { createBrand, createDevice, createType, fetchBrands, fetchTypes } from '../../../http/deviceAPI';
 import Icon from '../../Icon';
+import MenuItem from '@mui/material/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useSnackbar } from 'notistack';
 
 import styles from './styles.module.scss';
+import CreateBrand from '../CreateBrand';
 
 interface CreateBrandProps {
     togglePopup: () => void;
@@ -14,6 +17,17 @@ interface CreateBrandProps {
 type OptionType = {
     types: Array<BasicItem>,
     brands: Array<BasicItem>
+};
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+    PaperProps: {
+        style: {
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            width: 350,
+        },
+    },
 };
 
 const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
@@ -26,31 +40,14 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
         imageName: ''
     };
     const [data, setData] = useState<PreparedDeviceData>(initialState);
-    const [options, setOptions] = useState<OptionType>({types: [], brands: []});
+    const [options, setOptions] = useState<OptionType>({ types: [], brands: [] });
+    const [selectedBrand, setSelectedBrand] = useState('');
+    const [selectedType, setSelectedType] = useState('');
 
     const { enqueueSnackbar } = useSnackbar();
 
     const showMessage = (message: string) :void => {
         enqueueSnackbar(message);
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('name', data.name);
-        formData.append('price', data.price);
-        formData.append('typeId', data.typeId);
-        formData.append('brandId', data.brandId);
-        formData.append('img', data.img);
-        createDevice(formData)
-        .then(() => showMessage('Device was successfully created.'))
-        .catch(() => showMessage(`Device wasn't been created, check data.`));
-        handleCloseForm();
-    };
-    
-    const handleCloseForm = () => {
-        setData(initialState);
-        togglePopup();
     };
 
     const showSelectedImage = () => {
@@ -73,27 +70,66 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
         )
     };
 
-    const fetchOptions = async () => {
-        setOptions({types: await fetchTypes(), brands: await fetchBrands()})
-    };
-
     const setImage = (e: React.FormEvent) => {
         const target = e.target as HTMLInputElement
         setData({
             ...data,
             img: target.files?.[0] || 'no picture',
             imageName: target.files?.[0].name.slice(0, 15) + '... '
-        })
+        });
         target.value = '';
     };
 
+    const createNewEntity = (entityType: string) => {
+        console.log('########### entityName:');
+
+    };
+
+    const fetchOptions = async () => {
+        setOptions({types: await fetchTypes(), brands: await fetchBrands()})
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('price', data.price);
+        formData.append('typeId', data.typeId);
+        formData.append('brandId', data.brandId);
+        formData.append('img', data.img);
+        createDevice(formData)
+            .then(() => showMessage('Device was successfully created.'))
+            .catch(() => showMessage(`Device wasn't been created, check data.`));
+        handleCloseForm();
+    };
+
+    const handleChange = (
+        event: SelectChangeEvent,
+        inputData: string,
+        setInputData: (value: string) => void,
+        id: string
+    ) => {
+        const { target: { value }} = event;
+        inputData !== value && setInputData(value);
+        setData({...data, [id]: value});
+        event.target.value = '';
+    };
+
+    const handleCloseForm = () => {
+        setData(initialState);
+        togglePopup();
+    };
+
     useEffect(() => {
+        console.log('########### 11111111:', 11111111);
         fetchOptions();
     }, []);
 
+    const [cr, setCr] = useState<boolean>(false)
     return (
         <div className={styles.popup}>
             <div className={styles.popup__wrapper}>
+                {!cr ? (<CreateBrand togglePopup={togglePopup}/>) : (<div>456456</div>)}
                 <div className={styles.createDevice}>
                     <form className={styles.createDevice__form} id="newDeviceData"
                           onSubmit={(e: React.FormEvent) => handleSubmit(e)}>
@@ -115,27 +151,38 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
                             />
                         </div>
                         <div className={styles.createDevice__item}>
-                            <select
-                                className={styles.createDevice__input}
-                                form="newDeviceData"
-                                onChange={(e) => setData({...data, typeId: e.target.value})}
+                            <Select
+                                className={styles.test}
+                                id="type-input"
+                                value={selectedType}
+                                onChange={(e) => handleChange(e, selectedType, setSelectedType,'typeId')}
+                                MenuProps={MenuProps}
+                                label="Types"
                             >
-                                <option hidden>choose type</option>
+                                <MenuItem disabled value="">
+                                    <em>Types</em>
+                                </MenuItem>
                                 {options.types?.map(type =>
-                                    <option value={type.id} key={type.id}> {type.name}</option>
+                                    <MenuItem value={type.id} key={type.id}>{type.name}</MenuItem>
                                 )}
-                            </select>
-                            <select
-                                className={styles.createDevice__input}
-                                form="newDeviceData"
-                                onChange={(e) => setData({...data, brandId: e.target.value})}
+                                <button onClick={() => createNewEntity('type')}>+</button>
+                            </Select>
+                            <Select
+                                className={styles.test}
+                                id="brand-input"
+                                value={selectedBrand}
+                                onChange={(e) => handleChange(e, selectedBrand, setSelectedBrand, 'brandId')}
+                                MenuProps={MenuProps}
+                                label="Brands"
                             >
-                                <option hidden>choose brand</option>
+                                <MenuItem disabled value="">
+                                    <em>Brands</em>
+                                </MenuItem>
                                 {options.brands?.map(brand =>
-                                    <option value={brand.id} key={brand.id}>{brand.name}</option>
+                                    <MenuItem value={brand.id} key={brand.id}>{brand.name}</MenuItem>
                                 )}
-                            </select>
-                            {/*<input type="text" placeholder='Write info about device'/>*/}
+                                <button onClick={() => createNewEntity('brand')}>+</button>
+                            </Select>
                             <div className={styles.createDevice__inputWrapper}>
                                 <input
                                     className={styles.createDevice__displayNone}
@@ -144,7 +191,7 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
                                     onChange={(e) => setImage(e)}
                                 />
                                 <label htmlFor="file-upload" className={styles.createDevice__btn_input}>
-                                    <span>+image</span>
+                                    <span>+Image</span>
                                 </label>
                                 {showSelectedImage()}
                             </div>
@@ -152,9 +199,9 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
                     </form>
                     <div className={styles.createDevice__btnWrapper}>
                         <button className={styles.createDevice__btn} onClick={() => handleCloseForm()}>
-                            <span>close</span>
+                            <span>Close</span>
                         </button>
-                        <input className={styles.createDevice__btn} form="newDeviceData" type="submit" value='add'/>
+                        <input className={styles.createDevice__btn} form="newDeviceData" type="submit" value='Add'/>
                     </div>
                 </div>
             </div>

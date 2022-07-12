@@ -17,13 +17,13 @@ const Footer: React.FC = () => {
     return (
         <div className={styles.footer}>
             <div className={styles.footer__upperPart}>
-                {footerContentArr.map((item) => (
-                    <div className={styles.footer__item}>
+                {footerContentArr.map((item, index) => (
+                    <div key={index} className={styles.footer__item}>
                         <div className={styles.footer__text_title}>
                             {Object.keys(item)}
                         </div>
-                        {Object.values(item)[0].map((link) => (
-                            <div className={styles.footer__link}>
+                        {Object.values(item)[0].map((link, index) => (
+                            <div className={styles.footer__link} key={index + 100}>
                                 {link}
                             </div>
                         ))}
