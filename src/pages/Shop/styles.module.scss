@@ -8,7 +8,7 @@ $theme-black: #181818;
 }
 
 .shop {
-  height: calc(100vh - 90px);
+  //height: calc(100vh - 90px);
 }
 
 .shop__body {
@@ -27,13 +27,13 @@ $theme-black: #181818;
 .shop__goodsWrapper {
   display: flex;
   flex-direction: column;
-  width: 80%;
   background: rgba(49, 75, 215, 0);
+  width: 80%;
 }
 
 .shop__brandBarWrapper {
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 10px;
   background: rgba(74, 171, 93, 0);
+  padding-bottom: 10px;
 }

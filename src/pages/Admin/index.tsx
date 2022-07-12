@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
 import { BasicItem } from '../../../interfaces';
-
 import CreateDevice from '../../components/modals/CreateDevice';
 import EditItem from '../../components/modals//EditItem';
+import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
@@ -31,7 +30,7 @@ const Admin: React.FC = () => {
         setItems(rows);
     };
     const showItems = async (name: string) => {
-        setPopupOptions((prev) => {return {type: name, name: '', id: 0}})
+        setPopupOptions({type: name, name: '', id: 0})
         switch (name) {
             case 'Devices':
                 return fetchAndSpreadDevices();

@@ -1,27 +1,20 @@
-$text-color: white;
 $black-text: black;
-$text-color-hover: #754abe;
-$theme-black: #181818;
-$theme-white: #e4e4e7;
-$gray-text: #787885;
 $font-small: 14px;
 $font-medium: 25px;
 $font-large: 35px;
+$gray-text: #787885;
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$theme-white: #e4e4e7;
 
 .admin__item {
   display: block;
 }
 
-
-
-
-
-
-
-
 .admin {
-  height: calc(100vh - 90px);
   display: flex;
+  height: 100%;
 }
 
 .adminBody {
@@ -33,13 +26,13 @@ $font-large: 35px;
 }
 
 .adminBody__item {
-  width: 200px;
-  height: fit-content;
   background: $theme-white;
-  padding: 5px;
-  margin: 10px;
-  color: $black-text;
   border-radius: 4px;
+  color: $black-text;
+  height: fit-content;
+  margin: 10px;
+  padding: 5px;
+  width: 200px;
 }
 
 .adminBody__btnWrapper {
@@ -54,15 +47,15 @@ $font-large: 35px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 25px;
   background: $theme-black;
-  color: $text-color;
-  border-radius: 10px;
   border: 2px solid $theme-black;
+  border-radius: 10px;
+  color: $text-color;
   cursor: pointer;
   font-size: 14px;
   transition: 0.2s;
+  height: 25px;
+  width: 70px;
 }
 
 .adminBody__btn > span {
@@ -84,10 +77,9 @@ $font-large: 35px;
   height: fit-content;
 }
 
-
 .adminBar {
-  width: 20%;
   min-width: 180px;
+  width: 20%;
 }
 
 .adminBar__title {
@@ -98,21 +90,21 @@ $font-large: 35px;
 
 .adminBar__wrapper  {
   background: #e4e4e7;
+  border-radius: 4px;
   margin: 10px 10px ;
   min-width: 130px;
-  border-radius: 4px;
   padding: 10px 5px;
 }
 
 .admin__button {
-  cursor: pointer;
   background: none;
-  width: 115px;
-  padding: 5px 10px;
-  margin-top: 5px;
   border: 1px solid black;
   border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+  padding: 5px 10px;
   transition: 0.3s;
+  width: 115px;
 }
 
 .admin__button:hover {
@@ -132,4 +124,3 @@ $font-large: 35px;
   flex-direction: column;
   margin-bottom: 20px;
 }
-

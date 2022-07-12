@@ -2,15 +2,17 @@ import React, { useContext } from 'react';
 import { BrowserRouter, Route, Navigate, Routes, Outlet } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
-import { Context } from './index';
 import Admin from './pages/Admin';
 import Auth from './pages/Auth';
 import Basket from './pages/Basket';
+import { Context } from './index';
 import DevicePage from './pages/DevicePage';
+import Favorites from './pages/Favorites';
+import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Profile from './pages/Profile';
 import Shop from './pages/Shop';
-import Favorites from './pages/Favorites';
+
 import { IMobx, ProtectedRouteProps } from '../interfaces';
 
 const App: React.FC = observer(() => {
@@ -41,6 +43,7 @@ const App: React.FC = observer(() => {
                 <Route path={'/device'+ '/:id'} element={<DevicePage/>}/>
                 <Route path="*" element={<Navigate to={'/'}/>}/>
             </Routes>
+            <Footer/>
         </BrowserRouter>
     );
 })
