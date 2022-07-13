@@ -1,3 +1,4 @@
+$background-white: #F7F7FA;
 $text-color: white;
 $text-color-hover: #754abe;
 $theme-black: #181818;
@@ -23,7 +24,7 @@ $font-large: 35px;
 .popup__wrapper {
   display: flex;
   justify-content: center;
-  background: #F7F7FA;
+  background: $background-white;
   margin: auto;
 }
 
@@ -104,9 +105,9 @@ $font-large: 35px;
 
 .createDevice__input {
   outline: none;
-  background: #F7F7FA;
+  background: $background-white;
   color: $theme-black;
-  border: 2px solid #F7F7FA;
+  border: 2px solid $background-white;
   border-bottom: 0.1em solid $theme-black;
 }
 
@@ -115,7 +116,7 @@ $font-large: 35px;
 }
 
 .createDevice__input:focus {
-  border-bottom: 0.1em solid #F7F7FA;
+  border-bottom: 0.1em solid $background-white;
   box-shadow: 0 2px 1px $text-color-hover;
   transition: 0.3s;
 }
@@ -146,12 +147,6 @@ $font-large: 35px;
   font-size: 14px;
 }
 
-.test {
-  height: 40px;
-  outline: none;
-  border: 2px solid white;
-}
-
 .createDevice__pictureName {
   display: flex;
   align-items: center;
@@ -177,4 +172,18 @@ $font-large: 35px;
 
 .createDevice__createEntity {
   margin: 0 10px;
+}
+
+.createDevice__entityForm {
+
+}
+
+.createDevice__inputText {
+  margin-top: -5px;
+}
+
+.createDevice__select {
+  height: 40px;
+  outline: none;
+  border: 2px solid $background-white;
 }

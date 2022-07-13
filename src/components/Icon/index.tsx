@@ -6,6 +6,7 @@ import Favorites from './svg/favorites';
 import Image from './svg/image';
 import Login from './svg/login';
 import Logout from './svg/logout';
+import Plus from './svg/plus';
 import Profile from './svg/profile';
 import TrashCan from './svg/trashCan';
 import { IconProps } from "../../../interfaces";
@@ -17,6 +18,7 @@ const components = {
     Image,
     Login,
     Logout,
+    Plus,
     Profile,
     TrashCan
 };

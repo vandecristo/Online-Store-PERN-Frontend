@@ -1,0 +1,85 @@
+$background-white: #F7F7FA;
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$gray-text: #787885;
+$font-small: 14px;
+$font-medium: 25px;
+$font-large: 35px;
+
+.createDevice__entityForm {
+  padding-top: 15px;
+}
+
+.createDevice__entityFormWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+}
+
+.createDevice__inputText {
+  margin-top: -5px;
+}
+
+.createDevice__select {
+  border: 2px solid $background-white;
+  height: 40px;
+  outline: none;
+}
+
+.createDevice__createEntity {
+  display: flex;
+  justify-content: start;
+  margin: 0 0 10px 10px;
+}
+
+.createDevice__input {
+  background: $background-white;
+  border: 2px solid $background-white;
+  border-bottom: 0.1em solid $theme-black;
+  color: $theme-black;
+}
+
+.createDevice__input_inList {
+  background: white;
+  border: 2px solid white;
+  border-bottom: 0.1em solid $theme-black;
+  color: $theme-black;
+}
+
+.createDevice__btn_mini {
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  border-radius: 10px;
+  color: $text-color;
+  cursor: pointer;
+  font-size: 14px;
+  height: 32px;
+  transition: 0.2s;
+  width: 50px;
+}
+
+.createDevice__inputButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  border-radius: 5px;
+  color: $text-color;
+  cursor: pointer;
+  height: 20px;
+  margin-left:15px;
+  width: 20px;
+}
+
+.createDevice__inputButtonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.createDevice__icon {
+  display: inherit;
+}
