@@ -80,6 +80,13 @@ $font-large: 35px;
   align-items: end;
 }
 
+.createDevice__inputButtonWrapper_left {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  height: 30px;
+}
+
 .createDevice__icon {
   display: inherit;
 }

@@ -26,7 +26,7 @@ const ITEM_PADDING_TOP = 8;
 const MenuProps = {
     PaperProps: {
         style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP + 5,
             width: 350,
         },
     },
@@ -115,11 +115,13 @@ const CreateEntity: React.FC<CreateEntityProps> = ({
                         <MenuItem value={entity.id} key={entity.id}>{entity.name}</MenuItem>
                     )}
                     {!isEntityFormOpen ? (
-                        <div
-                            className={styles.createDevice__inputButton}
-                            onClick={(e) => {e.stopPropagation(); switchEntityForm(true)}}
-                        >
-                            <Icon className={styles.createDevice__icon} name='Plus' size={12}/>
+                        <div className={styles.createDevice__inputButtonWrapper_left}>
+                            <button
+                                className={styles.createDevice__inputButton}
+                                onClick={(e) => {e.stopPropagation(); switchEntityForm(true)}}
+                            >
+                                <Icon className={styles.createDevice__icon} name='Plus' size={12}/>
+                            </button>
                         </div>
                     ) : (
                         <label className={styles.createDevice__createEntity} onKeyDown={(e) => e.stopPropagation()}>
