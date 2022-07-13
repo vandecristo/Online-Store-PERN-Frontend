@@ -75,6 +75,18 @@ $font-large: 35px;
   transition: 0.2s;
 }
 
+.createDevice__btn_mini {
+  width: 50px;
+  height: 32px;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  color: $text-color;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
 .createDevice__btn > span {
   font-size: 14px;
   transition: 0.2s;
@@ -161,4 +173,8 @@ $font-large: 35px;
   color: $text-color;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.createDevice__createEntity {
+  margin: 0 10px;
 }

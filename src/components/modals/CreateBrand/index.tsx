@@ -17,7 +17,7 @@ const CreateBrand: React.FC<CreateBrandProps> = ({ togglePopup }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        createBrand(data).then(() => togglePopup());
+        //createBrand(data).then(() => togglePopup());
     };
 
     return (

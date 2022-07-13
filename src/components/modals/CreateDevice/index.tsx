@@ -31,7 +31,7 @@ const MenuProps = {
 };
 
 const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
-    const initialState = {
+    const initialState: PreparedDeviceData = {
         name: '',
         price: '',
         typeId: '',
@@ -80,13 +80,8 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
         target.value = '';
     };
 
-    const createNewEntity = (entityType: string) => {
-        console.log('########### entityName:');
-
-    };
-
     const fetchOptions = async () => {
-        setOptions({types: await fetchTypes(), brands: await fetchBrands()})
+        setOptions({ types: await fetchTypes(), brands: await fetchBrands() });
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -120,16 +115,41 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
         togglePopup();
     };
 
-    useEffect(() => {
-        console.log('########### 11111111:', 11111111);
-        fetchOptions();
-    }, []);
+    const [isEntityFormOpen, toggleEntityForm] = useState<boolean>(false);
+    const [newEntityData, setNewEntityData] = useState('');
+    
+    const switchEntityForm = (param = false) => {
+        toggleEntityForm(param);
+        setNewEntityData('');
+    };
+    
+    const createNewEntity = async (type: string) => {
+        let res
+        switch (type) {
+            case 'Brand':
+                res = createBrand({name: newEntityData});
+                break;
+            case 'Type':
+                res = createType({name: newEntityData});
+                break;
+            default:
+                break;
+        }
+        switchEntityForm();
+        if (res) {
+            showMessage(`${type} ${newEntityData} was successfully created`);
+        } else {
+            showMessage(`Error, please check data`);
+        }
+    };
 
-    const [cr, setCr] = useState<boolean>(false)
+    useEffect(() => {
+        fetchOptions();
+    }, [createNewEntity]);
+
     return (
         <div className={styles.popup}>
             <div className={styles.popup__wrapper}>
-                {!cr ? (<CreateBrand togglePopup={togglePopup}/>) : (<div>456456</div>)}
                 <div className={styles.createDevice}>
                     <form className={styles.createDevice__form} id="newDeviceData"
                           onSubmit={(e: React.FormEvent) => handleSubmit(e)}>
@@ -156,6 +176,7 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
                                 id="type-input"
                                 value={selectedType}
                                 onChange={(e) => handleChange(e, selectedType, setSelectedType,'typeId')}
+                                onClick={() => switchEntityForm(false)}
                                 MenuProps={MenuProps}
                                 label="Types"
                             >
@@ -165,13 +186,41 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
                                 {options.types?.map(type =>
                                     <MenuItem value={type.id} key={type.id}>{type.name}</MenuItem>
                                 )}
-                                <button onClick={() => createNewEntity('type')}>+</button>
+                                {!isEntityFormOpen ? (
+                                    <MenuItem onClick={(e) => {
+                                        e.stopPropagation()
+                                        switchEntityForm(true)
+                                        }}
+                                    >
+                                        +Add
+                                    </MenuItem>
+                                ) : (
+                                    <label
+                                        className={styles.createDevice__createEntity}
+                                        onKeyDown={(e) => e.stopPropagation()}
+                                    >
+                                        <input
+                                            className={styles.createDevice__input}
+                                            value={newEntityData}
+                                            onClick={(e) => e.stopPropagation()}
+                                            onChange={(e) => setNewEntityData(e.target.value)}
+                                            type="text"
+                                            placeholder='Type'/>
+                                        <button
+                                            className={styles.createDevice__btn_mini}
+                                            onClick={() => createNewEntity('Type')}
+                                        >
+                                            Add
+                                        </button>
+                                    </label>
+                                )}
                             </Select>
                             <Select
                                 className={styles.test}
                                 id="brand-input"
                                 value={selectedBrand}
                                 onChange={(e) => handleChange(e, selectedBrand, setSelectedBrand, 'brandId')}
+                                onClick={() => switchEntityForm(false)}
                                 MenuProps={MenuProps}
                                 label="Brands"
                             >
@@ -181,7 +230,40 @@ const CreateDevice: React.FC<CreateBrandProps> = ({ togglePopup }) => {
                                 {options.brands?.map(brand =>
                                     <MenuItem value={brand.id} key={brand.id}>{brand.name}</MenuItem>
                                 )}
-                                <button onClick={() => createNewEntity('brand')}>+</button>
+                                {!isEntityFormOpen ? (
+                                    <MenuItem
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            switchEntityForm(true)
+                                        }}
+                                    >
+                                        +Add
+                                    </MenuItem>
+                                ) : (
+                                    <label
+                                        className={styles.createDevice__createEntity}
+                                        onKeyDown={(e) => e.stopPropagation()}
+                                    >
+                                        <input 
+                                            className={styles.createDevice__input} 
+                                            value={newEntityData}
+                                            onClick={(e) => e.stopPropagation()}
+                                            onChange={(e) => setNewEntityData(e.target.value)}
+                                            type="text"
+                                            placeholder='Brand'/>
+                                        <button
+                                            className={styles.createDevice__btn_mini}
+                                            onClick={() => createNewEntity('Brand')}
+                                        >
+                                            Add
+                                        </button>
+                                    </label>
+                                )}
+
+
+
+
+
                             </Select>
                             <div className={styles.createDevice__inputWrapper}>
                                 <input
