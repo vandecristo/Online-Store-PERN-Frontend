@@ -3,11 +3,11 @@ import { observer } from 'mobx-react-lite';
 
 import { Context } from '../../index';
 
-import BrandsBar from '../../components/BrandsBar';
 import TypesBar from '../../components/TypesBar';
 import GoodsList from '../../components/GoodsList';
 import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
 import { IMobx } from '../../../interfaces';
+import Slider from '../../components/Slider';
 
 import styles from './styles.module.scss';
 
@@ -22,14 +22,14 @@ const Shop: React.FC = observer(() => {
 
   return (
       <div className={styles.shop}>
-          <div className={styles.shop__body}>
+          <div className={styles.shop__item}>
+              <Slider/>
+          </div>
+          <div className={styles.shop__item}>
                <div className={styles.shop__typeBarWrapper}>
                    <TypesBar/>
                </div>
                <div className={styles.shop__goodsWrapper}>
-                   <div className={styles.shop__brandBarWrapper}>
-                       <BrandsBar/>
-                   </div>
                    <GoodsList />
                </div>
           </div>

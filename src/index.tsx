@@ -7,7 +7,6 @@ import DeviceStore from './store/DeviceStore';
 import { IMobx } from '../interfaces';
 import { SnackbarProvider } from 'notistack';
 
-
 export const Context = createContext<IMobx>({
         userStore: {
             isAuth: false,
@@ -18,10 +17,14 @@ export const Context = createContext<IMobx>({
             selectedType: {
                 id: 0
             },
+            selectedBrand: {
+                id: 0
+            },
             setTypes: () => null,
             setBrands: () => null,
             setDevices: () => null,
-            setSelectedType: () => null
+            setSelectedType: () => null,
+            setSelectedBrand: () => null
         }
     }
 );

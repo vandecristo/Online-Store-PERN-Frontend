@@ -29,6 +29,7 @@ export interface DeviceArrayWithCount {
     count: number,
     row: Array<BasicDevice>
 }
+
 export interface IUserStore {
     isAuth: boolean,
     user?: object,
@@ -36,17 +37,21 @@ export interface IUserStore {
     setUser: (user:object | null) => void
 }
 
+type selectedItem = {
+    id: number
+};
+
 export interface IDeviceStore {
     types?:  Array<BasicItem>,
     brands?: Array<BasicItem>,
     devices?: Array<BasicDevice>,
-    selectedType: {
-        id: number
-    },
+    selectedType: selectedItem,
+    selectedBrand: selectedItem,
     setTypes: (types: Array<BasicItem>) => void,
     setBrands: (brands: Array<BasicItem>) => void,
     setDevices: (devices: DeviceArrayWithCount) => void,
     setSelectedType: (type: BasicItem) => void
+    setSelectedBrand: (type: BasicItem) => void
 }
 
 export interface IMobx {

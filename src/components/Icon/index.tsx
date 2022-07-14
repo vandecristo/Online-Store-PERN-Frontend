@@ -1,6 +1,7 @@
 import React from "react";
 
 import Admin from './svg/admin';
+import ArrowDown from './svg/arrowDown';
 import Basket from './svg/basket';
 import Favorites from './svg/favorites';
 import Image from './svg/image';
@@ -13,6 +14,7 @@ import { IconProps } from "../../../interfaces";
 
 const components = {
     Admin,
+    ArrowDown,
     Basket,
     Favorites,
     Image,
