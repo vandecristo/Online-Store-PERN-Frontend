@@ -1,12 +1,42 @@
 .slider{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 500px;
-  width: 100%;
-  background: #b0b0e5;
+  width: 99vw;
 }
 
 .slider__item {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  width: 90vw;
+  margin: 5px;
+  user-select: none;
+}
+
+.slider__item1 {
+  background: rgba(179, 179, 196, 0.64);
+}
+
+.slider__item2 {
+  background: #4646e1;
+}
+
+.slider__item3 {
+  background: rgba(92, 250, 236, 0.75);
+}
+
+.slider__item4 {
+  background: #ec67e2;
+
+}
+
+.slider__item5 {
+  background: #7ff359;
+
+}
+
+.slider__item6 {
+  background: #ece567;
 }
