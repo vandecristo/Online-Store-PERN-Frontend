@@ -1,4 +1,6 @@
-export type IdFromUseParams = string | undefined;
+export interface IdFromUseParams {
+    id: string | undefined,
+}
 
 export interface PreparedDeviceData {
     name: string,
@@ -6,12 +8,12 @@ export interface PreparedDeviceData {
     typeId: string,
     brandId: string,
     img: File | string,
-    imageName: string | undefined
+    imageName: string | undefined,
 }
 
 export interface BasicItem {
     id: number,
-    name: string
+    name: string,
 }
 
 export interface BasicDevice extends BasicItem {
@@ -22,24 +24,24 @@ export interface BasicDevice extends BasicItem {
     updatedAt: string,
     createdAt: string,
     deletedAt: string | null,
-    img: File | string
+    img: File | string,
 }
 
 export interface DeviceArrayWithCount {
     count: number,
-    row: Array<BasicDevice>
+    row: Array<BasicDevice>,
 }
 
 export interface IUserStore {
     isAuth: boolean,
     user?: object,
     setIsAuth: (auth: boolean) => void,
-    setUser: (user:object | null) => void
+    setUser: (user: object | null) => void,
 }
 
-type selectedItem = {
-    id: number
-};
+interface selectedItem {
+    id: number,
+}
 
 export interface IDeviceStore {
     types?:  Array<BasicItem>,
@@ -50,21 +52,21 @@ export interface IDeviceStore {
     setTypes: (types: Array<BasicItem>) => void,
     setBrands: (brands: Array<BasicItem>) => void,
     setDevices: (devices: DeviceArrayWithCount) => void,
-    setSelectedType: (type: BasicItem) => void
-    setSelectedBrand: (type: BasicItem) => void
+    setSelectedType: (type: BasicItem) => void,
+    setSelectedBrand: (type: BasicItem) => void,
 }
 
 export interface IMobx {
     userStore: IUserStore,
-    deviceStore: IDeviceStore
+    deviceStore: IDeviceStore,
 }
 
 export interface ProtectedRouteProps {
-    ({ auth, redirectPath }:{ auth: boolean| undefined, redirectPath: string }): JSX.Element;
+    ({ auth, redirectPath } : { auth: boolean| undefined, redirectPath: string }): JSX.Element,
 }
 
 export interface IProcessEnv {
-    [key: string]: string | undefined;
+    [key: string]: string | undefined,
 }
 
 export interface IconProps {
@@ -73,5 +75,5 @@ export interface IconProps {
     className: string,
     onClick?: () => void,
     width?: number,
-    height?: number
+    height?: number,
 }

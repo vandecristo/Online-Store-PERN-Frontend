@@ -1,11 +1,11 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 import ReactDOM from 'react-dom/client';
+import { SnackbarProvider } from 'notistack';
 
 import App from './App';
 import UserStore from './store/UserStore';
 import DeviceStore from './store/DeviceStore';
 import { IMobx } from '../interfaces';
-import { SnackbarProvider } from 'notistack';
 
 export const Context = createContext<IMobx>({
         userStore: {
@@ -30,7 +30,7 @@ export const Context = createContext<IMobx>({
 );
 
 const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement,
 );
 
 const store: any = {

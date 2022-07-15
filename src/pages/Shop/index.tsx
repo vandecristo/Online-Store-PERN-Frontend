@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import { Context } from '../../index';
@@ -11,7 +11,7 @@ import Slider from '../../components/Slider';
 
 import styles from './styles.module.scss';
 
-const Shop: React.FC = observer(() => {
+const Shop: FC = observer(() => {
     const { deviceStore } = useContext<IMobx>(Context);
 
     useEffect(() => {
@@ -35,6 +35,6 @@ const Shop: React.FC = observer(() => {
           </div>
       </div>
   );
-})
+});
 
 export default Shop;

@@ -1,33 +1,29 @@
-import React, { useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
+import { useSnackbar } from 'notistack';
 
 import { createBrand } from '../../../http/deviceAPI';
-import { useSnackbar } from 'notistack';
 
 import styles from './styles.module.scss';
 
 type PopupOption = {
     type: string,
     name: string,
-    id: number
+    id: number,
 };
 
 interface CreateBrandProps {
-    togglePopup: () => void;
-    popupOptions: PopupOption
+    togglePopup: () => void,
+    popupOptions: PopupOption,
 }
 
-type DataType = {
-    name: string
-};
+const EditItem: FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
+    const [data, setData] = useState<{name: string}>({ name: '' });
 
-const EditItem: React.FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
-    const [data, setData] = useState<DataType>({name: ''});
+    const { enqueueSnackbar } = useSnackbar();
 
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        //createBrand(data).then(() => togglePopup());
+        createBrand(data).then(() => togglePopup());
         enqueueSnackbar(`${popupOptions.type} was successfully changed.`);
         togglePopup();
     };
@@ -36,7 +32,7 @@ const EditItem: React.FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => 
         <div className={styles.popup}>
             <div className={styles.popup__wrapper}>
                 <div className={styles.createBrand}>
-                    <form id="newBrandData" className={styles.createBrand__form} onSubmit={(e:React.FormEvent) => handleSubmit(e)}>
+                    <form id="newBrandData" className={styles.createBrand__form} onSubmit={(e: FormEvent) => handleSubmit(e)}>
                         <div className={styles.createBrand__title}>
                             <span>Edit {popupOptions.name}:</span>
                         </div>
@@ -45,7 +41,7 @@ const EditItem: React.FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => 
                                 className={styles.createBrand__input}
                                 type="text"
                                 name="name"
-                                placeholder='name'
+                                placeholder="name"
                                 value={data.name}
                                 onChange={e => setData({name: e.target.value})}
                             />
@@ -59,7 +55,7 @@ const EditItem: React.FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => 
                             form="newBrandData"
                             className={styles.createBrand__btn}
                             type="submit"
-                            value={'Submit changes'}
+                            value="Submit changes"
                         />
                     </div>
                 </div>

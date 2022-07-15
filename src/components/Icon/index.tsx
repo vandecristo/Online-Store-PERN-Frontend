@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from 'react';
 
 import Admin from './svg/admin';
 import ArrowDown from './svg/arrowDown';
@@ -10,7 +10,7 @@ import Logout from './svg/logout';
 import Plus from './svg/plus';
 import Profile from './svg/profile';
 import TrashCan from './svg/trashCan';
-import { IconProps } from "../../../interfaces";
+import { IconProps } from '../../../interfaces';
 
 const components = {
     Admin,
@@ -25,7 +25,7 @@ const components = {
     TrashCan
 };
 
-const Icon: React.FC<IconProps> = (props: IconProps) => {
+const Icon: FC<IconProps> = (props: IconProps) => {
     const { size, name, className, onClick } = props;
     const Component = components[name as keyof typeof components];
 
@@ -38,6 +38,7 @@ const Icon: React.FC<IconProps> = (props: IconProps) => {
             />
         );
     }
+
     return null;
 };
 

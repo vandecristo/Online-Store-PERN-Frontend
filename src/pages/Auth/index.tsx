@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { FC, MouseEvent, useContext, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
@@ -12,17 +12,17 @@ import styles from './styles.module.scss';
 
 interface PreparedUserData {
     email: string,
-    password: string
+    password: string,
 }
 
-const Auth: React.FC = observer(() => {
+const Auth: FC = observer(() => {
     const location = useLocation();
     const navigate = useNavigate();
     const { userStore } = useContext<IMobx>(Context);
     const [data, setData] = useState<PreparedUserData>({email: '', password: ''});
     const isLogin = location.pathname === LOGIN_ROUTE;
 
-    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleSubmit = async (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         try {
             if (isLogin) {
@@ -84,10 +84,10 @@ const Auth: React.FC = observer(() => {
                         </div>
                         {isLogin ? (
                             <button className={styles.auth__button} type="submit"
-                                    onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}>Login</button>
+                                    onClick={(e: MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}>Login</button>
                         ) : (
                             <button className={styles.auth__button} type="submit"
-                                    onClick={(e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}>Sign&#160;up
+                                    onClick={(e: MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}>Sign&#160;up
                             </button>
                         )}
                     </div>

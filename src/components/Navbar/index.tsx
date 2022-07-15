@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
@@ -11,17 +11,15 @@ import {
     PROFILE_ROUTE,
     SHOP_ROUTE
 } from '../../utils/consts';
-import { check } from "../../http/userAPI";
-import Icon from "../Icon";
-import Loading from "../Loading";
-import { IMobx } from "../../../interfaces";
+import { check } from '../../http/userAPI';
+import Icon from '../Icon';
+import { IMobx } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
 
-const Navbar: React.FC = observer(() => {
+const Navbar: FC = observer(() => {
     const { userStore, userStore: { isAuth }} = useContext<IMobx>(Context);
-    const [loading, setLoading] = useState<boolean>(true);
 
     const logoutHandler = () => {
         userStore.setIsAuth(false);
@@ -36,12 +34,10 @@ const Navbar: React.FC = observer(() => {
                 userStore.setIsAuth(true);
             });
         }
-        setLoading(false);
     }, []);
 
     return (
         <div className={styles.navbar}>
-            {loading && (<Loading/>)}
             <NavLink className={styles.navbar__logo} to={SHOP_ROUTE}>
                 <span className={styles.navbar__text}>TÜ shop</span>
             </NavLink>
@@ -94,7 +90,7 @@ const Navbar: React.FC = observer(() => {
                 )}
             </nav>
         </div>
-    )
+    );
 });
 
 export default Navbar;

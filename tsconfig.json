@@ -17,7 +17,7 @@
     "resolveJsonModule" :  true ,
     "isolatedModules" :  true ,
     "noEmit" :  true ,
-    " jsx " :  "preserve" ,
+    "jsx" :  "react-jsx" ,
     "baseUrl" :  "src" ,
     "paths" :  {
       "@/*" :  [
@@ -25,10 +25,9 @@
       ]
     } ,
     "experimentalDecorators" :  true,
-    "jsx": "react"
-  } ,
+  },
   "include" :  [
-    "src" ,
+    "src",
     "typings.d.ts" //configured .d.ts file
   ]
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { fetchDeviceById } from '../../http/deviceAPI';
@@ -6,7 +6,7 @@ import { BasicDevice, IdFromUseParams, IProcessEnv } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
-const DevicePage: React.FC = () => {
+const DevicePage: FC = () => {
     const { id } = useParams<string>();
     const [device, setDevice] = useState<BasicDevice>({
         id: 0,
@@ -18,7 +18,7 @@ const DevicePage: React.FC = () => {
         updatedAt: '',
         createdAt: '',
         deletedAt: '',
-        img: ''
+        img: '',
     });
     const { REACT_APP_API_URL }: IProcessEnv = process.env;
 

@@ -1,19 +1,20 @@
-$text-color: white;
 $black-text: black;
-$text-color-hover: #754abe;
-$theme-black: #181818;
-$theme-white: #e4e4e7;
 $gray-text: #787885;
 $font-small: 14px;
 $font-medium: 25px;
 $font-large: 35px;
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$theme-white: #e4e4e7;
 
 .adminBody {
   display: flex;
   justify-content: start;
   align-items: flex-start;
-  flex-wrap: wrap;width: 80%;
+  flex-wrap: wrap;
   margin-top: 10px;
+  width: 80%;
 }
 
 .adminBody__item {

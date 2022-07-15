@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 
 import { BasicItem } from '../../../interfaces';
 import CreateDevice from '../../components/modals/CreateDevice';
@@ -14,10 +14,10 @@ type PopupOption = {
     id: number
 };
 
-const Admin: React.FC = () => {
+const Admin: FC = () => {
     const [items, setItems] = useState<Array<BasicItem>>([]);
     const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
-    const [popupOptions, setPopupOptions] = useState<PopupOption>({type: '',name: '', id: 0});
+    const [popupOptions, setPopupOptions] = useState<PopupOption>({type: '', name: '', id: 0});
 
     const buttonsArr: Array<ButtonNamesArray> = [
         ['Devices', 'Brands', 'Types'],
@@ -56,18 +56,18 @@ const Admin: React.FC = () => {
         setPopupOpen(prevState => !prevState);
     };
 
-
     const createPopup = (option: PopupOption) => {
         if (option.name === 'device') {
+
             return  <CreateDevice togglePopup={togglePopup}/>;
         } else {
+
             return  <EditItem togglePopup={togglePopup} popupOptions={popupOptions}/>;
         }
     };
 
     return (
         <div className={styles.admin}>
-
             <div className={styles.adminBar}>
                 {isPopupOpen && <>{createPopup(popupOptions)}</>}
                 <div className={styles.adminBar__wrapper}>
@@ -86,7 +86,6 @@ const Admin: React.FC = () => {
                             </button>
                         </div>
                     </div>
-
                     {buttonsArr.map((item, index) => {
                         return (
                             <div className={styles.adminBar__btnGroup} key={index}>
@@ -109,18 +108,17 @@ const Admin: React.FC = () => {
             </div>
             <div className={styles.adminBody}>
                 {items?.map(item =>
-                        <div key={item.id} className={styles.adminBody__item}>
-                            <div className={styles.adminBody__block}>name: {item.name}</div>
-                            <div className={styles.adminBody__block}>id: {item.id}</div>
-                            <div className={styles.adminBody__btnWrapper}>
-                                <button className={styles.adminBody__btn} onClick={() => openEditPopup(item)}>Edit</button>
-                                <button className={styles.adminBody__btn} onClick={() => deleteConfirmation(item.id)}>
-                                    <span>Delete</span>
-                                </button>
-                            </div>
+                    <div key={item.id} className={styles.adminBody__item}>
+                        <div className={styles.adminBody__block}>name: {item.name}</div>
+                        <div className={styles.adminBody__block}>id: {item.id}</div>
+                        <div className={styles.adminBody__btnWrapper}>
+                            <button className={styles.adminBody__btn} onClick={() => openEditPopup(item)}>Edit</button>
+                            <button className={styles.adminBody__btn} onClick={() => deleteConfirmation(item.id)}>
+                                <span>Delete</span>
+                            </button>
                         </div>
-                    )
-                }
+                    </div>
+                )}
             </div>
         </div>
     );

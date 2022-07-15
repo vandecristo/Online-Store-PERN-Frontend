@@ -1,7 +1,8 @@
-import React from "react";
-import { IconProps } from "../../../../../interfaces";
+import { FC } from 'react';
 
-const TrashCan: React.FC<IconProps> = (props) => {
+import { IconProps } from '../../../../../interfaces';
+
+const TrashCan: FC<IconProps> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path fillRule="evenodd" clipRule="evenodd" d="M2.5 6C2.5 5.72386 2.72386 5.5 3 5.5H21C21.2761 5.5 21.5 5.72386 21.5 6C21.5 6.27614 21.2761 6.5 21 6.5H3C2.72386 6.5 2.5 6.27614 2.5 6Z" fill="currentcolor"/>
@@ -9,7 +10,6 @@ const TrashCan: React.FC<IconProps> = (props) => {
             <path fillRule="evenodd" clipRule="evenodd" d="M10 10.5C10.2761 10.5 10.5 10.7239 10.5 11V17C10.5 17.2761 10.2761 17.5 10 17.5C9.72386 17.5 9.5 17.2761 9.5 17V11C9.5 10.7239 9.72386 10.5 10 10.5Z" fill="currentcolor"/>
             <path fillRule="evenodd" clipRule="evenodd" d="M14 10.5C14.2761 10.5 14.5 10.7239 14.5 11V17C14.5 17.2761 14.2761 17.5 14 17.5C13.7239 17.5 13.5 17.2761 13.5 17V11C13.5 10.7239 13.7239 10.5 14 10.5Z" fill="currentcolor"/>
         </svg>
-
     );
 };
 

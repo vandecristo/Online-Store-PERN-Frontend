@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 
 import { IconProps } from '../../../../../interfaces';
 
-const Basket: React.FC<IconProps> = (props) => {
+const Basket: FC<IconProps> = (props) => {
     return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
             <path fillRule="evenodd" clipRule="evenodd" d="M5.5 21C5.5 19.6193 6.61929 18.5 8 18.5C9.38071 18.5 10.5 19.6193 10.5 21C10.5 22.3807 9.38071 23.5 8 23.5C6.61929 23.5 5.5 22.3807 5.5 21ZM8 19.5C7.17157 19.5 6.5 20.1716 6.5 21C6.5 21.8284 7.17157 22.5 8 22.5C8.82843 22.5 9.5 21.8284 9.5 21C9.5 20.1716 8.82843 19.5 8 19.5Z" fill="currentcolor"/>

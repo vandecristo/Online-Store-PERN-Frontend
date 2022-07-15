@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { BasicItem, PreparedDeviceData } from '../../../../interfaces';
 import { createBrand, createType, fetchBrands, fetchTypes } from '../../../http/deviceAPI';
@@ -14,11 +14,11 @@ interface CreateEntityProps {
     data: PreparedDeviceData,
     setData: (arg: PreparedDeviceData) => void,
     entityId: string,
-    showMessage: (message: string) => void
+    showMessage: (message: string) => void,
 }
 
 type OptionType = {
-    [key:string]: Array<BasicItem>,
+    [key: string]: Array<BasicItem>,
 };
 
 const ITEM_HEIGHT = 48;
@@ -32,7 +32,7 @@ const MenuProps = {
     },
 };
 
-const CreateEntity: React.FC<CreateEntityProps> = ({
+const CreateEntity: FC<CreateEntityProps> = ({
     entityName,
     data,
     setData,
@@ -40,15 +40,11 @@ const CreateEntity: React.FC<CreateEntityProps> = ({
     showMessage
 }) => {
     const [options, setOptions] = useState<OptionType>({ types: [], brands: [] });
-    const [newEntityData, setNewEntityData] = useState('');
-    const [selectedEntity, setSelectedEntity] = useState('');
+    const [newEntityData, setNewEntityData] = useState<string>('');
+    const [selectedEntity, setSelectedEntity] = useState<string>('');
     const [isEntityFormOpen, toggleEntityForm] = useState<boolean>(false);
 
     const entityArrName: string = `${entityName}`.toLowerCase() + 's';
-
-    const fetchOptions = async () => {
-        setOptions({ types: await fetchTypes(), brands: await fetchBrands() });
-    };
 
     const switchEntityForm = (param = false) => {
         toggleEntityForm(param);
@@ -92,6 +88,10 @@ const CreateEntity: React.FC<CreateEntityProps> = ({
      useEffect(() => {
          fetchOptions();
      }, []);
+
+    const fetchOptions = async () => {
+        setOptions({ types: await fetchTypes(), brands: await fetchBrands() });
+    };
 
     return (
         <div className={styles.createDevice__entityFormWrapper}>

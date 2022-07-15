@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
-import { observer } from "mobx-react-lite";
+import { FC, useContext } from 'react';
+import { observer } from 'mobx-react-lite';
 
-import { Context } from "../../index";
-import GoodsItem from "../GoodsItem";
-import { IMobx } from "../../../interfaces";
+import { Context } from '../../index';
+import GoodsItem from '../GoodsItem';
+import { IMobx } from '../../../interfaces';
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
-const GoodsList: React.FC = observer(() => {
+const GoodsList: FC = observer(() => {
     const { deviceStore } = useContext<IMobx>(Context);
 
     return (

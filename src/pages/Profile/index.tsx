@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 
 import styles from './styles.module.scss';
 
-const Profile: React.FC = () => {
+const Profile: FC = () => {
     return (
         <div className={styles.profile}>
             <div>User name</div>

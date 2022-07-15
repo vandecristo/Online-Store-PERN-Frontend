@@ -1,8 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
 
 import styles from './styles.module.scss';
 
-const Favorites: React.FC = () => {
+const Favorites: FC = () => {
     return (
         <div className={styles.favorites}>
             favorites

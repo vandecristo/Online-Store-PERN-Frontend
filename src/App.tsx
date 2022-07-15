@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { FC, useContext } from 'react';
 import { BrowserRouter, Route, Navigate, Routes, Outlet } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
@@ -15,13 +15,15 @@ import Shop from './pages/Shop';
 
 import { IMobx, ProtectedRouteProps } from '../interfaces';
 
-const App: React.FC = observer(() => {
+const App: FC = observer(() => {
     const { userStore: { isAuth }} = useContext<IMobx>(Context);
 
     const ProtectedRoute: ProtectedRouteProps = ({ auth, redirectPath = '/' }) => {
         if (auth) {
+
             return <Outlet />;
         }
+
         return <Navigate to={redirectPath} replace />;
     };
 
@@ -32,20 +34,20 @@ const App: React.FC = observer(() => {
                 <Route element={<ProtectedRoute auth={isAuth} redirectPath='/' />}>
                     <Route path={'/favorites'} element={<Favorites />} />
                     <Route path={'/admin'} element={<Admin />} />
-                    <Route path={'/basket'} element={<Basket/>}/>
-                    <Route path={'/profile'} element={<Profile/>}/>
+                    <Route path={'/basket'} element={<Basket />} />
+                    <Route path={'/profile'} element={<Profile />} />
                 </Route>
                 <Route element={<ProtectedRoute auth={!isAuth} redirectPath='/' />}>
-                    <Route path={'/registration'} element={<Auth/>}/>
-                    <Route path={'/login'} element={<Auth/>}/>
+                    <Route path={'/registration'} element={<Auth />} />
+                    <Route path={'/login'} element={<Auth />} />
                 </Route>
-                <Route path={'/'} element={<Shop/>}/>
-                <Route path={'/device'+ '/:id'} element={<DevicePage/>}/>
-                <Route path="*" element={<Navigate to={'/'}/>}/>
+                <Route path={'/'} element={<Shop />} />
+                <Route path={'/device'+ '/:id'} element={<DevicePage />} />
+                <Route path="*" element={<Navigate to={'/'} />} />
             </Routes>
             <Footer/>
         </BrowserRouter>
     );
-})
+});
 
 export default App;

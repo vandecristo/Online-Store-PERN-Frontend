@@ -1,22 +1,24 @@
-import React, { useState } from "react";
+import { FC, MouseEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import vector from '../../assets/Vector.png'
 import { DEVICE_ROUTE } from '../../utils/consts';
 import { BasicDevice, IProcessEnv } from "../../../interfaces";
 
+import vector from '../../assets/Vector.png';
+
 import styles from './styles.module.scss';
+import classnames from "classnames";
 
 interface GoodsProps {
-    device: BasicDevice
+    device: BasicDevice,
 }
 
-const GoodsItem: React.FC<GoodsProps> = ({ device }) => {
+const GoodsItem: FC<GoodsProps> = ({ device }) => {
     const navigate = useNavigate();
     const [isPressed, setIsPressed] = useState<Boolean>(false);
     const { REACT_APP_API_URL }: IProcessEnv = process.env;
 
-    const addToFavorites = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const addToFavorites = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         setIsPressed(prev => !prev);
     };
@@ -55,8 +57,8 @@ const GoodsItem: React.FC<GoodsProps> = ({ device }) => {
                         {device.rating}
                     </div>
                     <button
-                        className={isPressed ? styles.goods__fav_pressed : styles.goods__fav }
-                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => addToFavorites(e)}
+                        className={classnames(styles.goods__fav, {[styles.goods__fav_pressed]: isPressed})}
+                        onClick={(e: MouseEvent<HTMLButtonElement>) => addToFavorites(e)}
                     >
                         <span>{isPressed ? 'Added' : 'To favorites'}</span>
                     </button>

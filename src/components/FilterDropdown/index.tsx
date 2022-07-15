@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import classnames from 'classnames';
 
 import Icon from '../Icon';
@@ -7,40 +7,34 @@ import { Context } from '../../index';
 
 import styles from './styles.module.scss';
 
-interface FilterDropdownProps {
-    name: string,
+interface EntityNameFormat {
+    name: 'brands' | 'types',
+    method: 'setSelectedBrand' | 'setSelectedType',
 }
 
-const FilterDropdown: React.FC<FilterDropdownProps> = ({ name }) => {
+const FilterDropdown: FC<{ name: string }> = ({ name }) => {
     const { deviceStore } = useContext(Context);
 
     const [isDropdownActive, setDropDownActive] = useState<boolean>(false);
     const [currentActiveId, setCurrentActiveId] = useState<number>(0);
+    const [entityData, setEntityData] = useState<EntityNameFormat>({ name: 'brands', method: 'setSelectedBrand' });
 
     const openList = () => {
         setDropDownActive(!isDropdownActive);
     };
 
-    const setSelectedEntity = () => {
-        if (name === 'Brand') {
-           return 'setSelectedBrand';
-        } else {
-            return 'setSelectedType';
-        }
-    };
-
-    const nameOfStore = () => {
-        if (name === 'Brand') {
-            return 'brands';
-        } else {
-            return 'types';
-        }
-    };
-
     const handleClick = (item: BasicItem) => {
-        deviceStore[setSelectedEntity()](item);
+        deviceStore[entityData.method](item);
         setCurrentActiveId(item.id);
     };
+
+    useEffect(() => {
+        if (name === 'Brand') {
+            setEntityData({ name: 'brands', method: 'setSelectedBrand' });
+        } else {
+            setEntityData({ name: 'types', method: 'setSelectedType' });
+        }
+    }, []);
 
     return (
         <div className={styles.dropdown}>
@@ -60,7 +54,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({ name }) => {
                 <div
                     className={classnames(styles.dropdown__list, {[styles.dropdown__list_active]: isDropdownActive})}
                 >
-                    {deviceStore[nameOfStore()]?.map((item) => { // .types or .brands
+                    {deviceStore[entityData.name]?.map((item) => { // .types or .brands
                         return (
                             <li
                                 className={classnames(styles.dropdown__listElement, {[styles.dropdown__listElement_active]: item.id === currentActiveId})}

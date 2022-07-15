@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 
 import styles from './styles.module.scss';
 
@@ -6,7 +6,7 @@ type FooterContent = {
     [key: string] : Array<string>
 };
 
-const Footer: React.FC = () => {
+const Footer: FC = () => {
     const footerContentArr: Array<FooterContent> = [
         { 'General': ['About company', 'Contacts', 'Vacancies', 'Store addresses']},
         { 'Media': ['Inst', 'Vk', 'Facebook', 'Youtube']},

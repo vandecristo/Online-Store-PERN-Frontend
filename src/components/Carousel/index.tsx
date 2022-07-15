@@ -21,23 +21,29 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
 
         if (childrenLength && offset > 0) {
             setChildrenLength((length) => length - 1);
+
             return setOffset((currentOffset) => {
                 // If we still have length, but offset is already negative (-1.000234) we return to start
                 if (childrenLength && !(currentOffset - offsetStep)) {
+
                     return 0;
                 }
+
                 return currentOffset - offsetStep;
             });
         } else {
             setChildrenLength(children.length);
+
             return setOffset(100 - offsetStep);
         }
     };
 
     const handleRightClick: StateUpdater = () => {
         if (Math.round(offset) !== Math.round(100 - offsetStep)) { // if not equal to endpoint, then swipe right
+
             return setOffset((currOffset) => currOffset + offsetStep);
         } else {
+
             return setOffset(0);
         }
     };
@@ -45,6 +51,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
     useEffect(() => {
         const nextSlide = () => handleRightClick();
         const timeout = setTimeout(nextSlide, 6000);
+
         return () => {
             if (timeout) {
                 clearTimeout(timeout);

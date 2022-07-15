@@ -1,16 +1,19 @@
-import React from "react";
+import { FC } from 'react';
 
 import { BasicItem } from "../../../interfaces";
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
-type ItemProps = {items: Array<BasicItem>}
+type ItemProps = { items: Array<BasicItem> };
 
-const AdminBody: React.FC<ItemProps> = ({ items }) =>{
+const AdminBody: FC<ItemProps> = ({ items }) =>{
     const openEditPopup = (item: BasicItem) => {
+        // This function must be open popup for editing Devices/ types / brands
     };
 
     const deleteConfirmation = (id: number) => {
+        // This function open popup that asks 'Are you sure want to delete Devices/types/ brands'
+        // If yes then delete by id and type
     };
 
     return (
@@ -30,7 +33,7 @@ const AdminBody: React.FC<ItemProps> = ({ items }) =>{
                 )
             }
         </div>
-    )
+    );
 };
 
 export default AdminBody;

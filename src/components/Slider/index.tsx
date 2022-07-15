@@ -1,11 +1,11 @@
-import React from 'react';
-
+import { FC } from 'react';
 import classnames from 'classnames';
 
-import styles from './styles.module.scss';
 import Carousel from '../Carousel';
 
-const Slider: React.FC = () => {
+import styles from './styles.module.scss';
+
+const Slider: FC = () => {
     const sliderImages = [
         {
             id: 1,
