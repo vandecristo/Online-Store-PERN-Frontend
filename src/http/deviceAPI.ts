@@ -1,5 +1,5 @@
 import { $authHost, $host } from './index';
-import { IdFromUseParams } from '../../interfaces';
+import { IdFromUseParams } from '../../types';
 
 type CreateParams = { name: string };
 

@@ -24,7 +24,7 @@ export const Context = createContext<IMobx>({
             setBrands: () => null,
             setDevices: () => null,
             setSelectedType: () => null,
-            setSelectedBrand: () => null
+            setSelectedBrand: () => null,
         }
     }
 );

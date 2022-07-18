@@ -1,7 +1,3 @@
-export interface IdFromUseParams {
-    id: string | undefined,
-}
-
 export interface PreparedDeviceData {
     name: string,
     price: string,

@@ -25,6 +25,10 @@ export const check = async () => {
 
         return jwt_decode(data.token);
     } catch (e) {
-        alert('Internal server Error 500');
+        try {
+            localStorage.removeItem('token');
+        } catch (e) {
+            alert('Internal server Error 500');
+        }
     }
 };

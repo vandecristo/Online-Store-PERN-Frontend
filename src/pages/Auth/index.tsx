@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useContext, useState } from 'react';
+import React, { FC, MouseEvent, useContext, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 
@@ -19,18 +19,18 @@ const Auth: FC = observer(() => {
     const location = useLocation();
     const navigate = useNavigate();
     const { userStore } = useContext<IMobx>(Context);
-    const [data, setData] = useState<PreparedUserData>({email: '', password: ''});
+    const [currentUser, setCurrentUser] = useState<PreparedUserData>({email: '', password: ''});
     const isLogin = location.pathname === LOGIN_ROUTE;
 
-    const handleSubmit = async (e: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleSubmit = async (e: MouseEvent) => {
         e.preventDefault();
         try {
             if (isLogin) {
-                await login(data.email, data.password);
+                await login(currentUser.email, currentUser.password);
             } else {
-                await registration(data.email, data.password);
+                await registration(currentUser.email, currentUser.password);
             }
-            userStore.setUser({data});
+            userStore.setUser({currentUser});
             userStore.setIsAuth(true);
             navigate(SHOP_ROUTE);
         } catch (e) {
@@ -50,8 +50,8 @@ const Auth: FC = observer(() => {
                             type="text"
                             placeholder="Email"
                             name="email"
-                            value={data.email}
-                            onChange={e => setData({...data, email: e.target.value})}
+                            value={currentUser.email}
+                            onChange={e => setCurrentUser({...currentUser, email: e.target.value})}
                         ></input>
                     </div>
                     <div className={styles.auth__item}>
@@ -60,8 +60,8 @@ const Auth: FC = observer(() => {
                             type="password"
                             placeholder="Password"
                             name="psw"
-                            value={data.password}
-                            onChange={e => setData({...data, password: e.target.value})}
+                            value={currentUser.password}
+                            onChange={e => setCurrentUser({...currentUser, password: e.target.value})}
                         ></input>
                     </div>
                     <div className={styles.auth__buttonWrapper}>
@@ -84,10 +84,10 @@ const Auth: FC = observer(() => {
                         </div>
                         {isLogin ? (
                             <button className={styles.auth__button} type="submit"
-                                    onClick={(e: MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}>Login</button>
+                                    onClick={(e) => handleSubmit(e)}>Login</button>
                         ) : (
                             <button className={styles.auth__button} type="submit"
-                                    onClick={(e: MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}>Sign&#160;up
+                                    onClick={(e) => handleSubmit(e)}>Sign&#160;up
                             </button>
                         )}
                     </div>

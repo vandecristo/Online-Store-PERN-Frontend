@@ -1,5 +1,6 @@
 import { FC, MouseEvent, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import classnames from 'classnames';
 
 import { DEVICE_ROUTE } from '../../utils/consts';
 import { BasicDevice, IProcessEnv } from "../../../interfaces";
@@ -7,7 +8,6 @@ import { BasicDevice, IProcessEnv } from "../../../interfaces";
 import vector from '../../assets/Vector.png';
 
 import styles from './styles.module.scss';
-import classnames from "classnames";
 
 interface GoodsProps {
     device: BasicDevice,

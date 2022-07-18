@@ -64,25 +64,25 @@ const CreateEntity: FC<CreateEntityProps> = ({
     };
 
     const createNewEntity = async (type: string) => {
-        let res;
-        switch (type) {
-            case 'Brand':
-                res = await createBrand({ name: newEntityData });
-                setOptions({...options, brands: [...options.brands, res]});
-                break;
-            case 'Type':
-                res = await createType({ name: newEntityData });
-                setOptions({...options, types: [...options.types, res]});
-                break;
-            default:
-                break;
-        }
-        switchEntityForm();
-        if (res) {
+        try {
+            let res: BasicItem = {id: 0, name: 'default'};
+            switch (type) {
+                case 'Brand':
+                    res = await createBrand({ name: newEntityData });
+                    setOptions({...options, brands: [...options.brands, res]});
+                    break;
+                case 'Type':
+                    res = await createType({ name: newEntityData });
+                    setOptions({...options, types: [...options.types, res]});
+                    break;
+                default:
+                    break;
+            }
             showMessage(`${entityName} ${newEntityData} was successfully created`);
-        } else {
+        } catch (e) {
             showMessage(`Error, please check data`);
         }
+        switchEntityForm();
     };
 
      useEffect(() => {

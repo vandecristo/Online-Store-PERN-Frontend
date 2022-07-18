@@ -2,7 +2,8 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { fetchDeviceById } from '../../http/deviceAPI';
-import { BasicDevice, IdFromUseParams, IProcessEnv } from '../../../interfaces';
+import { BasicDevice, IProcessEnv } from '../../../interfaces';
+import { IdFromUseParams } from '../../../types';
 
 import styles from './styles.module.scss';
 

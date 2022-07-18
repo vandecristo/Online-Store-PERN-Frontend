@@ -24,7 +24,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
     const [data, setData] = useState<PreparedDeviceData>(initialState);
     const { enqueueSnackbar } = useSnackbar();
 
-    const showMessage = (message: string) : void => {
+    const showMessage = (message: string): void => {
         enqueueSnackbar(message);
     };
 
