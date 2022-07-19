@@ -3,12 +3,12 @@ import { observer } from 'mobx-react-lite';
 
 import { Context } from '../../index';
 import GoodsItem from '../GoodsItem';
-import { IMobx } from '../../../interfaces';
+import { MobxStores } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
 const GoodsList: FC = observer(() => {
-    const { deviceStore } = useContext<IMobx>(Context);
+    const { deviceStore } = useContext<MobxStores>(Context);
 
     return (
         <div className={styles.goodsList}>

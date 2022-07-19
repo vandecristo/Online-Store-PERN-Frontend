@@ -12,7 +12,7 @@ export interface BasicItem {
     name: string,
 }
 
-export interface BasicDevice extends BasicItem {
+export interface Device extends BasicItem {
     price: number,
     rating: number,
     brandId: number,
@@ -25,10 +25,10 @@ export interface BasicDevice extends BasicItem {
 
 export interface DeviceArrayWithCount {
     count: number,
-    row: Array<BasicDevice>,
+    row: Device[],
 }
 
-export interface IUserStore {
+export interface UserStore {
     isAuth: boolean,
     user?: object,
     setIsAuth: (auth: boolean) => void,
@@ -39,29 +39,29 @@ interface selectedItem {
     id: number,
 }
 
-export interface IDeviceStore {
-    types?:  Array<BasicItem>,
-    brands?: Array<BasicItem>,
-    devices?: Array<BasicDevice>,
+export interface DeviceStore {
+    types?:  BasicItem[],
+    brands?: BasicItem[],
+    devices?: Device[],
     selectedType: selectedItem,
     selectedBrand: selectedItem,
-    setTypes: (types: Array<BasicItem>) => void,
-    setBrands: (brands: Array<BasicItem>) => void,
+    setTypes: (types: BasicItem[]) => void,
+    setBrands: (brands: BasicItem) => void,
     setDevices: (devices: DeviceArrayWithCount) => void,
     setSelectedType: (type: BasicItem) => void,
     setSelectedBrand: (type: BasicItem) => void,
 }
 
-export interface IMobx {
-    userStore: IUserStore,
-    deviceStore: IDeviceStore,
+export interface MobxStores {
+    userStore: UserStore,
+    deviceStore: DeviceStore,
 }
 
 export interface ProtectedRouteProps {
     ({ auth, redirectPath } : { auth: boolean| undefined, redirectPath: string }): JSX.Element,
 }
 
-export interface IProcessEnv {
+export interface ProcessEnv {
     [key: string]: string | undefined,
 }
 

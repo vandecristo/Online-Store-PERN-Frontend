@@ -2,14 +2,14 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { fetchDeviceById } from '../../http/deviceAPI';
-import { BasicDevice, IProcessEnv } from '../../../interfaces';
+import { Device, ProcessEnv } from '../../../interfaces';
 import { IdFromUseParams } from '../../../types';
 
 import styles from './styles.module.scss';
 
 const DevicePage: FC = () => {
     const { id } = useParams<string>();
-    const [device, setDevice] = useState<BasicDevice>({
+    const [device, setDevice] = useState<Device>({
         id: 0,
         name: '',
         price: 0,
@@ -21,20 +21,21 @@ const DevicePage: FC = () => {
         deletedAt: '',
         img: '',
     });
-    const { REACT_APP_API_URL }: IProcessEnv = process.env;
+    const { REACT_APP_API_URL }: ProcessEnv = process.env;
 
     const fetchCurrentDevice = async (id: IdFromUseParams) => {
         const data = await fetchDeviceById(id);
         setDevice(data);
     };
 
-    const createImageLink = () =>
-        String(REACT_APP_API_URL ? REACT_APP_API_URL + device.img : 'http://localhost:5000/' + device.img);
-    
     useEffect(() => {
         fetchCurrentDevice(id);
     }, []);
-    
+
+    const createImageLink = () => (
+        String(REACT_APP_API_URL ? REACT_APP_API_URL + device.img : 'http://localhost:5000/' + device.img)
+    );
+
     return (
         <div className={styles.device}>
             <div className={styles.device__wrapper}>
@@ -45,7 +46,7 @@ const DevicePage: FC = () => {
                             height={483}
                             className={styles.device__image}
                             src={createImageLink()}
-                            alt="no-pic"
+                            alt="no-picture"
                         />
                     </div>
                     <div className={styles.device__header}>

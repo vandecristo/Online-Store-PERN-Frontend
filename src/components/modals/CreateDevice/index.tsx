@@ -19,7 +19,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
         typeId: '',
         brandId: '',
         img: '',
-        imageName: ''
+        imageName: '',
     };
     const [data, setData] = useState<PreparedDeviceData>(initialState);
     const { enqueueSnackbar } = useSnackbar();
@@ -33,10 +33,10 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
             <div className={styles.createDevice__pictureName}>
                 {data.img ? (
                     <>
-                        <Icon className={styles.createDevice__icon} name='Image' size={20}/>
+                        <Icon className={styles.createDevice__icon} name="Image" size={20}/>
                         <span>{data.imageName}</span>
                         <div className={styles.createDevice__removeItem} onClick={() => setData({...data, img: ''})}>
-                            <Icon className={styles.createDevice__icon} name='TrashCan' size={20}/>
+                            <Icon className={styles.createDevice__icon} name="TrashCan" size={20}/>
                         </div>
                     </>
                 ) : (
@@ -49,7 +49,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
     };
 
     const setImage = (e: FormEvent) => {
-        const target = e.target as HTMLInputElement
+        const target = e.target as HTMLInputElement;
         setData({
             ...data,
             img: target.files?.[0] || 'no picture',
@@ -130,7 +130,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
                         </div>
                     </form>
                     <div className={styles.createDevice__btnWrapper}>
-                        <button className={styles.createDevice__btn} onClick={() => handleCloseForm()}>
+                        <button className={styles.createDevice__btn} onClick={handleCloseForm}>
                             <span>Close</span>
                         </button>
                         <input className={styles.createDevice__btn} form="newDeviceData" type="submit" value="Add"/>

@@ -6,7 +6,9 @@ import Basket from './svg/basket';
 import Favorites from './svg/favorites';
 import Image from './svg/image';
 import Login from './svg/login';
+import Logo from './svg/logo';
 import Logout from './svg/logout';
+import Shop from './svg/shop';
 import Plus from './svg/plus';
 import Profile from './svg/profile';
 import TrashCan from './svg/trashCan';
@@ -19,7 +21,9 @@ const components = {
     Favorites,
     Image,
     Login,
+    Logo,
     Logout,
+    Shop,
     Plus,
     Profile,
     TrashCan
@@ -45,7 +49,7 @@ const Icon: FC<IconProps> = (props: IconProps) => {
 Icon.defaultProps = {
     className: '',
     size: 20,
-    onClick: () => null
+    onClick: () => null,
 };
 
 export default Icon;

@@ -1,12 +1,12 @@
 import React, { FC, MouseEvent, useContext, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { observer } from 'mobx-react-lite';
 
 import { Context } from '../../index';
-import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../../utils/consts';
+import { REGISTRATION_ROUTE, LOGIN_ROUTE, HOME_ROUTE } from '../../utils/consts';
 import { login, registration } from '../../http/userAPI';
-import { AxiosError } from 'axios';
-import { IMobx } from '../../../interfaces';
+import { MobxStores } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
@@ -18,7 +18,7 @@ interface PreparedUserData {
 const Auth: FC = observer(() => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { userStore } = useContext<IMobx>(Context);
+    const { userStore } = useContext<MobxStores>(Context);
     const [currentUser, setCurrentUser] = useState<PreparedUserData>({email: '', password: ''});
     const isLogin = location.pathname === LOGIN_ROUTE;
 
@@ -32,7 +32,7 @@ const Auth: FC = observer(() => {
             }
             userStore.setUser({currentUser});
             userStore.setIsAuth(true);
-            navigate(SHOP_ROUTE);
+            navigate(HOME_ROUTE);
         } catch (e) {
             const err = e as AxiosError;
             alert(err);
@@ -51,7 +51,7 @@ const Auth: FC = observer(() => {
                             placeholder="Email"
                             name="email"
                             value={currentUser.email}
-                            onChange={e => setCurrentUser({...currentUser, email: e.target.value})}
+                            onChange={(e) => setCurrentUser({ ...currentUser, email: e.target.value })}
                         ></input>
                     </div>
                     <div className={styles.auth__item}>
@@ -59,9 +59,9 @@ const Auth: FC = observer(() => {
                             className={styles.auth__input}
                             type="password"
                             placeholder="Password"
-                            name="psw"
+                            name="password"
                             value={currentUser.password}
-                            onChange={e => setCurrentUser({...currentUser, password: e.target.value})}
+                            onChange={(e) => setCurrentUser({ ...currentUser, password: e.target.value })}
                         ></input>
                     </div>
                     <div className={styles.auth__buttonWrapper}>
@@ -83,11 +83,18 @@ const Auth: FC = observer(() => {
                             )}
                         </div>
                         {isLogin ? (
-                            <button className={styles.auth__button} type="submit"
-                                    onClick={(e) => handleSubmit(e)}>Login</button>
+                            <button
+                                className={styles.auth__button} type="submit"
+                                onClick={handleSubmit}
+                            >
+                                Login
+                            </button>
                         ) : (
-                            <button className={styles.auth__button} type="submit"
-                                    onClick={(e) => handleSubmit(e)}>Sign&#160;up
+                            <button
+                                className={styles.auth__button} type="submit"
+                                onClick={handleSubmit}
+                            >
+                                Sign&#160;up
                             </button>
                         )}
                     </div>

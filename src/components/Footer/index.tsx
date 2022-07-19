@@ -3,11 +3,11 @@ import { FC } from 'react';
 import styles from './styles.module.scss';
 
 type FooterContent = {
-    [key: string] : Array<string>
+    [key: string] : string[],
 };
 
 const Footer: FC = () => {
-    const footerContentArr: Array<FooterContent> = [
+    const footerContentArr: FooterContent[] = [
         { 'General': ['About company', 'Contacts', 'Vacancies', 'Store addresses']},
         { 'Media': ['Inst', 'Vk', 'Facebook', 'Youtube']},
         { 'For Customers': ['Shipment', 'Payment', 'Warranty', 'Privacy policy']},

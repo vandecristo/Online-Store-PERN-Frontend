@@ -17,7 +17,7 @@ interface CreateBrandProps {
 }
 
 const EditItem: FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
-    const [data, setData] = useState<{name: string}>({ name: '' });
+    const [data, setData] = useState<{ name: string }>({ name: '' });
 
     const { enqueueSnackbar } = useSnackbar();
 
@@ -43,7 +43,7 @@ const EditItem: FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
                                 name="name"
                                 placeholder="name"
                                 value={data.name}
-                                onChange={e => setData({name: e.target.value})}
+                                onChange={e => setData({ name: e.target.value })}
                             />
                         </div>
                     </form>

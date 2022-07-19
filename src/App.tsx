@@ -9,18 +9,18 @@ import { Context } from './index';
 import DevicePage from './pages/DevicePage';
 import Favorites from './pages/Favorites';
 import Footer from './components/Footer';
+import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Profile from './pages/Profile';
 import Shop from './pages/Shop';
 
-import { IMobx, ProtectedRouteProps } from '../interfaces';
+import { MobxStores, ProtectedRouteProps } from '../interfaces';
 
 const App: FC = observer(() => {
-    const { userStore: { isAuth }} = useContext<IMobx>(Context);
+    const { userStore: { isAuth }} = useContext<MobxStores>(Context);
 
     const ProtectedRoute: ProtectedRouteProps = ({ auth, redirectPath = '/' }) => {
         if (auth) {
-
             return <Outlet />;
         }
 
@@ -29,7 +29,7 @@ const App: FC = observer(() => {
 
     return (
         <BrowserRouter>
-            <Navbar/>
+            <Navbar />
             <Routes>
                 <Route element={<ProtectedRoute auth={isAuth} redirectPath='/' />}>
                     <Route path={'/favorites'} element={<Favorites />} />
@@ -41,11 +41,12 @@ const App: FC = observer(() => {
                     <Route path={'/registration'} element={<Auth />} />
                     <Route path={'/login'} element={<Auth />} />
                 </Route>
-                <Route path={'/'} element={<Shop />} />
+                <Route path={'/'} element={<Home />} />
+                <Route path={'/shop'} element={<Shop />} />
                 <Route path={'/device'+ '/:id'} element={<DevicePage />} />
                 <Route path="*" element={<Navigate to={'/'} />} />
             </Routes>
-            <Footer/>
+            <Footer />
         </BrowserRouter>
     );
 });

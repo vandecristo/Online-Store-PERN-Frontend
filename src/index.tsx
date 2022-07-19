@@ -5,9 +5,9 @@ import { SnackbarProvider } from 'notistack';
 import App from './App';
 import UserStore from './store/UserStore';
 import DeviceStore from './store/DeviceStore';
-import { IMobx } from '../interfaces';
+import { MobxStores } from '../interfaces';
 
-export const Context = createContext<IMobx>({
+export const Context = createContext<MobxStores>({
         userStore: {
             isAuth: false,
             setIsAuth: () => null,
@@ -48,7 +48,7 @@ root.render(
         }}
     >
         <Context.Provider value={store}>
-            <App/>
+            <App />
         </Context.Provider>
     </SnackbarProvider>
 );

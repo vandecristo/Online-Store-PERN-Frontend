@@ -7,36 +7,53 @@ import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
-type ButtonNamesArray = Array<string>;
+enum ItemButton {
+    Devices,
+    Types,
+    Brands,
+}
+
+enum UserButton {
+    Users,
+    'Ban list',
+    Roles,
+    'Edit Users',
+}
+
+enum EventButton {
+    Events,
+    'Ban list',
+    'Edit Events',
+    Completes,
+}
+
 type PopupOption = {
     type: string,
     name: string,
-    id: number
+    id: number,
 };
 
 const Admin: FC = () => {
-    const [items, setItems] = useState<Array<BasicItem>>([]);
+    const [items, setItems] = useState<BasicItem[]>([]);
     const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
-    const [popupOptions, setPopupOptions] = useState<PopupOption>({type: '', name: '', id: 0});
-
-    const buttonsArr: Array<ButtonNamesArray> = [
-        ['Devices', 'Brands', 'Types'],
-        ['Users', 'Ban list', 'Roles', 'Edit Users'],
-        ['Events', 'Edit Events', 'Completes']
-    ];
+    const [popupOptions, setPopupOptions] = useState<PopupOption>({ type: '', name: '', id: 0 });
+    
+    const buttonsArr = [ ItemButton, UserButton, EventButton];
 
     const fetchAndSpreadDevices = async () => {
         const { rows } = await fetchDevices();
         setItems(rows);
     };
-    const showItems = async (name: string) => {
-        setPopupOptions({type: name, name: '', id: 0})
-        switch (name) {
-            case 'Devices':
+
+    const showItems = async (name: ItemButton) => {
+        setPopupOptions({ type: ItemButton[name], name: '', id: 0 });
+
+        switch (+name) {
+            case ItemButton.Devices:
                 return fetchAndSpreadDevices();
-            case 'Brands':
+            case ItemButton.Types:
                 return setItems(await fetchBrands());
-            case 'Types':
+            case ItemButton.Brands:
                 return setItems(await fetchTypes());
             default:
                 break;
@@ -45,7 +62,7 @@ const Admin: FC = () => {
 
     const openEditPopup = (item: BasicItem) => {
         togglePopup();
-        setPopupOptions((prev) => {return {...prev, name: item.name, id: item.id}});
+        setPopupOptions((prev) => ({ ...prev, name: item.name, id: item.id }));
     };
 
     const deleteConfirmation = (id: number) => {
@@ -53,16 +70,14 @@ const Admin: FC = () => {
     };
 
     const togglePopup = () => {
-        setPopupOpen(prevState => !prevState);
+        setPopupOpen(!isPopupOpen);
     };
 
     const createPopup = (option: PopupOption) => {
         if (option.name === 'device') {
-
-            return  <CreateDevice togglePopup={togglePopup}/>;
+            return ( <CreateDevice togglePopup={togglePopup} /> );
         } else {
-
-            return  <EditItem togglePopup={togglePopup} popupOptions={popupOptions}/>;
+            return ( <EditItem togglePopup={togglePopup} popupOptions={popupOptions} /> );
         }
     };
 
@@ -80,7 +95,7 @@ const Admin: FC = () => {
                                 value="device"
                                 onClick={() => {
                                     togglePopup();
-                                    setPopupOptions({type: '', name:'device', id: 0});
+                                    setPopupOptions({ type: '', name:'device', id: 0 });
                                 }}>
                                 Add Device
                             </button>
@@ -91,18 +106,22 @@ const Admin: FC = () => {
                             <div className={styles.adminBar__btnGroup} key={index}>
                                 <span>Manage {item[0]} </span>
                                 <div className={styles.admin__item}>
-                                    {buttonsArr[index].map(item =>
-                                        <button
-                                            key={item}
-                                            className={styles.admin__button}
-                                            value={item}
-                                            onClick={() => showItems(item)}>
-                                            {item}
-                                        </button>
-                                    )}
+                                    {(Object.keys(buttonsArr) as Array<keyof typeof buttonsArr>).map(
+                                        (item, keyIndex) => {
+                                            return (
+                                                <button
+                                                    key={index + Number(item) + 1}
+                                                    className={styles.admin__button}
+                                                    value={Number(item)}
+                                                    onClick={() => showItems(keyIndex)}>
+                                                    {buttonsArr[index][Number(item)]}
+                                                </button>
+                                            );
+                                        })
+                                    }
                                 </div>
                             </div>
-                        )
+                        );
                     })}
                 </div>
             </div>

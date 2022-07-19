@@ -1,12 +1,10 @@
 import { FC } from 'react';
 
-import { BasicItem } from "../../../interfaces";
+import { BasicItem } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
-type ItemProps = { items: Array<BasicItem> };
-
-const AdminBody: FC<ItemProps> = ({ items }) =>{
+const AdminBody: FC<BasicItem[]> = (items) =>{
     const openEditPopup = (item: BasicItem) => {
         // This function must be open popup for editing Devices/ types / brands
     };
