@@ -7,7 +7,33 @@ $theme-black: #181818;
   font-size: 16px;
 }
 
-.shop__item {
+.home__item_slider {
   display: flex;
   height: 100%;
+}
+
+.home__itemWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.home__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #787885;
+  width: 100vw;
+}
+
+.home__category {
+  height: 100px;
+  width: 150px;
+  margin: 10px;
+  background: aqua;
+}
+
+.home__categoryWrapper {
+  display: flex;
+  flex-wrap: wrap;
 }
