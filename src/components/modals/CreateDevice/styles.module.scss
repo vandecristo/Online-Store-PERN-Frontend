@@ -1,0 +1,185 @@
+$background-white: #F7F7FA;
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$gray-text: #787885;
+$font-small: 14px;
+$font-medium: 25px;
+$font-large: 35px;
+
+* {
+  font-size: 14px;
+}
+
+.popup {
+  display: flex;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.62);
+  height: 100vh;
+  width: 100vw;
+  margin-top: -90px;
+  transition: 1s;
+}
+
+.popup__wrapper {
+  display: flex;
+  justify-content: center;
+  background: $background-white;
+  margin: auto;
+}
+
+.createDevice {
+  width: 60%;
+  min-width: 400px;
+}
+
+.createDevice__title {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.createDevice__form {
+  display: block;
+}
+
+.createDevice__item {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.createDevice__item > input, select {
+  margin: 5px;
+}
+
+.createDevice__btnWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.createDevice__btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 32px;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  color: $text-color;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.createDevice__btn_mini {
+  width: 50px;
+  height: 32px;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  color: $text-color;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.createDevice__btn > span {
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.createDevice__btn:hover {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.createDevice__btn:hover > span {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.createDevice__input {
+  outline: none;
+  background: $background-white;
+  color: $theme-black;
+  border: 2px solid $background-white;
+  border-bottom: 0.1em solid $theme-black;
+}
+
+.createDevice__displayNone {
+  display: none;
+}
+
+.createDevice__input:focus {
+  border-bottom: 0.1em solid $background-white;
+  box-shadow: 0 2px 1px $text-color-hover;
+  transition: 0.3s;
+}
+
+.createDevice__inputWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.createDevice__btn_input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 5px 0 5px;
+  width: 100px;
+  height: 32px;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  color: $text-color;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.createDevice__btn_input > span {
+  font-size: 14px;
+}
+
+.createDevice__pictureName {
+  display: flex;
+  align-items: center;
+  margin: 10px 5px 0 5px;
+  max-width: 70%;
+  white-space: nowrap;
+}
+
+.createDevice__removeItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  width: 20px;
+  height: 20px;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  color: $text-color;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.createDevice__createEntity {
+  margin: 0 10px;
+}
+
+.createDevice__inputText {
+  margin-top: -5px;
+}
+
+.createDevice__select {
+  height: 40px;
+  outline: none;
+  border: 2px solid $background-white;
+}

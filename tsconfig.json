@@ -1,0 +1,33 @@
+{
+  "compilerOptions" :  {
+    "target" :  "es6" ,
+    "module" :  "es2015" ,
+    "lib" :  [
+      "dom" ,
+      "dom.iterable" ,
+      "esnext"
+    ] ,
+    "allowJs" :  true ,
+    "skipLibCheck " :  true ,
+    "esModuleInterop" :  true ,
+    "allowSyntheticDefaultImports" :  true ,
+    "strict" :  true ,
+    "forceConsistentCasingInFileNames" :  true ,
+    "moduleResolution" :  "node" , //node environment
+    "resolveJsonModule" :  true ,
+    "isolatedModules" :  true ,
+    "noEmit" :  true ,
+    "jsx" :  "react-jsx" ,
+    "baseUrl" :  "src" ,
+    "paths" :  {
+      "@/*" :  [
+        "./*"
+      ]
+    } ,
+    "experimentalDecorators" :  true,
+  },
+  "include" :  [
+    "src",
+    "typings.d.ts" //configured .d.ts file
+  ]
+}

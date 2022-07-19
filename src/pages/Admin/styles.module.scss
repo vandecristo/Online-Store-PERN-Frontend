@@ -1,0 +1,127 @@
+$black-text: black;
+$font-small: 14px;
+$font-medium: 25px;
+$font-large: 35px;
+$gray-text: #787885;
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$theme-white: #e4e4e7;
+
+.admin__item {
+  display: block;
+}
+
+.admin {
+  display: flex;
+  height: 100%;
+}
+
+.adminBody {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 80%;
+  margin-top: 10px;
+}
+
+.adminBody__item {
+  background: $theme-white;
+  border-radius: 4px;
+  color: $black-text;
+  height: fit-content;
+  margin: 10px;
+  padding: 5px;
+  width: 200px;
+}
+
+.adminBody__btnWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.adminBody__btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  border-radius: 10px;
+  color: $text-color;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+  height: 25px;
+  width: 70px;
+}
+
+.adminBody__btn > span {
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.adminBody__btn:hover {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.adminBody__btn:hover > span {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.adminBody__block {
+  height: fit-content;
+}
+
+.adminBar {
+  min-width: 180px;
+  width: 20%;
+}
+
+.adminBar__title {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.adminBar__wrapper  {
+  background: #e4e4e7;
+  border-radius: 4px;
+  margin: 10px 10px ;
+  min-width: 130px;
+  padding: 10px 5px;
+}
+
+.admin__button {
+  background: none;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+  padding: 5px 10px;
+  transition: 0.3s;
+  width: 115px;
+}
+
+.admin__button:hover {
+  background: $theme-black;
+  color: $text-color;
+  transition: 0.3s;
+}
+
+.adminBar__btnGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin__item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}

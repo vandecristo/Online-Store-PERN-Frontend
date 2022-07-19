@@ -1,0 +1,78 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+
+.dropdown {
+  display: inherit;
+}
+
+.dropDown__button {
+  display: flex;
+  justify-content: space-between;
+  background: none;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+
+.dropDown__button_active {
+  box-shadow: 0 0 5px $text-color-hover;
+  transition: 0.3s;
+}
+
+.dropdown__listWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown__list {
+  margin: -10px;
+  height: 10px;
+  opacity: 0;
+  overflow: hidden;
+  transition: height 1s, margin 0.5s, visibility 0.5s, opacity 0.3s, overflow 0.5s;
+  visibility: hidden;
+  width: 90%;
+}
+
+.dropdown__list_active {
+  height: 200px;
+  margin: 10px;
+  opacity: 1;
+  overflow: auto;
+  transition: height 1s, margin 0.5s, visibility 0.5s, opacity 0.5s, overflow 1s;
+  visibility: visible;
+}
+
+.dropdown__listElement {
+  display: flex;
+  justify-content: center;
+  background: none;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.dropdown__listElement_active {
+  background: black;
+  box-shadow: 0 0 7px $text-color-hover;
+  color: #e4e4e7;
+  font-weight: 600;
+}
+
+.dropdown__iconWrapper {
+  transform: rotate(-90deg);
+  transition: transform 0.5s;
+}
+
+.dropdown__iconWrapper_open {
+  color: #754abe;
+  transform: rotate(0deg);
+  transition: transform 0.5s;
+}

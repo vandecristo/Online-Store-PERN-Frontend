@@ -1,0 +1,51 @@
+.mainContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   position: relative;
+   width: 90%;
+}
+
+.window {
+   height: 100%;
+   overflow: scroll;
+   overflow-y: hidden;
+   overflow-x: hidden;
+}
+
+.allPagesContainer {
+   position: relative;
+   display: inline-flex;
+   height: 100%;
+   transition: translate;
+   transition-property: transform;
+   transition-duration: 2s;
+   transition-timing-function: ease-in-out;
+}
+
+.left_arrow {
+   cursor: pointer;
+   transform: rotate(90deg);
+}
+
+.right_arrow {
+   cursor: pointer;
+   transform: rotate(-90deg);
+}
+
+.swipeBarWrapper {
+   position: absolute;
+   display: flex;
+   justify-content: end;
+   height: 5px;
+   margin-top: -40px;
+   margin-left: -20px;
+   width: 100%;
+}
+
+.swipeBar {
+   display: flex;
+   justify-content: space-between;
+   width: 70px;
+}

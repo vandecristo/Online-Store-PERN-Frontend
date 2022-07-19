@@ -1,0 +1,70 @@
+$black-text: black;
+$gray-text: #787885;
+$font-small: 14px;
+$font-medium: 25px;
+$font-large: 35px;
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$theme-white: #e4e4e7;
+
+.adminBody {
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  width: 80%;
+}
+
+.adminBody__item {
+  width: 200px;
+  height: fit-content;
+  background: $theme-white;
+  padding: 5px;
+  margin: 10px;
+  color: $black-text;
+  border-radius: 4px;
+}
+
+.adminBody__btnWrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.adminBody__btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 25px;
+  background: $theme-black;
+  color: $text-color;
+  border-radius: 10px;
+  border: 2px solid $theme-black;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.adminBody__btn > span {
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.adminBody__btn:hover {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.adminBody__btn:hover > span {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.adminBody__block {
+  height: fit-content;
+}
