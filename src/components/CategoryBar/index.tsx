@@ -20,7 +20,8 @@ const CategoryBar: FC<CategoryBarProps> = observer(({
 }) => {
     const { REACT_APP_API_URL }: ProcessEnv = process.env;
 
-    const createImageLink = (image: string) => {
+    const createImageLink = (item: BasicItem) => {
+        const image = item.img ? item.img : defaultImage;
         return String(REACT_APP_API_URL ? REACT_APP_API_URL + image : 'http://localhost:5000/' + image);
     };
 
@@ -36,7 +37,7 @@ const CategoryBar: FC<CategoryBarProps> = observer(({
                                     width={85}
                                     height={56}
                                     className={styles.category__image}
-                                    src={createImageLink(defaultImage)}
+                                    src={createImageLink(item)}
                                     alt="no-picture"
                                 />
                             </div>
