@@ -1,0 +1,44 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$purple-shadow: rgba(117, 74, 190, 0.38);
+$theme-black: #181818;
+$min-width: 670px;
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: $min-width;
+  width: 90%;
+}
+
+.cardList__header {
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.cardList__body {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  width: 101%;
+}
+
+.cardList__card {
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.cardList__card:hover {
+  box-shadow: 0 0 18px 3px $purple-shadow;
+}
+
+.cardList__title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.cardList__date {
+  padding-top: 10px;
+}

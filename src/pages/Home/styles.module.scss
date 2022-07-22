@@ -9,66 +9,19 @@ $min-width: 670px;
   font-size: 16px;
 }
 
+.home {
+  display: inherit;
+}
+
 .home__item_slider {
-  min-width: $min-width;
-}
-
-.home__section {
-  font-size: 20px;
-  font-weight: bold;
-  padding-bottom: 10px;
-}
-
-.home__itemWrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
   min-width: $min-width;
 }
 
 .home__item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
   min-width: $min-width;
-  width: 90%;
-}
-
-.home__category {
-  height: 120px;
-  width: 260px;
-  margin: 10px;
-  box-shadow: 0 4px 11px rgba(128, 128, 128, 0.59);
-  cursor: pointer;
-}
-
-.home__category:hover > .home__categoryText {
-  color: #754abe;
-}
-
-.home__categoryWrapper {
-  display: grid;
-  width: 101%;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-}
-
-.home__categoryText {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-}
-
-.home__categoryImageWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  margin-top: 10px;
-}
-
-.home__categoryImage {
-  height: 100%;
-  width: auto;
 }
 
 .home__inputWrapper {
@@ -113,29 +66,6 @@ $min-width: 670px;
   transition: 0.3s;
 }
 
-.home__textCard {
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.home__textCard:hover {
-  box-shadow: 0 0 18px 3px $purple-shadow;
-}
-
-.home__textCard:hover > .home__title {
-  color: $text-color-hover;
-}
-
-.home__title {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.home__date {
-  padding-top: 10px;
-}
-
 .home__subscription {
   display: flex;
   justify-content: center;
@@ -154,19 +84,19 @@ $min-width: 670px;
 }
 
 :focus::-webkit-input-placeholder {
-  color: transparent
+  color: transparent;
 }
 
 :focus::-moz-placeholder {
-  color: transparent
+  color: transparent;
 }
 
 :focus:-moz-placeholder {
-  color: transparent
+  color: transparent;
 }
 
 :focus:-ms-input-placeholder {
-  color: transparent
+  color: transparent;
 }
 
 input::-webkit-input-placeholder {

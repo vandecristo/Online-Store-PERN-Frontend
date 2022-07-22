@@ -73,3 +73,10 @@ export interface IconProps {
     width?: number,
     height?: number,
 }
+
+export interface homePageCard {
+    id: number,
+    title: string,
+    text: string,
+    date: string,
+}
