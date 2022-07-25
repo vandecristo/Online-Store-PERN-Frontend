@@ -10,9 +10,12 @@ export interface PreparedDeviceData {
 export interface BasicItem {
     id: number,
     name: string,
+    img: string | null,
 }
 
-export interface Device extends BasicItem {
+export interface Device {
+    id: number,
+    name: string,
     price: number,
     rating: number,
     brandId: number,
@@ -72,4 +75,11 @@ export interface IconProps {
     onClick?: () => void,
     width?: number,
     height?: number,
+}
+
+export interface HomePageCard {
+    id: number,
+    title: string,
+    text: string,
+    date: string,
 }

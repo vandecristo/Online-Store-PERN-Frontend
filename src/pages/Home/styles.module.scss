@@ -1,13 +1,140 @@
 $text-color: white;
 $text-color-hover: #754abe;
+$purple-shadow: rgba(117, 74, 190, 0.38);
 $theme-black: #181818;
+$min-width: 670px;
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
 }
 
-.shop__item {
+.home {
+  display: inherit;
+}
+
+.home__item_slider {
+  min-width: $min-width;
+}
+
+.home__item {
   display: flex;
-  height: 100%;
+  justify-content: center;
+  margin-top: 30px;
+  min-width: $min-width;
+}
+
+.home__inputWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home__input {
+  outline: none;
+  color: #181818;
+  border: 2px solid white;
+  border-bottom: 0.1em solid #181818;
+  transition: 0.3s;
+  width: 60%;
+  margin: 20px 0;
+}
+
+.home__input:focus {
+  border-bottom: 0.1em solid white;
+  -webkit-box-shadow: 0 6px 4px -4px $text-color-hover;
+  -moz-box-shadow: 0 6px 4px -4px $text-color-hover;
+  box-shadow: 0 6px 4px -4px $text-color-hover;
+  transition: 0.3s;
+}
+
+.home__loupeIcon {
+  margin-left: -30px;
+  cursor: pointer;
+}
+
+.home__loupeIcon:hover {
+  color: $text-color-hover;
+}
+
+.home__input:focus + .home__loupeIcon {
+  color: $text-color-hover;
+  transition: 0.3s;
+}
+
+.home__input:not(:focus) + .home__loupeIcon {
+  transition: 0.3s;
+}
+
+.home__subscription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $theme-black;
+  border-radius: 15px 15px;
+  margin-top: 30px;
+  min-width: 600px;
+  margin-bottom: -25px;
+  height: 80px;
+}
+
+.home__text {
+  color: white;
+  margin-right: 10px;
+}
+
+:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+:focus::-moz-placeholder {
+  color: transparent;
+}
+
+:focus:-moz-placeholder {
+  color: transparent;
+}
+
+:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+input::-webkit-input-placeholder {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+input::-moz-placeholder {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+input:-moz-placeholder {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+input:-ms-input-placeholder {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+input:focus::-moz-placeholder {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+input:focus:-moz-placeholder {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+input:focus:-ms-input-placeholder {
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }

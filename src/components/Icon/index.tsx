@@ -8,6 +8,7 @@ import Image from './svg/image';
 import Login from './svg/login';
 import Logo from './svg/logo';
 import Logout from './svg/logout';
+import Loupe from './svg/loupe';
 import Shop from './svg/shop';
 import Plus from './svg/plus';
 import Profile from './svg/profile';
@@ -23,6 +24,7 @@ const components = {
     Login,
     Logo,
     Logout,
+    Loupe,
     Shop,
     Plus,
     Profile,

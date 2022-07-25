@@ -54,17 +54,15 @@ const FilterDropdown: FC<{ name: string }> = ({ name }) => {
                 <div
                     className={classnames(styles.dropdown__list, {[styles.dropdown__list_active]: isDropdownActive})}
                 >
-                    {deviceStore[entityData.name]?.map((item) => { // .types or .brands
-                        return (
-                            <li
-                                className={classnames(styles.dropdown__listElement, {[styles.dropdown__listElement_active]: item.id === currentActiveId})}
-                                key={item.id}
-                                onClick={() => handleClick(item)}
-                            >
-                                <span>{item.name}</span>
-                            </li>
-                        )}
-                    )}
+                    {deviceStore[entityData.name]?.map((item) => ( // .types or .brands
+                        <li
+                            className={classnames(styles.dropdown__listElement, {[styles.dropdown__listElement_active]: item.id === currentActiveId})}
+                            key={item.id}
+                            onClick={() => handleClick(item)}
+                        >
+                            <span>{item.name}</span>
+                        </li>
+                    ))}
                 </div>
             </div>
         </div>
