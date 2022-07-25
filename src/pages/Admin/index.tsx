@@ -101,32 +101,28 @@ const Admin: FC = () => {
                             </button>
                         </div>
                     </div>
-                    {buttonsArr.map((item, index) => {
-                        return (
-                            <div className={styles.adminBar__btnGroup} key={index}>
-                                <span>Manage {item[0]} </span>
-                                <div className={styles.admin__item}>
-                                    {(Object.keys(buttonsArr) as Array<keyof typeof buttonsArr>).map(
-                                        (item, keyIndex) => {
-                                            return (
-                                                <button
-                                                    key={index + Number(item) + 1}
-                                                    className={styles.admin__button}
-                                                    value={Number(item)}
-                                                    onClick={() => showItems(keyIndex)}>
-                                                    {buttonsArr[index][Number(item)]}
-                                                </button>
-                                            );
-                                        })
-                                    }
-                                </div>
+                    {buttonsArr.map((item, index) => (
+                        <div className={styles.adminBar__btnGroup} key={index}>
+                            <span>Manage {item[0]} </span>
+                            <div className={styles.admin__item}>
+                                {(Object.keys(buttonsArr) as Array<keyof typeof buttonsArr>).map(
+                                    (item, keyIndex) => (
+                                        <button
+                                            key={index + Number(item) + 1}
+                                            className={styles.admin__button}
+                                            value={Number(item)}
+                                            onClick={() => showItems(keyIndex)}>
+                                            {buttonsArr[index][Number(item)]}
+                                        </button>
+                                    ))
+                                }
                             </div>
-                        );
-                    })}
+                        </div>
+                    ))}
                 </div>
             </div>
             <div className={styles.adminBody}>
-                {items?.map(item =>
+                {items?.map((item) => (
                     <div key={item.id} className={styles.adminBody__item}>
                         <div className={styles.adminBody__block}>name: {item.name}</div>
                         <div className={styles.adminBody__block}>id: {item.id}</div>
@@ -137,7 +133,7 @@ const Admin: FC = () => {
                             </button>
                         </div>
                     </div>
-                )}
+                ))}
             </div>
         </div>
     );

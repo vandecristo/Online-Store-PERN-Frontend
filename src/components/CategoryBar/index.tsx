@@ -29,22 +29,20 @@ const CategoryBar: FC<CategoryBarProps> = observer(({
         <div className={styles.categoryBar}>
             <span className={styles.categoryBar__header}>{title}</span>
             <div className={styles.categoryBar__body}>
-                {items?.map((item) => {
-                    return (
-                        <div className={styles.category__item} key={item.id}>
-                            <div className={styles.category__imageWrapper}>
-                                <img
-                                    width={85}
-                                    height={56}
-                                    className={styles.category__image}
-                                    src={createImageLink(item)}
-                                    alt="no-picture"
-                                />
-                            </div>
-                            {withBottomText && (<span className={styles.category__text}>{item.name}</span>)}
+                {items?.map((item) => (
+                    <div className={styles.category__item} key={item.id}>
+                        <div className={styles.category__imageWrapper}>
+                            <img
+                                width={85}
+                                height={56}
+                                className={styles.category__image}
+                                src={createImageLink(item)}
+                                alt="no-picture"
+                            />
                         </div>
-                    );
-                })}
+                        {withBottomText && (<span className={styles.category__text}>{item.name}</span>)}
+                    </div>
+                ))}
             </div>
         </div>
     );

@@ -12,9 +12,9 @@ const GoodsList: FC = observer(() => {
 
     return (
         <div className={styles.goodsList}>
-            {deviceStore?.devices?.map(item =>
+            {deviceStore?.devices?.map((item) => (
                 <GoodsItem key={item.id} device={item}/>
-            )}
+            ))}
         </div>
     );
 });

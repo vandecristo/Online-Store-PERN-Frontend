@@ -76,7 +76,7 @@ const CreateEntity: FC<CreateEntity> = ({
 
     const createNewEntity = async (type: string) => {
         try {
-            let res: BasicItem = {id: 0, name: 'default'};
+            let res: BasicItem = { id: 0, name: 'default',  img: '' };
             switch (type) {
                 case 'Brand':
                     res = await createBrand({ name: newEntityData });
@@ -114,9 +114,9 @@ const CreateEntity: FC<CreateEntity> = ({
                     <MenuItem disabled>
                         <em>{`${entityName}` + 's'}</em>
                     </MenuItem>
-                    {options[entityArrName]?.map((entity) =>
+                    {options[entityArrName]?.map((entity) => (
                         <MenuItem value={entity.id} key={entity.id}>{entity.name}</MenuItem>
-                    )}
+                    ))}
                     {!isEntityFormOpen ? (
                         <div className={styles.createDevice__inputButtonWrapper_left}>
                             <button

@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-import { homePageCard } from '../../../interfaces';
+import { HomePageCard } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
 interface CardListProps {
-    cards: homePageCard[],
+    cards: HomePageCard[],
     title: string,
 }
 

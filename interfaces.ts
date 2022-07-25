@@ -77,7 +77,7 @@ export interface IconProps {
     height?: number,
 }
 
-export interface homePageCard {
+export interface HomePageCard {
     id: number,
     title: string,
     text: string,

@@ -17,7 +17,7 @@ const AdminBody: FC<BasicItem[]> = (items) =>{
     return (
         <div className={styles.adminBody}>
             {items.length &&
-                items.map(item =>
+                items.map((item) => (
                     <div key={item.id} className={styles.adminBody__item}>
                         <div className={styles.adminBody__block}>name: {item.name}</div>
                         <div className={styles.adminBody__block}>id: {item.id}</div>
@@ -28,7 +28,7 @@ const AdminBody: FC<BasicItem[]> = (items) =>{
                             </button>
                         </div>
                     </div>
-                )
+                ))
             }
         </div>
     );
