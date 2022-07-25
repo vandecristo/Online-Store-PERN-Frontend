@@ -16,7 +16,7 @@ const CategoryBar: FC<CategoryBarProps> = observer(({
     items,
     defaultImage,
     withBottomText,
-    title
+    title,
 }) => {
     const { REACT_APP_API_URL }: ProcessEnv = process.env;
 

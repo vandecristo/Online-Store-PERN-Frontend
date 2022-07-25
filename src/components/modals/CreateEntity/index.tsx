@@ -76,7 +76,7 @@ const CreateEntity: FC<CreateEntity> = ({
 
     const createNewEntity = async (type: string) => {
         try {
-            let res: BasicItem = { id: 0, name: 'default',  img: '' };
+            let res: BasicItem = { id: 0, name: 'default', img: '' };
             switch (type) {
                 case 'Brand':
                     res = await createBrand({ name: newEntityData });
