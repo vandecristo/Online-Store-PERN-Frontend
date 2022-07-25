@@ -1,7 +1,7 @@
 import { $authHost, $host } from './index';
 import { IdFromUseParams } from '../../types';
 
-type CreateParams = { name: string };
+type CreateParams = { name: string, img: string };
 
 export const fetchTypes = async () => {
     const { data } = await $host.get('api/type');
@@ -9,7 +9,7 @@ export const fetchTypes = async () => {
     return data;
 };
 
-export const createType = async (type: CreateParams) => {
+export const createType = async (type: FormData) => {
     const { data } = await $authHost.post('api/type', type);
 
     return data;
@@ -21,7 +21,7 @@ export const fetchBrands = async () => {
     return data;
 };
 
-export const createBrand = async (brand: CreateParams) => {
+export const createBrand = async (brand: FormData) => {
     const { data } = await $authHost.post('api/brand', brand);
 
     return data;

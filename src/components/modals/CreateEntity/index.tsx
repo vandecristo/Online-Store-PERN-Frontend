@@ -8,6 +8,7 @@ import { createBrand, createType, fetchBrands, fetchTypes } from '../../../http/
 import Icon from '../../Icon';
 
 import styles from './styles.module.scss';
+import classnames from "classnames";
 
 interface CreateEntity {
     entityName: string,
@@ -20,6 +21,11 @@ interface CreateEntity {
 type OptionType = {
     [key: string]: BasicItem[],
 };
+
+interface newEntityData {
+    name: string,
+    img: File | string,
+}
 
 const MenuProps = {
     PaperProps: {
@@ -35,10 +41,10 @@ const CreateEntity: FC<CreateEntity> = ({
     data,
     setData,
     entityId,
-    showMessage
+    showMessage,
 }) => {
     const [options, setOptions] = useState<OptionType>({ types: [], brands: [] });
-    const [newEntityData, setNewEntityData] = useState<string>('');
+    const [newEntityData, setNewEntityData] = useState<newEntityData>({ name: '', img: '' });
     const [selectedEntity, setSelectedEntity] = useState<string>('');
     const [isEntityFormOpen, toggleEntityForm] = useState<boolean>(false);
 
@@ -54,7 +60,7 @@ const CreateEntity: FC<CreateEntity> = ({
 
     const switchEntityForm = (param = false) => {
         toggleEntityForm(param);
-        setNewEntityData('');
+        setNewEntityData({ name: '', img: '' });
     };
 
     const closeFormWithNoPropagation = (e: FormEvent) => {
@@ -75,26 +81,52 @@ const CreateEntity: FC<CreateEntity> = ({
     };
 
     const createNewEntity = async (type: string) => {
+        const formData = new FormData();
+        formData.append('name', newEntityData.name);
+        formData.append('img', newEntityData.img);
         try {
             let res: BasicItem = { id: 0, name: 'default', img: '' };
             switch (type) {
                 case 'Brand':
-                    res = await createBrand({ name: newEntityData });
+                    res = await createBrand(formData);
                     setOptions({...options, brands: [...options.brands, res]});
                     break;
                 case 'Type':
-                    res = await createType({ name: newEntityData });
+                    res = await createType(formData);
                     setOptions({...options, types: [...options.types, res]});
                     break;
                 default:
                     break;
             }
-            showMessage(`${entityName} ${newEntityData} was successfully created`);
+            showMessage(`${type} ${newEntityData.name} was successfully created`);
         } catch (e) {
             showMessage(`Error, please check data`);
         }
         switchEntityForm();
     };
+
+    useEffect(() => {
+        console.log("dsfgfgdfgdfgdf",newEntityData)
+    },[newEntityData]);
+
+    const removeImageButtonVisibility = () => {
+        if (newEntityData.img) {
+            return (
+                <button className={styles.createDevice__inputButton}
+                   onClick={(e) => {
+                       const target = e.target as HTMLInputElement;
+                       e.preventDefault();
+                       setNewEntityData({ name: '', img: '' });
+                       target.value = '';
+                   }}
+                >
+                   <Icon className={styles.createDevice__icon} name="TrashCan" size={12}/>
+                </button>
+            )}
+        else {
+            return null
+        }
+    }
 
     return (
         <div className={styles.createDevice__entityFormWrapper}>
@@ -127,24 +159,39 @@ const CreateEntity: FC<CreateEntity> = ({
                             </button>
                         </div>
                     ) : (
-                        <label className={styles.createDevice__createEntity} onKeyDown={(e) => e.stopPropagation()}>
-                            <input
-                                className={styles.createDevice__input_inList}
-                                value={newEntityData}
-                                onClick={(e) => e.stopPropagation()}
-                                onChange={(e) => setNewEntityData(e.target.value)}
-                                type="text"
-                                placeholder={`${entityName}`}/>
-
-                            <div className={styles.createDevice__inputButtonWrapper}>
-                                <button
-                                    className={styles.createDevice__inputButton}
-                                    onClick={() => createNewEntity(`${entityName}`)}
-                                >
-                                    <Icon className={styles.createDevice__icon} name="Plus" size={12}/>
-                                </button>
-                            </div>
-                        </label>
+                        <div className={styles.createDevice__inputButtonWrapper_left}>
+                            <label className={styles.createDevice__createEntity} onKeyDown={(e) => e.stopPropagation()}>
+                                <input
+                                    className={styles.createDevice__input_inList}
+                                    value={newEntityData.name}
+                                    onClick={(e) => e.stopPropagation()}
+                                    onChange={(e) => setNewEntityData({...newEntityData, name: e.target.value})}
+                                    type="text"
+                                    placeholder={`${entityName}`}
+                                />
+                                <div className={styles.createDevice__inputButtonWrapper}>
+                                    <button
+                                        className={styles.createDevice__inputButton}
+                                        onClick={() => createNewEntity(`${entityName}`)}
+                                    >
+                                        <Icon className={styles.createDevice__icon} name="Plus" size={12}/>
+                                    </button>
+                                </div>
+                            </label>
+                            <label htmlFor="image-upload" className={styles.createDevice__btnSection} onClick={(e) => e.stopPropagation()}>
+                                <input
+                                    className={styles.createDevice__displayNone}
+                                    type="file"
+                                    id="image-upload"
+                                    onChange={(e) => setNewEntityData({...newEntityData, img: e.target.files?.[0] || ''})}
+                                />
+                                <div className={classnames(styles.createDevice__inputButton, {[styles.createDevice__inputButton_active]: newEntityData.img})}>
+                                {/*<div className={styles.createDevice__inputButton}>*/}
+                                    <Icon className={styles.createDevice__icon} name="Image" size={12}/>
+                                </div>
+                                {removeImageButtonVisibility()}
+                            </label>
+                        </div>
                     )}
                 </Select>
             </FormControl>

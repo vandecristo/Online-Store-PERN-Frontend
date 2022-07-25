@@ -6,6 +6,7 @@ $gray-text: #787885;
 $font-small: 14px;
 $font-medium: 25px;
 $font-large: 35px;
+$purple-shadow: rgba(117, 74, 190, 0.38);
 
 .createDevice__entityForm {
   padding-top: 15px;
@@ -71,6 +72,24 @@ $font-large: 35px;
   cursor: pointer;
   height: 20px;
   margin-left: 15px;
+  transition: 0.5s;
+  width: 20px;
+}
+
+.createDevice__inputButton_active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #754abe;
+  border: 2px solid #754abe;
+  box-shadow: 0 0 5px 4px $purple-shadow;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  height: 20px;
+  margin-left: 15px;
+  transition: 0.5s;
   width: 20px;
 }
 
@@ -89,4 +108,12 @@ $font-large: 35px;
 
 .createDevice__icon {
   display: inherit;
+}
+
+.createDevice__displayNone {
+  display: none;
+}
+
+.createDevice__btnSection {
+  display: flex;
 }
