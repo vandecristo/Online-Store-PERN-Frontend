@@ -2,7 +2,7 @@ import { FC, FormEvent, useState } from 'react';
 import { useSnackbar } from 'notistack';
 
 import { createDevice } from '../../../http/deviceAPI';
-import CreateEntity from '../CreateEntity';
+import SelectEntityList from '../SelectEntityList';
 import Icon from '../../Icon';
 import { PreparedDeviceData } from '../../../../interfaces';
 
@@ -101,14 +101,14 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
                             />
                         </div>
                         <div className={styles.createDevice__item}>
-                            <CreateEntity
+                            <SelectEntityList
                                 data={data}
                                 setData={setData}
                                 entityId="typeId"
                                 entityName="Type"
                                 showMessage={showMessage}
                             />
-                            <CreateEntity
+                            <SelectEntityList
                                 data={data}
                                 setData={setData}
                                 entityId="brandId"

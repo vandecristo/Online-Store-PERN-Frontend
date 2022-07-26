@@ -1,4 +1,5 @@
 import { FC, FormEvent, useEffect, useState } from 'react';
+import classnames from 'classnames';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FormControl, InputLabel } from '@mui/material';
@@ -8,9 +9,8 @@ import { createBrand, createType, fetchBrands, fetchTypes } from '../../../http/
 import Icon from '../../Icon';
 
 import styles from './styles.module.scss';
-import classnames from "classnames";
 
-interface CreateEntity {
+interface SelectEntityList {
     entityName: string,
     data: PreparedDeviceData,
     setData: (arg: PreparedDeviceData) => void,
@@ -24,8 +24,11 @@ type OptionType = {
 
 interface newEntityData {
     name: string,
-    img: File | string,
+    img: File | any,
 }
+// 'Any' because at file-input we set 'newEntityData.img?.files?.[0].name' in 'value'
+// To fix error with picking same file. And write it for TS everywhere is very difficult and unnecessary
+// Because we don't need to check format of file in TS
 
 const MenuProps = {
     PaperProps: {
@@ -36,7 +39,7 @@ const MenuProps = {
     },
 };
 
-const CreateEntity: FC<CreateEntity> = ({
+const SelectEntityList: FC<SelectEntityList> = ({
     entityName,
     data,
     setData,
@@ -105,37 +108,32 @@ const CreateEntity: FC<CreateEntity> = ({
         switchEntityForm();
     };
 
-    useEffect(() => {
-        console.log("dsfgfgdfgdfgdf",newEntityData)
-    },[newEntityData]);
-
-    const removeImageButtonVisibility = () => {
+    const switchRemoveButton = () => {
         if (newEntityData.img) {
             return (
-                <button className={styles.createDevice__inputButton}
+                <button className={styles.selectEntityList__inputButton}
                    onClick={(e) => {
-                       const target = e.target as HTMLInputElement;
                        e.preventDefault();
                        setNewEntityData({ name: '', img: '' });
-                       target.value = '';
                    }}
                 >
-                   <Icon className={styles.createDevice__icon} name="TrashCan" size={12}/>
+                   <Icon className={styles.selectEntityList__icon} name="TrashCan" size={12}/>
                 </button>
-            )}
-        else {
-            return null
+            );
         }
-    }
+        else {
+            return null;
+        }
+    };
 
     return (
-        <div className={styles.createDevice__entityFormWrapper}>
-            <FormControl className={styles.createDevice__entityForm}>
-                <InputLabel className={styles.createDevice__inputText} id={`${entityName}select-label`}>
+        <div className={styles.selectEntityList}>
+            <FormControl className={styles.selectEntityList__form}>
+                <InputLabel className={styles.selectEntityList__inputText} id={`${entityName}select-label`}>
                     {`${entityName.toLowerCase()}`}
                 </InputLabel>
                 <Select
-                    className={styles.createDevice__select}
+                    className={styles.selectEntityList__select}
                     id={`${entityName}` + '-input'}
                     value={selectedEntity}
                     onChange={(e) => handleChange(e, selectedEntity, setSelectedEntity, entityId)}
@@ -150,46 +148,46 @@ const CreateEntity: FC<CreateEntity> = ({
                         <MenuItem value={entity.id} key={entity.id}>{entity.name}</MenuItem>
                     ))}
                     {!isEntityFormOpen ? (
-                        <div className={styles.createDevice__inputButtonWrapper_left}>
+                        <div className={styles.selectEntityList__inputButtonWrapper_left}>
                             <button
-                                className={styles.createDevice__inputButton}
+                                className={styles.selectEntityList__inputButton}
                                 onClick={closeFormWithNoPropagation}
                             >
-                                <Icon className={styles.createDevice__icon} name="Plus" size={12}/>
+                                <Icon className={styles.selectEntityList__icon} name="Plus" size={12}/>
                             </button>
                         </div>
                     ) : (
-                        <div className={styles.createDevice__inputButtonWrapper_left}>
-                            <label className={styles.createDevice__createEntity} onKeyDown={(e) => e.stopPropagation()}>
+                        <div className={styles.selectEntityList__inputButtonWrapper_left}>
+                            <label className={styles.selectEntityList__createEntity} onKeyDown={(e) => e.stopPropagation()}>
                                 <input
-                                    className={styles.createDevice__input_inList}
+                                    className={styles.selectEntityList__input_inList}
                                     value={newEntityData.name}
                                     onClick={(e) => e.stopPropagation()}
                                     onChange={(e) => setNewEntityData({...newEntityData, name: e.target.value})}
                                     type="text"
                                     placeholder={`${entityName}`}
                                 />
-                                <div className={styles.createDevice__inputButtonWrapper}>
+                                <div className={styles.selectEntityList__inputButtonWrapper}>
                                     <button
-                                        className={styles.createDevice__inputButton}
-                                        onClick={() => createNewEntity(`${entityName}`)}
+                                        className={styles.selectEntityList__inputButton}
+                                        onClick={() => newEntityData.img && newEntityData.name && createNewEntity(`${entityName}`)}
                                     >
-                                        <Icon className={styles.createDevice__icon} name="Plus" size={12}/>
+                                        <Icon className={styles.selectEntityList__icon} name="Plus" size={12}/>
                                     </button>
                                 </div>
                             </label>
-                            <label htmlFor="image-upload" className={styles.createDevice__btnSection} onClick={(e) => e.stopPropagation()}>
+                            <label htmlFor="image-upload" className={styles.selectEntityList__btnSection} onClick={(e) => e.stopPropagation()}>
                                 <input
-                                    className={styles.createDevice__displayNone}
+                                    className={styles.selectEntityList__displayNone}
                                     type="file"
                                     id="image-upload"
-                                    onChange={(e) => setNewEntityData({...newEntityData, img: e.target.files?.[0] || ''})}
+                                    value={newEntityData.img?.files?.[0].name || ''}
+                                    onChange={(e) => setNewEntityData({...newEntityData, img: e.target.files?.[0]})}
                                 />
-                                <div className={classnames(styles.createDevice__inputButton, {[styles.createDevice__inputButton_active]: newEntityData.img})}>
-                                {/*<div className={styles.createDevice__inputButton}>*/}
-                                    <Icon className={styles.createDevice__icon} name="Image" size={12}/>
+                                <div className={classnames(styles.selectEntityList__inputButton, {[styles.selectEntityList__inputButton_active]: newEntityData.img})}>
+                                    <Icon className={styles.selectEntityList__icon} name="Image" size={12}/>
                                 </div>
-                                {removeImageButtonVisibility()}
+                                {switchRemoveButton()}
                             </label>
                         </div>
                     )}
@@ -199,4 +197,4 @@ const CreateEntity: FC<CreateEntity> = ({
     );
 };
 
-export default CreateEntity;
+export default SelectEntityList;

@@ -8,47 +8,47 @@ $font-medium: 25px;
 $font-large: 35px;
 $purple-shadow: rgba(117, 74, 190, 0.38);
 
-.createDevice__entityForm {
-  padding-top: 15px;
-}
-
-.createDevice__entityFormWrapper {
+.selectEntityList {
   display: flex;
   flex-direction: column;
   padding: 6px 0;
 }
 
-.createDevice__inputText {
+.selectEntityList__form {
+  padding-top: 15px;
+}
+
+.selectEntityList__inputText {
   margin-top: -5px;
 }
 
-.createDevice__select {
+.selectEntityList__select {
   border: 2px solid $background-white;
   height: 40px;
   outline: none;
 }
 
-.createDevice__createEntity {
+.selectEntityList__createEntity {
   display: flex;
   justify-content: start;
   margin: 0 0 10px 10px;
 }
 
-.createDevice__input {
+.selectEntityList__input {
   background: $background-white;
   border: 2px solid $background-white;
   border-bottom: 0.1em solid $theme-black;
   color: $theme-black;
 }
 
-.createDevice__input_inList {
+.selectEntityList__input_inList {
   background: white;
   border: 2px solid white;
   border-bottom: 0.1em solid $theme-black;
   color: $theme-black;
 }
 
-.createDevice__btn_mini {
+.selectEntityList__btn_mini {
   background: $theme-black;
   border: 2px solid $theme-black;
   border-radius: 10px;
@@ -60,7 +60,7 @@ $purple-shadow: rgba(117, 74, 190, 0.38);
   width: 50px;
 }
 
-.createDevice__inputButton {
+.selectEntityList__inputButton {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,12 +71,12 @@ $purple-shadow: rgba(117, 74, 190, 0.38);
   color: $text-color;
   cursor: pointer;
   height: 20px;
-  margin-left: 15px;
+  margin-left: 10px;
   transition: 0.5s;
-  width: 20px;
+  width: 25px;
 }
 
-.createDevice__inputButton_active {
+.selectEntityList__inputButton_active {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -90,30 +90,30 @@ $purple-shadow: rgba(117, 74, 190, 0.38);
   height: 20px;
   margin-left: 15px;
   transition: 0.5s;
-  width: 20px;
+  width: 25px;
 }
 
-.createDevice__inputButtonWrapper {
+.selectEntityList__inputButtonWrapper {
   display: flex;
   justify-content: center;
   align-items: end;
 }
 
-.createDevice__inputButtonWrapper_left {
+.selectEntityList__inputButtonWrapper_left {
   display: flex;
   align-items: center;
   justify-content: start;
   height: 30px;
 }
 
-.createDevice__icon {
+.selectEntityList__icon {
   display: inherit;
 }
 
-.createDevice__displayNone {
+.selectEntityList__displayNone {
   display: none;
 }
 
-.createDevice__btnSection {
+.selectEntityList__btnSection {
   display: flex;
 }
