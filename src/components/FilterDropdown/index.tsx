@@ -47,7 +47,7 @@ const FilterDropdown: FC<{ name: string }> = ({ name }) => {
                 </span>
                 <div
                     className={classnames(styles.dropdown__iconWrapper, {[styles.dropdown__iconWrapper_open]: isDropdownActive})}>
-                    <Icon className={styles.dropdown__icon} name="ArrowDown" size={16}/>
+                    <Icon className={styles.dropdown__icon} name="ArrowDown" size={16} />
                 </div>
             </div>
             <div className={styles.dropdown__listWrapper}>

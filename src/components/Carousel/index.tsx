@@ -61,8 +61,8 @@ const Carousel: FC<CarouselProps> = ({ children }) => {
                 </div>
                 <div className={styles.swipeBarWrapper}>
                     <div className={styles.swipeBar}>
-                        <Icon className={styles.left_arrow} onClick={handleLeftClick} name="ArrowDown" size={25}/>
-                        <Icon className={styles.right_arrow} onClick={handleRightClick} name="ArrowDown" size={25}/>
+                        <Icon className={styles.left_arrow} onClick={handleLeftClick} name="ArrowDown" size={25} />
+                        <Icon className={styles.right_arrow} onClick={handleRightClick} name="ArrowDown" size={25} />
                     </div>
                 </div>
             </div>

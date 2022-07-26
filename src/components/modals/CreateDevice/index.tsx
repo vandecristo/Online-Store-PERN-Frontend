@@ -33,10 +33,10 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
             <div className={styles.createDevice__pictureName}>
                 {data.img ? (
                     <>
-                        <Icon className={styles.createDevice__icon} name="Image" size={20}/>
+                        <Icon className={styles.createDevice__icon} name="Image" size={20} />
                         <span>{data.imageName}</span>
                         <div className={styles.createDevice__removeItem} onClick={() => setData({...data, img: ''})}>
-                            <Icon className={styles.createDevice__icon} name="TrashCan" size={20}/>
+                            <Icon className={styles.createDevice__icon} name="TrashCan" size={20} />
                         </div>
                     </>
                 ) : (
@@ -106,14 +106,12 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
                                 setData={setData}
                                 entityId="typeId"
                                 entityName="Type"
-                                showMessage={showMessage}
                             />
                             <SelectEntityList
                                 data={data}
                                 setData={setData}
                                 entityId="brandId"
                                 entityName="Brand"
-                                showMessage={showMessage}
                             />
                             <div className={styles.createDevice__inputWrapper}>
                                 <input

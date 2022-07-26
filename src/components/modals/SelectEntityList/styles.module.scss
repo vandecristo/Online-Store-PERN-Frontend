@@ -28,22 +28,9 @@ $purple-shadow: rgba(117, 74, 190, 0.38);
   outline: none;
 }
 
-.selectEntityList__createEntity {
-  display: flex;
-  justify-content: start;
-  margin: 0 0 10px 10px;
-}
-
 .selectEntityList__input {
   background: $background-white;
   border: 2px solid $background-white;
-  border-bottom: 0.1em solid $theme-black;
-  color: $theme-black;
-}
-
-.selectEntityList__input_inList {
-  background: white;
-  border: 2px solid white;
   border-bottom: 0.1em solid $theme-black;
   color: $theme-black;
 }
@@ -74,40 +61,6 @@ $purple-shadow: rgba(117, 74, 190, 0.38);
   margin-left: 10px;
   transition: 0.5s;
   width: 25px;
-}
-
-.selectEntityList__inputButton_active {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #754abe;
-  border: 2px solid #754abe;
-  box-shadow: 0 0 5px 4px $purple-shadow;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  height: 20px;
-  margin-left: 15px;
-  transition: 0.5s;
-  width: 25px;
-}
-
-.selectEntityList__inputButtonWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-}
-
-.selectEntityList__inputButtonWrapper_left {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  height: 30px;
-}
-
-.selectEntityList__icon {
-  display: inherit;
 }
 
 .selectEntityList__displayNone {

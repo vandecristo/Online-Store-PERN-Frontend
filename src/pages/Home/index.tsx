@@ -43,7 +43,7 @@ const Home: FC = observer(() => {
         <div className={styles.home}>
             <div className={styles.home__inputWrapper}>
                 <input className={styles.home__input} type="text" placeholder={placeholder}/>
-                <Icon className={styles.home__loupeIcon} name="Loupe" size={22}/>
+                <Icon className={styles.home__loupeIcon} name="Loupe" size={22} />
             </div>
             <div className={styles.home__item_slider}>
                 <Slider />
@@ -57,10 +57,10 @@ const Home: FC = observer(() => {
                 />
             </div>
             <div className={styles.home__item}>
-                <CardList cards={reviewsArr} title="Reviews:"/>
+                <CardList cards={reviewsArr} title="Reviews:" />
             </div>
             <div className={styles.home__item}>
-                <CardList cards={newsArr} title="News:"/>
+                <CardList cards={newsArr} title="News:" />
             </div>
             <div className={styles.home__item}>
                 <CategoryBar
@@ -73,7 +73,7 @@ const Home: FC = observer(() => {
             <div className={styles.home__subscription}>
                 <div className={styles.home__text}>I want to be aware of promotions and new products</div>
                 <input className={styles.home__input} type="text" placeholder="email"/>
-                <Icon className={styles.home__loupeIcon} name="Plus" size={22}/>
+                <Icon className={styles.home__loupeIcon} name="Plus" size={22} />
             </div>
         </div>
     );
