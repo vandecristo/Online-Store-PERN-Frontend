@@ -44,3 +44,21 @@ export const createDevice = async (device: FormData) => {
 
     return data;
 };
+
+export const deleteDevice = async (id: IdFromUseParams) => {
+    const { data } = await $authHost.delete(`api/device/${id}`);
+
+    return data;
+};
+
+export const deleteType = async (id: IdFromUseParams) => {
+    const { data } = await $authHost.delete(`api/type/${id}`);
+
+    return data;
+};
+
+export const deleteBrand = async (id: IdFromUseParams) => {
+    const { data } = await $authHost.delete(`api/brand/${id}`);
+
+    return data;
+};

@@ -108,10 +108,17 @@ $theme-white: #e4e4e7;
   width: 115px;
 }
 
+.admin__button_active {
+  background: black;
+  box-shadow: 0 0 7px $text-color-hover;
+  color: #e4e4e7;
+  font-weight: 600;
+}
+
 .admin__button:hover {
-  background: $theme-black;
-  color: $text-color;
-  transition: 0.3s;
+  border: 1px solid $text-color-hover;
+  box-shadow: 0 0 7px $text-color-hover;
+  transition: 0.2s;
 }
 
 .adminBar__btnGroup {

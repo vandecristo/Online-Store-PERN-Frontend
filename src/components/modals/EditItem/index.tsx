@@ -12,20 +12,20 @@ type PopupOption = {
 };
 
 interface CreateBrandProps {
-    togglePopup: () => void,
+    setPopup: (arg: string) => void,
     popupOptions: PopupOption,
 }
 
-const EditItem: FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
+const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions }) => {
     const [data, setData] = useState<{ name: string }>({ name: '' });
 
     const { enqueueSnackbar } = useSnackbar();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        createBrand(data).then(() => togglePopup());
+        createBrand(data).then(() => setPopup(''));
         enqueueSnackbar(`${popupOptions.type} was successfully changed.`);
-        togglePopup();
+        setPopup('');
     };
 
     return (
@@ -48,7 +48,7 @@ const EditItem: FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
                         </div>
                     </form>
                     <div className={styles.createBrand__btnWrapper}>
-                        <button className={styles.createBrand__btn} onClick={() => togglePopup()}>
+                        <button className={styles.createBrand__btn} onClick={() => setPopup('')}>
                             <span>Close</span>
                         </button>
                         <input

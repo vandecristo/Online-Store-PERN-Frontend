@@ -9,10 +9,10 @@ import { PreparedDeviceData } from '../../../../interfaces';
 import styles from './styles.module.scss';
 
 interface CreateBrandProps {
-    togglePopup: () => void,
+    setPopup: (arg: string) => void,
 }
 
-const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
+const CreateDevice: FC<CreateBrandProps> = ({ setPopup }) => {
     const initialState: PreparedDeviceData = {
         name: '',
         price: '',
@@ -74,7 +74,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
 
     const handleCloseForm = () => {
         setData(initialState);
-        togglePopup();
+        setPopup('');
     };
 
     return (
