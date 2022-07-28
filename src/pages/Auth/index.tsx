@@ -52,7 +52,7 @@ const Auth: FC = observer(() => {
                             name="email"
                             value={currentUser.email}
                             onChange={(e) => setCurrentUser({ ...currentUser, email: e.target.value })}
-                        ></input>
+                        />
                     </div>
                     <div className={styles.auth__item}>
                         <input
@@ -62,7 +62,7 @@ const Auth: FC = observer(() => {
                             name="password"
                             value={currentUser.password}
                             onChange={(e) => setCurrentUser({ ...currentUser, password: e.target.value })}
-                        ></input>
+                        />
                     </div>
                     <div className={styles.auth__buttonWrapper}>
                         <div className={styles.auth__signIn}>

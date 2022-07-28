@@ -1,31 +1,34 @@
 import { FC, FormEvent, useState } from 'react';
 import { useSnackbar } from 'notistack';
 
-import { createBrand } from '../../../http/deviceAPI';
+import { patchBrand } from '../../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
 type PopupOption = {
-    type: string,
+    type?: string,
     name: string,
     id: number,
 };
 
 interface CreateBrandProps {
-    togglePopup: () => void,
+    setPopup: (arg: string) => void,
     popupOptions: PopupOption,
 }
 
-const EditItem: FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
-    const [data, setData] = useState<{ name: string }>({ name: '' });
+const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions }) => {
+    const [data, setData] = useState<PopupOption>({ id: popupOptions.id, name: '' });
 
     const { enqueueSnackbar } = useSnackbar();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        createBrand(data).then(() => togglePopup());
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('id', data.id.toString());
+        patchBrand(formData).then(() => setPopup(''));
         enqueueSnackbar(`${popupOptions.type} was successfully changed.`);
-        togglePopup();
+        setPopup('');
     };
 
     return (
@@ -43,12 +46,12 @@ const EditItem: FC<CreateBrandProps> = ({ togglePopup, popupOptions }) => {
                                 name="name"
                                 placeholder="name"
                                 value={data.name}
-                                onChange={e => setData({ name: e.target.value })}
+                                onChange={e => setData({...data, name: e.target.value})}
                             />
                         </div>
                     </form>
                     <div className={styles.createBrand__btnWrapper}>
-                        <button className={styles.createBrand__btn} onClick={() => togglePopup()}>
+                        <button className={styles.createBrand__btn} onClick={() => setPopup('')}>
                             <span>Close</span>
                         </button>
                         <input

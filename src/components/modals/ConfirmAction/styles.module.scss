@@ -1,0 +1,78 @@
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$gray-text: #787885;
+$font-small: 14px;
+$font-medium: 25px;
+$font-large: 35px;
+
+.confirmAction {
+  display: flex;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.62);
+  height: 100vh;
+  width: 100vw;
+  margin-top: -90px;
+  transition: 1s;
+}
+
+.confirmAction__wrapper {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.confirmAction__body {
+  background: #F7F7FA;
+  min-width: 400px;
+  width: 60%;
+}
+
+.confirmAction__title {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.createBrand__item {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+.confirmAction__btnGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.confirmAction__btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $theme-black;
+  border-radius: 10px;
+  color: $text-color;
+  cursor: pointer;
+  font-size: 14px;
+  height: 32px;
+  transition: 0.2s;
+  width: 160px;
+}
+
+.confirmAction__btn > span {
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.confirmAction__btn:hover {
+  color: $text-color-hover;
+  transition: 0.2s;
+}
+
+.confirmAction__btn:hover > span {
+  color: $text-color-hover;
+  transition: 0.2s;
+}

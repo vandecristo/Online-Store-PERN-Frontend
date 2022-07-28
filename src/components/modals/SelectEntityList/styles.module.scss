@@ -1,0 +1,72 @@
+$background-white: #F7F7FA;
+$text-color: white;
+$text-color-hover: #754abe;
+$theme-black: #181818;
+$gray-text: #787885;
+$font-small: 14px;
+$font-medium: 25px;
+$font-large: 35px;
+$purple-shadow: rgba(117, 74, 190, 0.38);
+
+.selectEntityList {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+}
+
+.selectEntityList__form {
+  padding-top: 15px;
+}
+
+.selectEntityList__inputText {
+  margin-top: -5px;
+}
+
+.selectEntityList__select {
+  border: 2px solid $background-white;
+  height: 40px;
+  outline: none;
+}
+
+.selectEntityList__input {
+  background: $background-white;
+  border: 2px solid $background-white;
+  border-bottom: 0.1em solid $theme-black;
+  color: $theme-black;
+}
+
+.selectEntityList__btn_mini {
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  border-radius: 10px;
+  color: $text-color;
+  cursor: pointer;
+  font-size: 14px;
+  height: 32px;
+  transition: 0.2s;
+  width: 50px;
+}
+
+.selectEntityList__inputButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $theme-black;
+  border: 2px solid $theme-black;
+  border-radius: 5px;
+  color: $text-color;
+  cursor: pointer;
+  height: 20px;
+  margin-left: 10px;
+  transition: 0.5s;
+  width: 25px;
+}
+
+.selectEntityList__displayNone {
+  display: none;
+}
+
+.selectEntityList__btnSection {
+  display: flex;
+}

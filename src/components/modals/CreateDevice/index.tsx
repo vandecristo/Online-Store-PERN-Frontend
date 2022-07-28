@@ -2,17 +2,17 @@ import { FC, FormEvent, useState } from 'react';
 import { useSnackbar } from 'notistack';
 
 import { createDevice } from '../../../http/deviceAPI';
-import CreateEntity from '../CreateEntity';
+import SelectEntityList from '../SelectEntityList';
 import Icon from '../../Icon';
 import { PreparedDeviceData } from '../../../../interfaces';
 
 import styles from './styles.module.scss';
 
 interface CreateBrandProps {
-    togglePopup: () => void,
+    setPopup: (arg: string) => void,
 }
 
-const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
+const CreateDevice: FC<CreateBrandProps> = ({ setPopup }) => {
     const initialState: PreparedDeviceData = {
         name: '',
         price: '',
@@ -33,10 +33,10 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
             <div className={styles.createDevice__pictureName}>
                 {data.img ? (
                     <>
-                        <Icon className={styles.createDevice__icon} name="Image" size={20}/>
+                        <Icon className={styles.createDevice__icon} name="Image" size={20} />
                         <span>{data.imageName}</span>
                         <div className={styles.createDevice__removeItem} onClick={() => setData({...data, img: ''})}>
-                            <Icon className={styles.createDevice__icon} name="TrashCan" size={20}/>
+                            <Icon className={styles.createDevice__icon} name="TrashCan" size={20} />
                         </div>
                     </>
                 ) : (
@@ -74,7 +74,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
 
     const handleCloseForm = () => {
         setData(initialState);
-        togglePopup();
+        setPopup('');
     };
 
     return (
@@ -101,19 +101,17 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
                             />
                         </div>
                         <div className={styles.createDevice__item}>
-                            <CreateEntity
+                            <SelectEntityList
                                 data={data}
                                 setData={setData}
                                 entityId="typeId"
                                 entityName="Type"
-                                showMessage={showMessage}
                             />
-                            <CreateEntity
+                            <SelectEntityList
                                 data={data}
                                 setData={setData}
                                 entityId="brandId"
                                 entityName="Brand"
-                                showMessage={showMessage}
                             />
                             <div className={styles.createDevice__inputWrapper}>
                                 <input
@@ -133,7 +131,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ togglePopup }) => {
                         <button className={styles.createDevice__btn} onClick={handleCloseForm}>
                             <span>Close</span>
                         </button>
-                        <input className={styles.createDevice__btn} form="newDeviceData" type="submit" value="Add"/>
+                        <input className={styles.createDevice__btn} form="newDeviceData" type="submit" value="Add" />
                     </div>
                 </div>
             </div>

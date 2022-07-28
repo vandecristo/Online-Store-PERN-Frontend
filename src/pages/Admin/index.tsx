@@ -1,9 +1,13 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import classnames from 'classnames';
+import { useSnackbar } from 'notistack';
 
+import AdminBody from '../../components/AdminBody';
 import { BasicItem } from '../../../interfaces';
+import ConfirmAction from '../../components/modals/ConfirmAction';
 import CreateDevice from '../../components/modals/CreateDevice';
 import EditItem from '../../components/modals//EditItem';
-import { fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
+import { deleteBrand, deleteDevice, deleteType, fetchBrands, fetchDevices, fetchTypes } from '../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
@@ -35,9 +39,10 @@ type PopupOption = {
 
 const Admin: FC = () => {
     const [items, setItems] = useState<BasicItem[]>([]);
-    const [isPopupOpen, setPopupOpen] = useState<boolean>(false);
-    const [popupOptions, setPopupOptions] = useState<PopupOption>({ type: '', name: '', id: 0 });
-    
+    const [popupOptions, setPopupOptions] = useState<PopupOption>({ type: 'Devices', name: '', id: 0 });
+    const [popupTask, setPopupTask] = useState('');
+    const { enqueueSnackbar } = useSnackbar();
+
     const buttonsArr = [ ItemButton, UserButton, EventButton];
 
     const fetchAndSpreadDevices = async () => {
@@ -45,61 +50,86 @@ const Admin: FC = () => {
         setItems(rows);
     };
 
+    useEffect(() => {
+        fetchAndSpreadDevices();
+    },[]);
+
     const showItems = async (name: ItemButton) => {
         setPopupOptions({ type: ItemButton[name], name: '', id: 0 });
-
         switch (+name) {
             case ItemButton.Devices:
                 return fetchAndSpreadDevices();
             case ItemButton.Types:
-                return setItems(await fetchBrands());
-            case ItemButton.Brands:
                 return setItems(await fetchTypes());
+            case ItemButton.Brands:
+                return setItems(await fetchBrands());
+            default:
+                break;
+        }
+    };
+
+    const deleteConfirmation = async (id: number, name: string) => {
+        setPopupOptions({...popupOptions, id, name})
+        setPopupTask('ConfirmAction');
+    };
+
+    const removeItem = async (popupOptions: PopupOption) => {
+        const { id, name } = popupOptions;
+        try {
+            switch (popupOptions.type) {
+                case Object.values(ItemButton)[0]:
+                    setItems(await deleteDevice(id.toString()));
+                    break;
+                case Object.values(ItemButton)[1]:
+                    setItems(await deleteType(id.toString()));
+                    break;
+                case Object.values(ItemButton)[2]:
+                    setItems(await deleteBrand(id.toString()));
+                    break;
+                default:
+                    break;
+            }
+            enqueueSnackbar(`${name} was successfully deleted from ${popupOptions.type}`);
+        } catch (e) {
+            enqueueSnackbar(`Error, something goes wrong, ${e}`);
+        }
+    };
+
+    const createPopup = () => {
+        switch (popupTask) {
+            case 'ConfirmAction':
+                return (<ConfirmAction setPopup={setPopupTask} removeItem={removeItem} popupOptions={popupOptions} />)
+            case 'EditItem':
+                return ( <EditItem setPopup={setPopupTask} popupOptions={popupOptions} />);
+            case 'CreateDevice':
+                return ( <CreateDevice setPopup={setPopupTask} />);
             default:
                 break;
         }
     };
 
     const openEditPopup = (item: BasicItem) => {
-        togglePopup();
-        setPopupOptions((prev) => ({ ...prev, name: item.name, id: item.id }));
-    };
-
-    const deleteConfirmation = (id: number) => {
-        //Delete by id
-    };
-
-    const togglePopup = () => {
-        setPopupOpen(!isPopupOpen);
-    };
-
-    const createPopup = (option: PopupOption) => {
-        if (option.name === 'device') {
-            return ( <CreateDevice togglePopup={togglePopup} /> );
-        } else {
-            return ( <EditItem togglePopup={togglePopup} popupOptions={popupOptions} /> );
-        }
+        setPopupTask('EditItem');
+        setPopupOptions((prev) => ({...prev, name: item.name, id: item.id}));
     };
 
     return (
         <div className={styles.admin}>
             <div className={styles.adminBar}>
-                {isPopupOpen && <>{createPopup(popupOptions)}</>}
+                {popupTask && <>{createPopup()}</>}
                 <div className={styles.adminBar__wrapper}>
                     <span className={styles.adminBar__title}>Admin bar:</span>
                     <div className={styles.adminBar__btnGroup}>
                         <span>Create new items </span>
-                        <div>
                             <button
                                 className={styles.admin__button}
                                 value="device"
                                 onClick={() => {
-                                    togglePopup();
-                                    setPopupOptions({ type: '', name:'device', id: 0 });
+                                    setPopupTask('CreateDevice');
+                                    setPopupOptions({...popupOptions, name: 'device', id: 0 });
                                 }}>
                                 Add Device
                             </button>
-                        </div>
                     </div>
                     {buttonsArr.map((item, index) => (
                         <div className={styles.adminBar__btnGroup} key={index}>
@@ -109,9 +139,10 @@ const Admin: FC = () => {
                                     (item, keyIndex) => (
                                         <button
                                             key={index + Number(item) + 1}
-                                            className={styles.admin__button}
+                                            className={classnames(styles.admin__button, {[styles.admin__button_active]: buttonsArr[index][Number(item)] === popupOptions.type})}
                                             value={Number(item)}
-                                            onClick={() => showItems(keyIndex)}>
+                                            onClick={() => showItems(keyIndex)}
+                                        >
                                             {buttonsArr[index][Number(item)]}
                                         </button>
                                     ))
@@ -121,20 +152,7 @@ const Admin: FC = () => {
                     ))}
                 </div>
             </div>
-            <div className={styles.adminBody}>
-                {items?.map((item) => (
-                    <div key={item.id} className={styles.adminBody__item}>
-                        <div className={styles.adminBody__block}>name: {item.name}</div>
-                        <div className={styles.adminBody__block}>id: {item.id}</div>
-                        <div className={styles.adminBody__btnWrapper}>
-                            <button className={styles.adminBody__btn} onClick={() => openEditPopup(item)}>Edit</button>
-                            <button className={styles.adminBody__btn} onClick={() => deleteConfirmation(item.id)}>
-                                <span>Delete</span>
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <AdminBody items={items} deleteConfirmation={deleteConfirmation} openEditPopup={openEditPopup} />
         </div>
     );
 };

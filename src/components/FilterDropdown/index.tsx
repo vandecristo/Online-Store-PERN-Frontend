@@ -47,13 +47,11 @@ const FilterDropdown: FC<{ name: string }> = ({ name }) => {
                 </span>
                 <div
                     className={classnames(styles.dropdown__iconWrapper, {[styles.dropdown__iconWrapper_open]: isDropdownActive})}>
-                    <Icon className={styles.dropdown__icon} name="ArrowDown" size={16}/>
+                    <Icon className={styles.dropdown__icon} name="ArrowDown" size={16} />
                 </div>
             </div>
             <div className={styles.dropdown__listWrapper}>
-                <div
-                    className={classnames(styles.dropdown__list, {[styles.dropdown__list_active]: isDropdownActive})}
-                >
+                <div className={classnames(styles.dropdown__list, {[styles.dropdown__list_active]: isDropdownActive})}>
                     {deviceStore[entityData.name]?.map((item) => ( // .types or .brands
                         <li
                             className={classnames(styles.dropdown__listElement, {[styles.dropdown__listElement_active]: item.id === currentActiveId})}

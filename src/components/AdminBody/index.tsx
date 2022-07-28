@@ -1,36 +1,45 @@
 import { FC } from 'react';
 
-import { BasicItem } from '../../../interfaces';
+import { BasicItem, ProcessEnv } from '../../../interfaces';
 
 import styles from './styles.module.scss';
 
-const AdminBody: FC<BasicItem[]> = (items) =>{
-    const openEditPopup = (item: BasicItem) => {
-        // This function must be open popup for editing Devices/ types / brands
-    };
+interface AdminBody {
+    items: BasicItem[],
+    deleteConfirmation: (id: number, name: string) => void,
+    openEditPopup: (item: BasicItem) => void,
+}
 
-    const deleteConfirmation = (id: number) => {
-        // This function open popup that asks 'Are you sure want to delete Devices/types/ brands'
-        // If yes then delete by id and type
+const AdminBody: FC<AdminBody> = ({ items, deleteConfirmation, openEditPopup }) => {
+    const { REACT_APP_API_URL }: ProcessEnv = process.env;
+
+    const defaultImage = { category: 'defaultCategory.png'};
+
+    const createImageLink = (item: BasicItem) => {
+        const image = item.img ? item.img : defaultImage;
+
+        return String(REACT_APP_API_URL ? REACT_APP_API_URL + image : 'http://localhost:5000/' + image);
     };
 
     return (
         <div className={styles.adminBody}>
-            {items.length &&
-                items.map((item) => (
-                    <div key={item.id} className={styles.adminBody__item}>
-                        <div className={styles.adminBody__block}>name: {item.name}</div>
-                        <div className={styles.adminBody__block}>id: {item.id}</div>
-                        <div className={styles.adminBody__btnWrapper}>
-                            <button className={styles.adminBody__btn} onClick={() => openEditPopup(item)}>Edit</button>
-                            <button className={styles.adminBody__btn} onClick={() => deleteConfirmation(item.id)}>
-                                <span>Delete</span>
-                            </button>
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
+        {items?.map((item) => (
+            <div key={item.id} className={styles.adminBody__item}>
+                <div className={styles.device__picture}>
+                    <img className={styles.device__image} src={createImageLink(item)} alt="no-picture"/>
+                </div>
+                <div className={styles.adminBody__block}>id: {item.id}</div>
+                <div className={styles.adminBody__block}>name: {item.name}</div>
+                {item.price && <div className={styles.adminBody__block}>price: {item.price}</div>}
+                <div className={styles.adminBody__btnWrapper}>
+                    <button className={styles.adminBody__btn} onClick={() => openEditPopup(item)}>Edit</button>
+                    <button className={styles.adminBody__btn} onClick={() => deleteConfirmation(item.id, item.name)}>
+                        <span>Delete</span>
+                    </button>
+                </div>
+            </div>
+        ))}
+    </div>
     );
 };
 
