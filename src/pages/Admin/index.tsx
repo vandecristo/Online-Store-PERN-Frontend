@@ -100,7 +100,7 @@ const Admin: FC = () => {
             case 'ConfirmAction':
                 return (<ConfirmAction setPopup={setPopupTask} removeItem={removeItem} popupOptions={popupOptions} />)
             case 'EditItem':
-                return ( <EditItem setPopup={setPopupTask} popupOptions={popupOptions} />);
+                return ( <EditItem setPopup={setPopupTask} popupOptions={popupOptions} setItems={setItems} items={items}/>);
             case 'CreateDevice':
                 return ( <CreateDevice setPopup={setPopupTask} />);
             default:

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import {FC, useEffect} from 'react';
 
 import { BasicItem, ProcessEnv } from '../../../interfaces';
 
@@ -21,6 +21,9 @@ const AdminBody: FC<AdminBody> = ({ items, deleteConfirmation, openEditPopup }) 
         return String(REACT_APP_API_URL ? REACT_APP_API_URL + image : 'http://localhost:5000/' + image);
     };
 
+    useEffect(() => {
+        console.log('irtr3453409853049534',items)
+    },[items]);
     return (
         <div className={styles.adminBody}>
         {items?.map((item) => (
