@@ -1,12 +1,12 @@
 import { FC, FormEvent, useState } from 'react';
 import { useSnackbar } from 'notistack';
 
-import { createBrand } from '../../../http/deviceAPI';
+import { patchBrand } from '../../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
 type PopupOption = {
-    type: string,
+    type?: string,
     name: string,
     id: number,
 };
@@ -17,13 +17,16 @@ interface CreateBrandProps {
 }
 
 const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions }) => {
-    const [data, setData] = useState<{ name: string }>({ name: '' });
+    const [data, setData] = useState<PopupOption>({ id: popupOptions.id, name: '' });
 
     const { enqueueSnackbar } = useSnackbar();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        createBrand(data).then(() => setPopup(''));
+        const formData = new FormData();
+        formData.append('name', data.name);
+        formData.append('id', data.id.toString());
+        patchBrand(formData).then(() => setPopup(''));
         enqueueSnackbar(`${popupOptions.type} was successfully changed.`);
         setPopup('');
     };
@@ -43,7 +46,7 @@ const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions }) => {
                                 name="name"
                                 placeholder="name"
                                 value={data.name}
-                                onChange={e => setData({ name: e.target.value })}
+                                onChange={e => setData({...data, name: e.target.value})}
                             />
                         </div>
                     </form>

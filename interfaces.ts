@@ -10,6 +10,7 @@ export interface PreparedDeviceData {
 export interface BasicItem {
     id: number,
     name: string,
+    price?: number,
     img: string | null,
 }
 

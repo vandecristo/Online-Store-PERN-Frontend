@@ -1,8 +1,6 @@
 import { $authHost, $host } from './index';
 import { IdFromUseParams } from '../../types';
 
-type CreateParams = { name: string, img: string };
-
 export const fetchTypes = async () => {
     const { data } = await $host.get('api/type');
 
@@ -15,6 +13,12 @@ export const createType = async (type: FormData) => {
     return data;
 };
 
+export const patchType = async (type: FormData) => {
+    const { data } = await $authHost.patch('api/type', type);
+
+    return data;
+};
+
 export const fetchBrands = async () => {
     const { data } = await $host.get('api/brand');
 
@@ -23,6 +27,12 @@ export const fetchBrands = async () => {
 
 export const createBrand = async (brand: FormData) => {
     const { data } = await $authHost.post('api/brand', brand);
+
+    return data;
+};
+
+export const patchBrand = async (brand: FormData) => {
+    const { data } = await $authHost.patch('api/brand', brand);
 
     return data;
 };
@@ -41,6 +51,12 @@ export const fetchDeviceById = async (id: IdFromUseParams ) => {
 
 export const createDevice = async (device: FormData) => {
     const { data } = await $authHost.post('api/device', device);
+
+    return data;
+};
+
+export const patchDevice = async (device: FormData) => {
+    const { data } = await $authHost.patch('api/device', device);
 
     return data;
 };

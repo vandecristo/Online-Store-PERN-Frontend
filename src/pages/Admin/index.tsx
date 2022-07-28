@@ -40,19 +40,19 @@ type PopupOption = {
 const Admin: FC = () => {
     const [items, setItems] = useState<BasicItem[]>([]);
     const [popupOptions, setPopupOptions] = useState<PopupOption>({ type: 'Devices', name: '', id: 0 });
-    const [popup, setPopup] = useState('');
+    const [popupTask, setPopupTask] = useState('');
     const { enqueueSnackbar } = useSnackbar();
 
     const buttonsArr = [ ItemButton, UserButton, EventButton];
-
-    useEffect(() => {
-        fetchAndSpreadDevices()
-    },[]);
 
     const fetchAndSpreadDevices = async () => {
         const { rows } = await fetchDevices();
         setItems(rows);
     };
+
+    useEffect(() => {
+        fetchAndSpreadDevices();
+    },[]);
 
     const showItems = async (name: ItemButton) => {
         setPopupOptions({ type: ItemButton[name], name: '', id: 0 });
@@ -70,20 +70,21 @@ const Admin: FC = () => {
 
     const deleteConfirmation = async (id: number, name: string) => {
         setPopupOptions({...popupOptions, id, name})
-        setPopup('ConfirmAction');
+        setPopupTask('ConfirmAction');
     };
 
-    const removeItem = async (id: string, name: string) => {
+    const removeItem = async (popupOptions: PopupOption) => {
+        const { id, name } = popupOptions;
         try {
             switch (popupOptions.type) {
                 case Object.values(ItemButton)[0]:
-                    setItems(await deleteDevice(id));
+                    setItems(await deleteDevice(id.toString()));
                     break;
                 case Object.values(ItemButton)[1]:
-                    setItems(await deleteType(id));
+                    setItems(await deleteType(id.toString()));
                     break;
                 case Object.values(ItemButton)[2]:
-                    setItems(await deleteBrand(id));
+                    setItems(await deleteBrand(id.toString()));
                     break;
                 default:
                     break;
@@ -94,42 +95,38 @@ const Admin: FC = () => {
         }
     };
 
-
     const createPopup = () => {
-        console.log('########### popupOptions.id:', popupOptions.id);
-        if (popup === 'ConfirmAction') {
-            return (<ConfirmAction setPopup={setPopup} removeItem={removeItem} id={popupOptions.id.toString()} />)
-        } else if (popup === 'EditItem') {
-            return ( <EditItem setPopup={setPopup} popupOptions={popupOptions} /> );
-        } else if (popup === 'CreateDevice') {
-            return ( <CreateDevice setPopup={setPopup} /> );
+        if (popupTask === 'ConfirmAction') {
+            return (<ConfirmAction setPopup={setPopupTask} removeItem={removeItem} popupOptions={popupOptions} />)
+        } else if (popupTask === 'EditItem') {
+            return ( <EditItem setPopup={setPopupTask} popupOptions={popupOptions} />);
+        } else if (popupTask === 'CreateDevice') {
+            return ( <CreateDevice setPopup={setPopupTask} />);
         }
     };
 
     const openEditPopup = (item: BasicItem) => {
-        setPopup('EditItem')
-        setPopupOptions((prev) => ({ ...prev, name: item.name, id: item.id }));
+        setPopupTask('EditItem');
+        setPopupOptions((prev) => ({...prev, name: item.name, id: item.id}));
     };
 
     return (
         <div className={styles.admin}>
             <div className={styles.adminBar}>
-                {popup && <>{createPopup()}</>}
+                {popupTask && <>{createPopup()}</>}
                 <div className={styles.adminBar__wrapper}>
                     <span className={styles.adminBar__title}>Admin bar:</span>
                     <div className={styles.adminBar__btnGroup}>
                         <span>Create new items </span>
-                        <div>
                             <button
                                 className={styles.admin__button}
                                 value="device"
                                 onClick={() => {
-                                    setPopup('CreateDevice');
-                                    setPopupOptions({ type: '', name:'device', id: 0 });
+                                    setPopupTask('CreateDevice');
+                                    setPopupOptions({...popupOptions, name: 'device', id: 0 });
                                 }}>
                                 Add Device
                             </button>
-                        </div>
                     </div>
                     {buttonsArr.map((item, index) => (
                         <div className={styles.adminBar__btnGroup} key={index}>

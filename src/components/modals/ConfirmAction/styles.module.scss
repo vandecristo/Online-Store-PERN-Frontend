@@ -6,7 +6,7 @@ $font-small: 14px;
 $font-medium: 25px;
 $font-large: 35px;
 
-.popup {
+.confirmAction {
   display: flex;
   position: fixed;
   background: rgba(0, 0, 0, 0.62);
@@ -16,19 +16,19 @@ $font-large: 35px;
   transition: 1s;
 }
 
-.popup__wrapper {
+.confirmAction__wrapper {
   display: flex;
   justify-content: center;
-  background: #F7F7FA;
   margin: auto;
 }
 
-.createBrand {
-  width: 60%;
+.confirmAction__body {
+  background: #F7F7FA;
   min-width: 400px;
+  width: 60%;
 }
 
-.createBrand__title {
+.confirmAction__title {
   display: flex;
   justify-content: center;
   padding: 10px;
@@ -40,39 +40,39 @@ $font-large: 35px;
   padding: 0 10px;
 }
 
-.createBrand__btnWrapper {
+.confirmAction__btnGroup {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
 }
 
-.createBrand__btn {
+.confirmAction__btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 160px;
-  height: 32px;
   background: $theme-black;
-  color: $text-color;
   border-radius: 10px;
+  color: $text-color;
   cursor: pointer;
   font-size: 14px;
+  height: 32px;
   transition: 0.2s;
+  width: 160px;
 }
 
-.createBrand__btn > span {
+.confirmAction__btn > span {
   font-size: 14px;
   transition: 0.2s;
 }
 
-.createBrand__btn:hover {
+.confirmAction__btn:hover {
   color: $text-color-hover;
   transition: 0.2s;
 }
 
-.createBrand__btn:hover > span {
+.confirmAction__btn:hover > span {
   color: $text-color-hover;
   transition: 0.2s;
 }
