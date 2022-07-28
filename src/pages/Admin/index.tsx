@@ -96,12 +96,15 @@ const Admin: FC = () => {
     };
 
     const createPopup = () => {
-        if (popupTask === 'ConfirmAction') {
-            return (<ConfirmAction setPopup={setPopupTask} removeItem={removeItem} popupOptions={popupOptions} />)
-        } else if (popupTask === 'EditItem') {
-            return ( <EditItem setPopup={setPopupTask} popupOptions={popupOptions} />);
-        } else if (popupTask === 'CreateDevice') {
-            return ( <CreateDevice setPopup={setPopupTask} />);
+        switch (popupTask) {
+            case 'ConfirmAction':
+                return (<ConfirmAction setPopup={setPopupTask} removeItem={removeItem} popupOptions={popupOptions} />)
+            case 'EditItem':
+                return ( <EditItem setPopup={setPopupTask} popupOptions={popupOptions} />);
+            case 'CreateDevice':
+                return ( <CreateDevice setPopup={setPopupTask} />);
+            default:
+                break;
         }
     };
 

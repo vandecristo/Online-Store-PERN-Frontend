@@ -131,7 +131,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ setPopup }) => {
                         <button className={styles.createDevice__btn} onClick={handleCloseForm}>
                             <span>Close</span>
                         </button>
-                        <input className={styles.createDevice__btn} form="newDeviceData" type="submit" value="Add"/>
+                        <input className={styles.createDevice__btn} form="newDeviceData" type="submit" value="Add" />
                     </div>
                 </div>
             </div>
