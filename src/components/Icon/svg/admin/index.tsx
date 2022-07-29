@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { IconProps } from '../../../../../interfaces';
 
 const Admin: FC<IconProps> = (props) => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" { ...props }>
         <path fillRule="evenodd" clipRule="evenodd" d="M4 13.5C4.27614 13.5 4.5 13.7239 4.5 14V21C4.5 21.2761 4.27614 21.5 4 21.5C3.72386 21.5 3.5 21.2761 3.5 21V14C3.5 13.7239 3.72386 13.5 4 13.5Z" fill="currentcolor"/>
         <path fillRule="evenodd" clipRule="evenodd" d="M4 2.5C4.27614 2.5 4.5 2.72386 4.5 3V10C4.5 10.2761 4.27614 10.5 4 10.5C3.72386 10.5 3.5 10.2761 3.5 10V3C3.5 2.72386 3.72386 2.5 4 2.5Z" fill="currentcolor"/>
         <path fillRule="evenodd" clipRule="evenodd" d="M12 11.5C12.2761 11.5 12.5 11.7239 12.5 12V21C12.5 21.2761 12.2761 21.5 12 21.5C11.7239 21.5 11.5 21.2761 11.5 21V12C11.5 11.7239 11.7239 11.5 12 11.5Z" fill="currentcolor"/>

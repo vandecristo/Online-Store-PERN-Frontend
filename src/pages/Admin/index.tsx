@@ -69,7 +69,7 @@ const Admin: FC = () => {
     };
 
     const deleteConfirmation = async (id: number, name: string) => {
-        setPopupOptions({...popupOptions, id, name})
+        setPopupOptions({ ...popupOptions, id, name })
         setPopupTask('ConfirmAction');
     };
 
@@ -100,9 +100,9 @@ const Admin: FC = () => {
             case 'ConfirmAction':
                 return (<ConfirmAction setPopup={setPopupTask} removeItem={removeItem} popupOptions={popupOptions} />)
             case 'EditItem':
-                return ( <EditItem setPopup={setPopupTask} popupOptions={popupOptions} setItems={setItems} items={items}/>);
+                return ( <EditItem setPopup={setPopupTask} popupOptions={popupOptions} setItems={setItems} />);
             case 'CreateDevice':
-                return ( <CreateDevice setPopup={setPopupTask} />);
+                return ( <CreateDevice setPopup={setPopupTask} setItems={setItems} />);
             default:
                 break;
         }
@@ -110,7 +110,7 @@ const Admin: FC = () => {
 
     const openEditPopup = (item: BasicItem) => {
         setPopupTask('EditItem');
-        setPopupOptions((prev) => ({...prev, name: item.name, id: item.id}));
+        setPopupOptions((prev) => ({ ...prev, name: item.name, id: item.id }));
     };
 
     return (
@@ -126,7 +126,7 @@ const Admin: FC = () => {
                                 value="device"
                                 onClick={() => {
                                     setPopupTask('CreateDevice');
-                                    setPopupOptions({...popupOptions, name: 'device', id: 0 });
+                                    setPopupOptions({ ...popupOptions, name: 'device', id: 0 });
                                 }}>
                                 Add Device
                             </button>

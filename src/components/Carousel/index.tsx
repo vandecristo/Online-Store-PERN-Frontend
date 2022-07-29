@@ -11,7 +11,6 @@ type StateUpdater = () => void;
 
 const Carousel: FC<CarouselProps> = ({ children }) => {
     const [offset, setOffset] = useState<number>(0);
-    const [childrenLength, setChildrenLength] = useState<number>(children.length);
 
     const offsetStep: number = 100 / children.length;
 
@@ -34,22 +33,16 @@ const Carousel: FC<CarouselProps> = ({ children }) => {
     }, [offset]);
 
     const handleLeftClick: StateUpdater = () => {
-        // 'Offset > 0' because values like '-1' is turn to true in boolean
-        if (childrenLength && offset > 0) {
-            setChildrenLength((length) => length - 1);
-
-            return setOffset((currentOffset) => {
-                // If we still have length, but offset is already negative (-1.000234) we return to start
-                if (childrenLength && !(currentOffset - offsetStep)) {
+        if (Math.floor(offset) < Math.floor(offsetStep)) {
+            setOffset(100 - offsetStep);
+        } else {
+            setOffset((currentOffset) => {
+                if (Math.floor(offset) === Math.floor(offsetStep)) {
                     return 0;
                 }
 
                 return currentOffset - offsetStep;
-            });
-        } else {
-            setChildrenLength(children.length);
-
-            return setOffset(100 - offsetStep);
+            })
         }
     };
 

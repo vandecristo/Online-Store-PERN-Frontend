@@ -13,10 +13,14 @@ const Shop: FC = observer(() => {
     const { deviceStore } = useContext<MobxStores>(Context);
 
     useEffect(() => {
-        fetchTypes().then(types => deviceStore.setTypes(types));
-        fetchBrands().then(brands => deviceStore.setBrands(brands));
-        fetchDevices().then(devices => deviceStore.setDevices(devices.rows));
+        fetchTypes().then((types) => deviceStore.setTypes(types));
+        fetchBrands().then((brands) => deviceStore.setBrands(brands));
+        fetchDevices().then((devices) => deviceStore.setDevices(devices.rows));
     }, []);
+
+    // useEffect(() => {
+    //     console.log(deviceStore.devices);
+    // },[deviceStore.devices]);
 
   return (
       <div className={styles.shop}>

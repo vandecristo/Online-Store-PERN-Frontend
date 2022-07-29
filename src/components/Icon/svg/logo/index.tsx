@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { IconProps } from '../../../../../interfaces';
 
 const Logo: FC<IconProps> = (props) => (
-    <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg width="640" height="480" xmlns="http://www.w3.org/2000/svg" { ...props }>
         <g className="layer">
             <title>Layer 1</title>
             <line fill="currentcolor" id="svg_1" stroke="#000000" strokeWidth="5" x1="206.5" x2="253.5" y1="342.5"

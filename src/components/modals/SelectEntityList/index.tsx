@@ -67,7 +67,7 @@ const SelectEntityList: FC<SelectEntityList> = ({
     ) => {
         const { target: { value }} = event;
         inputData !== value && setInputData(value);
-        setData({...data, [id]: value});
+        setData({ ...data, [id]: value });
         event.target.value = '';
     };
 

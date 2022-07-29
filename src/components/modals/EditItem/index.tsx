@@ -24,7 +24,6 @@ interface CreateBrandProps {
     setPopup: (arg: string) => void,
     popupOptions: PopupOption,
     setItems: (arg: BasicItem[]) => void,
-    items?: BasicItem[],
 }
 
 const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions, setItems }) => {
@@ -75,7 +74,7 @@ const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions, setItems }) =>
                     <>
                         <Icon className={styles.createDevice__icon} name="Image" size={20} />
                         <span>'Image added'</span>
-                        <div className={styles.createDevice__removeItem} onClick={() => setData({...data, img: ''})}>
+                        <div className={styles.createDevice__removeItem} onClick={() => setData({ ...data, img: '' })}>
                             <Icon className={styles.createDevice__icon} name="TrashCan" size={20} />
                         </div>
                     </>
@@ -103,7 +102,7 @@ const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions, setItems }) =>
                                 name="name"
                                 placeholder="name"
                                 value={data.name}
-                                onChange={e => setData({...data, name: e.target.value})}
+                                onChange={e => setData({ ...data, name: e.target.value })}
                             />
                         </div>
                         {popupOptions.type === 'Devices' && (
@@ -114,7 +113,7 @@ const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions, setItems }) =>
                                     name="price"
                                     placeholder="price"
                                     value={data.price}
-                                    onChange={e => setData({...data, price: e.target.value})}
+                                    onChange={e => setData({ ...data, price: e.target.value })}
                                 />
                             </div>
                             )}
@@ -123,7 +122,7 @@ const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions, setItems }) =>
                                 className={styles.createDevice__displayNone}
                                 type="file"
                                 id="file-upload"
-                                onChange={(e) => setData({...data, img: e.target.files?.[0]})}
+                                onChange={(e) => setData({ ...data, img: e.target.files?.[0] })}
                             />
                             <label htmlFor="file-upload" className={styles.createDevice__btn_input}>
                                 <span>+Image</span>

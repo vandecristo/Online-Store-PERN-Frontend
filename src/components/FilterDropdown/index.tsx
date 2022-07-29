@@ -2,18 +2,23 @@ import { FC, useContext, useEffect, useState } from 'react';
 import classnames from 'classnames';
 
 import Icon from '../Icon';
-import { BasicItem } from '../../../interfaces';
 import { Context } from '../../index';
+import { BasicItem } from '../../../interfaces';
 
 import styles from './styles.module.scss';
+
+interface FilterDropdown {
+    name: string,
+    setParams: (item: BasicItem, name: string) => void,
+}
 
 interface EntityDataFormat {
     name: 'brands' | 'types',
     method: 'setSelectedBrand' | 'setSelectedType',
 }
 
-const FilterDropdown: FC<{ name: string }> = ({ name }) => {
-    const { deviceStore } = useContext(Context);
+const FilterDropdown: FC<FilterDropdown> = ({ name, setParams }) => {
+    const { deviceStore, deviceStore: { selectedBrand }} = useContext(Context);
 
     const [isDropdownActive, setDropDownActive] = useState<boolean>(false);
     const [currentActiveId, setCurrentActiveId] = useState<number>(0);
@@ -23,9 +28,9 @@ const FilterDropdown: FC<{ name: string }> = ({ name }) => {
         setDropDownActive(!isDropdownActive);
     };
 
-    const handleClick = (item: BasicItem) => {
-        deviceStore[entityData.method](item);
+    const handleClick = (item: BasicItem, name: string) => {
         setCurrentActiveId(item.id);
+        setParams(item, name);
     };
 
     useEffect(() => {
@@ -56,7 +61,7 @@ const FilterDropdown: FC<{ name: string }> = ({ name }) => {
                         <li
                             className={classnames(styles.dropdown__listElement, {[styles.dropdown__listElement_active]: item.id === currentActiveId})}
                             key={item.id}
-                            onClick={() => handleClick(item)}
+                            onClick={() => handleClick(item, entityData.name)}
                         >
                             <span>{item.name}</span>
                         </li>

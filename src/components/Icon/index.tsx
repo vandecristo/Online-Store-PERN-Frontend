@@ -38,7 +38,7 @@ const Icon: FC<IconProps> = (props: IconProps) => {
     if (Component) {
         return (
             <Component
-                {...{ name, className, onClick }}
+                { ...{ name, className, onClick }}
                 width={size}
                 height={size}
             />

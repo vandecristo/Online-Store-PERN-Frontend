@@ -4,15 +4,16 @@ import { useSnackbar } from 'notistack';
 import { createDevice } from '../../../http/deviceAPI';
 import SelectEntityList from '../SelectEntityList';
 import Icon from '../../Icon';
-import { PreparedDeviceData } from '../../../../interfaces';
+import {BasicItem, PreparedDeviceData} from '../../../../interfaces';
 
 import styles from './styles.module.scss';
 
 interface CreateBrandProps {
     setPopup: (arg: string) => void,
+    setItems: (arg: BasicItem[]) => void,
 }
 
-const CreateDevice: FC<CreateBrandProps> = ({ setPopup }) => {
+const CreateDevice: FC<CreateBrandProps> = ({ setPopup, setItems }) => {
     const initialState: PreparedDeviceData = {
         name: '',
         price: '',
@@ -35,7 +36,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ setPopup }) => {
                     <>
                         <Icon className={styles.createDevice__icon} name="Image" size={20} />
                         <span>{data.imageName}</span>
-                        <div className={styles.createDevice__removeItem} onClick={() => setData({...data, img: ''})}>
+                        <div className={styles.createDevice__removeItem} onClick={() => setData({ ...data, img: '' })}>
                             <Icon className={styles.createDevice__icon} name="TrashCan" size={20} />
                         </div>
                     </>
@@ -53,7 +54,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ setPopup }) => {
         setData({
             ...data,
             img: target.files?.[0] || 'no picture',
-            imageName: target.files?.[0].name.slice(0, 15) + '... '
+            imageName: target.files?.[0].name.slice(0, 15) + '...',
         });
         target.value = '';
     };
@@ -67,7 +68,7 @@ const CreateDevice: FC<CreateBrandProps> = ({ setPopup }) => {
         formData.append('brandId', data.brandId);
         formData.append('img', data.img);
         createDevice(formData)
-            .then(() => showMessage('Device was successfully created.'))
+            .then((res) => setItems(res))
             .catch(() => showMessage(`Device wasn't been created, check data.`));
         handleCloseForm();
     };
@@ -91,13 +92,13 @@ const CreateDevice: FC<CreateBrandProps> = ({ setPopup }) => {
                                 className={styles.createDevice__input}
                                 type="text"
                                 placeholder="name"
-                                onChange={(e) => setData({...data, name: e.target.value})}
+                                onChange={(e) => setData({ ...data, name: e.target.value })}
                             />
                             <input
                                 className={styles.createDevice__input}
                                 type="text"
                                 placeholder="price"
-                                onChange={(e) => setData({...data, price: e.target.value})}
+                                onChange={(e) => setData({ ...data, price: e.target.value })}
                             />
                         </div>
                         <div className={styles.createDevice__item}>
