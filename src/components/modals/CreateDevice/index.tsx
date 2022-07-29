@@ -1,10 +1,10 @@
 import { FC, FormEvent, useState } from 'react';
 import { useSnackbar } from 'notistack';
 
+import { BasicItem, PreparedDeviceData } from '../../../../interfaces';
 import { createDevice } from '../../../http/deviceAPI';
-import SelectEntityList from '../SelectEntityList';
 import Icon from '../../Icon';
-import {BasicItem, PreparedDeviceData} from '../../../../interfaces';
+import SelectEntityList from '../SelectEntityList';
 
 import styles from './styles.module.scss';
 

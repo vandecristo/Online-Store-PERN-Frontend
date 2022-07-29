@@ -18,7 +18,7 @@ interface EntityDataFormat {
 }
 
 const FilterDropdown: FC<FilterDropdown> = ({ name, setParams }) => {
-    const { deviceStore, deviceStore: { selectedBrand }} = useContext(Context);
+    const { deviceStore } = useContext(Context);
 
     const [isDropdownActive, setDropDownActive] = useState<boolean>(false);
     const [currentActiveId, setCurrentActiveId] = useState<number>(0);

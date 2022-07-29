@@ -42,7 +42,7 @@ const Carousel: FC<CarouselProps> = ({ children }) => {
                 }
 
                 return currentOffset - offsetStep;
-            })
+            });
         }
     };
 

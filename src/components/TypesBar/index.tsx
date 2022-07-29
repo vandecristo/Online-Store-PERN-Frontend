@@ -1,9 +1,9 @@
-import {FC, useContext, useState} from 'react';
+import { FC, useContext, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import { BasicItem } from '../../../interfaces';
 import { Context } from '../../index';
-import { fetchBrands, fetchDevices } from '../../http/deviceAPI';
+import { fetchDevices } from '../../http/deviceAPI';
 import FilterDropdown from '../FilterDropdown';
 
 import styles from './styles.module.scss';
