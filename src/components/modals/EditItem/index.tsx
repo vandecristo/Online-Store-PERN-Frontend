@@ -1,11 +1,11 @@
-import { FC, FormEvent, useEffect, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import { useSnackbar } from 'notistack';
 
+import { BasicItem } from '../../../../interfaces';
 import Icon from '../../Icon';
 import { patchBrand, patchDevice, patchType } from '../../../http/deviceAPI';
 
 import styles from './styles.module.scss';
-import {BasicItem} from "../../../../interfaces";
 
 type DataOptions = {
     id: number,
@@ -29,32 +29,27 @@ interface CreateBrandProps {
 
 const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions, setItems }) => {
     const [data, setData] = useState<DataOptions>({ id: popupOptions.id, name: popupOptions.name, price: '0', img: '' });
-
-    const [items, setItoooms] = useState<BasicItem[]>([]);
-
     const { enqueueSnackbar } = useSnackbar();
 
     const patchItem = async (type: string | undefined, formData: FormData) => {
         switch (type) {
             case 'Devices':
-                return patchDevice(formData).then(() => setPopup(''));
+                return patchDevice(formData).then(async (res) =>  {
+                    await setItems(res);
+                });
             case 'Brands':
                 await patchBrand(formData).then(async (res) =>  {
-                    console.log('########### res:', res);
-                    const arr = [...res];
                     await setItems(res);
                 });
                 break;
             case 'Types':
-                return patchType(formData).then(() => setPopup(''));
+                return patchType(formData).then(async (res) =>  {
+                    await setItems(res);
+                });
             default:
                 break;
         }
     };
-
-    useEffect(() => {
-        console.log('editItem', items);
-    },[items]);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
