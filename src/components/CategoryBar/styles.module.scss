@@ -40,14 +40,13 @@ $min-width: 670px;
 .category__imageWrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 70px;
+  height: 65px;
   margin-top: 10px;
 }
 
 .category__image {
   height: 100%;
-  width: auto;
+  object-fit: scale-down;
 }
 
 .category__text {

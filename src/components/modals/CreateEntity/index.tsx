@@ -54,11 +54,11 @@ const CreateEntity: FC<CreateEntity> = ({
             switch (type) {
                 case 'Brand':
                     res = await createBrand(formData);
-                    setOptions({...options, brands: [...options.brands, res]});
+                    setOptions({ ...options, brands: [ ...options.brands, res ]});
                     break;
                 case 'Type':
                     res = await createType(formData);
-                    setOptions({...options, types: [...options.types, res]});
+                    setOptions({ ...options, types: [ ...options.types, res ]});
                     break;
                 default:
                     break;
@@ -76,7 +76,7 @@ const CreateEntity: FC<CreateEntity> = ({
                 <button className={styles.createEntity__button}
                         onClick={(e) => {
                             e.preventDefault();
-                            setNewEntityData({...newEntityData, img: ''});
+                            setNewEntityData({ ...newEntityData, img: '' });
                         }}
                 >
                     <Icon className={styles.selectEntityList__icon} name="TrashCan" size={12} />
@@ -95,7 +95,7 @@ const CreateEntity: FC<CreateEntity> = ({
                     className={styles.createEntity__input}
                     value={newEntityData.name}
                     onClick={(e) => e.stopPropagation()}
-                    onChange={(e) => setNewEntityData({...newEntityData, name: e.target.value})}
+                    onChange={(e) => setNewEntityData({ ...newEntityData, name: e.target.value })}
                     type="text"
                     placeholder={`${entityName}`}
                 />
@@ -113,7 +113,7 @@ const CreateEntity: FC<CreateEntity> = ({
                 type="file"
                 id="image-upload"
                 value={newEntityData.img?.files?.[0].name || ''}
-                onChange={(e) => setNewEntityData({...newEntityData, img: e.target.files?.[0]})}
+                onChange={(e) => setNewEntityData({ ...newEntityData, img: e.target.files?.[0] })}
                 onClick={(e) => e.stopPropagation()}
             />
             <label htmlFor="image-upload" className={styles.createEntity__imgUpload} onClick={(e) => e.stopPropagation()}>

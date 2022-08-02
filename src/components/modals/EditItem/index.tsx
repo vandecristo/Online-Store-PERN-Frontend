@@ -1,12 +1,21 @@
 import { FC, FormEvent, useState } from 'react';
 import { useSnackbar } from 'notistack';
 
-import { patchBrand } from '../../../http/deviceAPI';
+import { BasicItem } from '../../../../interfaces';
+import Icon from '../../Icon';
+import { patchBrand, patchDevice, patchType } from '../../../http/deviceAPI';
 
 import styles from './styles.module.scss';
 
+type DataOptions = {
+    id: number,
+    name: string,
+    price: string,
+    img: File | any,
+};
+
 type PopupOption = {
-    type?: string,
+    type: string,
     name: string,
     id: number,
 };
@@ -14,21 +23,68 @@ type PopupOption = {
 interface CreateBrandProps {
     setPopup: (arg: string) => void,
     popupOptions: PopupOption,
+    setItems: (arg: BasicItem[]) => void,
 }
 
-const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions }) => {
-    const [data, setData] = useState<PopupOption>({ id: popupOptions.id, name: '' });
-
+const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions, setItems }) => {
+    const [data, setData] = useState<DataOptions>({ id: popupOptions.id, name: popupOptions.name, price: '0', img: '' });
     const { enqueueSnackbar } = useSnackbar();
+
+    const patchItem = async (type: string | undefined, formData: FormData) => {
+        switch (type) {
+            case 'Devices':
+                return patchDevice(formData).then(async (res) =>  {
+                    await setItems(res);
+                });
+            case 'Brands':
+                await patchBrand(formData).then(async (res) =>  {
+                    await setItems(res);
+                });
+                break;
+            case 'Types':
+                return patchType(formData).then(async (res) =>  {
+                    await setItems(res);
+                });
+            default:
+                break;
+        }
+    };
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('name', data.name);
         formData.append('id', data.id.toString());
-        patchBrand(formData).then(() => setPopup(''));
-        enqueueSnackbar(`${popupOptions.type} was successfully changed.`);
+        if (popupOptions.type === 'Devices') {
+            if (data.price !== '0')
+            formData.append('price', data.price);
+        }
+        if (data.img) {
+            formData.append('img', data.img);
+        }
+        patchItem(popupOptions.type, formData);
+        enqueueSnackbar(`${data.name} from ${popupOptions.type} was successfully changed.`);
         setPopup('');
+    };
+
+    const showSelectedImage = () => {
+        return (
+            <div className={styles.createDevice__pictureName}>
+                {data.img ? (
+                    <>
+                        <Icon className={styles.createDevice__icon} name="Image" size={20} />
+                        <span>'Image added'</span>
+                        <div className={styles.createDevice__removeItem} onClick={() => setData({ ...data, img: '' })}>
+                            <Icon className={styles.createDevice__icon} name="TrashCan" size={20} />
+                        </div>
+                    </>
+                ) : (
+                    <div>
+                        <span>File is not chosen</span>
+                    </div>
+                )}
+            </div>
+        );
     };
 
     return (
@@ -46,8 +102,32 @@ const EditItem: FC<CreateBrandProps> = ({ setPopup, popupOptions }) => {
                                 name="name"
                                 placeholder="name"
                                 value={data.name}
-                                onChange={e => setData({...data, name: e.target.value})}
+                                onChange={e => setData({ ...data, name: e.target.value })}
                             />
+                        </div>
+                        {popupOptions.type === 'Devices' && (
+                            <div className={styles.createBrand__item}>
+                                <input
+                                    className={styles.createBrand__input}
+                                    type="number"
+                                    name="price"
+                                    placeholder="price"
+                                    value={data.price}
+                                    onChange={e => setData({ ...data, price: e.target.value })}
+                                />
+                            </div>
+                            )}
+                        <div className={styles.createBrand__item}>
+                            <input
+                                className={styles.createDevice__displayNone}
+                                type="file"
+                                id="file-upload"
+                                onChange={(e) => setData({ ...data, img: e.target.files?.[0] })}
+                            />
+                            <label htmlFor="file-upload" className={styles.createDevice__btn_input}>
+                                <span>+Image</span>
+                            </label>
+                            {showSelectedImage()}
                         </div>
                     </form>
                     <div className={styles.createBrand__btnWrapper}>

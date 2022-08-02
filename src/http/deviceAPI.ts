@@ -37,8 +37,8 @@ export const patchBrand = async (brand: FormData) => {
     return data;
 };
 
-export const fetchDevices = async () => {
-    const { data } = await $host.get('api/device');
+export const fetchDevices = async (params?: object) => {
+    const { data } = await $host.post('api/device', params);
 
     return data;
 };
@@ -50,7 +50,7 @@ export const fetchDeviceById = async (id: IdFromUseParams ) => {
 };
 
 export const createDevice = async (device: FormData) => {
-    const { data } = await $authHost.post('api/device', device);
+    const { data } = await $authHost.post('api/device/create', device);
 
     return data;
 };
