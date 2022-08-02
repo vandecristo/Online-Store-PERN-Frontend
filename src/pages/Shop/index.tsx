@@ -18,10 +18,6 @@ const Shop: FC = observer(() => {
         fetchDevices().then((devices) => deviceStore.setDevices(devices.rows));
     }, []);
 
-    // useEffect(() => {
-    //     console.log(deviceStore.devices);
-    // },[deviceStore.devices]);
-
   return (
       <div className={styles.shop}>
           <div className={styles.shop__item}>

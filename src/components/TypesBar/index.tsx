@@ -5,12 +5,14 @@ import { BasicItem } from '../../../interfaces';
 import { Context } from '../../index';
 import { fetchDevices } from '../../http/deviceAPI';
 import FilterDropdown from '../FilterDropdown';
+import * as data from '../../mock/index.json';
 
 import styles from './styles.module.scss';
 
 const TypesBar: FC = observer(() => {
     const { deviceStore } = useContext(Context);
     const [filterParams, setFilterParams] = useState({});
+    const { filterDropdowns } = data;
 
     const setParams = async (item: BasicItem, name: string) => {
         switch (name) {
@@ -36,8 +38,9 @@ const TypesBar: FC = observer(() => {
                 <div className={styles.typeBar__item}>
                     <span>All</span>
                 </div>
-                <FilterDropdown name={'Type'} setParams={setParams} />
-                <FilterDropdown name={'Brand'} setParams={setParams} />
+                    {filterDropdowns.map((item) => (
+                        <FilterDropdown name={item.name as 'brands' | 'types'} key={item.id} setParams={setParams} method={item.method} />
+                    ))}
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import classnames from 'classnames';
 
 import Icon from '../Icon';
@@ -8,21 +8,17 @@ import { BasicItem } from '../../../interfaces';
 import styles from './styles.module.scss';
 
 interface FilterDropdown {
-    name: string,
-    setParams: (item: BasicItem, name: string) => void,
-}
-
-interface EntityDataFormat {
     name: 'brands' | 'types',
-    method: 'setSelectedBrand' | 'setSelectedType',
+    setParams: (item: BasicItem, name: string) => void,
+    method: string,
 }
 
-const FilterDropdown: FC<FilterDropdown> = ({ name, setParams }) => {
+
+const FilterDropdown: FC<FilterDropdown> = ({ name, setParams, method }) => {
     const { deviceStore } = useContext(Context);
 
     const [isDropdownActive, setDropDownActive] = useState<boolean>(false);
     const [currentActiveId, setCurrentActiveId] = useState<number>(0);
-    const [entityData, setEntityData] = useState<EntityDataFormat>({ name: 'brands', method: 'setSelectedBrand' });
 
     const openList = () => {
         setDropDownActive(!isDropdownActive);
@@ -33,14 +29,6 @@ const FilterDropdown: FC<FilterDropdown> = ({ name, setParams }) => {
         setParams(item, name);
     };
 
-    useEffect(() => {
-        if (name === 'Brand') {
-            setEntityData({ name: 'brands', method: 'setSelectedBrand' });
-        } else {
-            setEntityData({ name: 'types', method: 'setSelectedType' });
-        }
-    }, []);
-
     return (
         <div className={styles.dropdown}>
             <div
@@ -48,7 +36,7 @@ const FilterDropdown: FC<FilterDropdown> = ({ name, setParams }) => {
                 onClick={() => openList()}
             >
                 <span className={styles.dropDown__text}>
-                    {name + 's'}
+                    {name}
                 </span>
                 <div
                     className={classnames(styles.dropdown__iconWrapper, {[styles.dropdown__iconWrapper_open]: isDropdownActive})}>
@@ -57,11 +45,11 @@ const FilterDropdown: FC<FilterDropdown> = ({ name, setParams }) => {
             </div>
             <div className={styles.dropdown__listWrapper}>
                 <div className={classnames(styles.dropdown__list, {[styles.dropdown__list_active]: isDropdownActive})}>
-                    {deviceStore[entityData.name]?.map((item) => ( // .types or .brands
+                    {deviceStore[name]?.map((item) => ( // .types or .brands
                         <li
                             className={classnames(styles.dropdown__listElement, {[styles.dropdown__listElement_active]: item.id === currentActiveId})}
                             key={item.id}
-                            onClick={() => handleClick(item, entityData.name)}
+                            onClick={() => handleClick(item, name)}
                         >
                             <span>{item.name}</span>
                         </li>

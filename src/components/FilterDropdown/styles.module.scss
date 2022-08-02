@@ -35,7 +35,6 @@ $theme-black: #181818;
   overflow: hidden;
   transition: height 1s, margin 0.5s, visibility 0.5s, opacity 0.3s, overflow 0.5s;
   visibility: hidden;
-  width: 90%;
 }
 
 .dropdown__list_active {
@@ -56,7 +55,7 @@ $theme-black: #181818;
   cursor: pointer;
   margin-top: 5px;
   transition: 0.3s;
-  width: 100%;
+  width: 120px;
 }
 
 .dropdown__listElement_active {
@@ -75,4 +74,8 @@ $theme-black: #181818;
   color: #754abe;
   transform: rotate(0deg);
   transition: transform 0.5s;
+}
+
+.dropDown__text::first-letter {
+  text-transform: uppercase;
 }
